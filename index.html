@@ -1,0 +1,3552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Theory Decks</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8E%B8%3C/text%3E%3C/svg%3E">
+<style>
+
+html, body { margin: 0; height: 100%; }
+.view[hidden] { display: none !important; }
+.v-home, .v-reference { position: fixed; inset: 0; overflow-y: auto; }
+.v-play { position: fixed; inset: 0; overflow: hidden; }
+.v-home {
+  color-scheme: light;
+  --paper: #f4f2eb;
+  --ink: #202b26;
+  --muted: #69736d;
+  --line: #d7d8cf;
+  --accent: #ba4c31;
+  --green: #29453a;
+}
+.v-home * { box-sizing: border-box; }
+.v-home { margin: 0; min-height: 100%; }
+.v-home {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+.v-home a { color: inherit; }
+.v-home .site-header, .v-home .site-footer {
+  width: min(1120px, calc(100% - 48px));
+  margin-inline: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.v-home .site-header { min-height: 76px; border-bottom: 1px solid var(--line); }
+.v-home .wordmark { font-size: 14px; font-weight: 800; letter-spacing: -.02em; text-decoration: none; }
+.v-home .site-header nav { display: flex; gap: 24px; align-items: center; }
+.v-home .site-header nav a, .v-home .site-footer a { color: var(--muted); font-size: 13px; text-decoration: none; }
+.v-home .site-header nav a:hover, .v-home .site-footer a:hover, .v-home .reference-link:hover { color: var(--accent); }
+.v-home .site-header nav .nav-play { color: var(--ink); font-weight: 700; }
+.v-home .home-shell {
+  width: min(1120px, calc(100% - 48px));
+  min-height: min(690px, calc(100svh - 142px));
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.05fr .95fr;
+  align-items: center;
+  gap: 48px;
+  padding: 64px 0;
+}
+.v-home .home-copy { max-width: 570px; }
+.v-home .eyebrow { margin: 0 0 22px; color: var(--accent); font-size: 11px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; }
+.v-home h1 { margin: 0; font-size: clamp(46px, 6.6vw, 82px); line-height: .98; letter-spacing: -.075em; font-weight: 780; }
+.v-home .intro { max-width: 410px; margin: 24px 0 0; color: var(--muted); font-size: 16px; line-height: 1.65; }
+.v-home .home-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 26px; margin-top: 34px; }
+.v-home .play-link {
+  display: inline-flex; gap: 26px; align-items: center;
+  padding: 14px 20px; border-radius: 3px;
+  background: var(--green); color: #f7f5ed;
+  font-size: 14px; font-weight: 750; text-decoration: none;
+  transition: background .15s, transform .15s;
+}
+.v-home .play-link:hover { background: var(--accent); transform: translateY(-2px); }
+.v-home .play-link span { font-size: 19px; line-height: 1; }
+.v-home .reference-link { color: var(--muted); font-size: 13px; text-underline-offset: 4px; }
+.v-home .deck-art { position: relative; width: min(100%, 440px); height: 390px; justify-self: end; }
+.v-home .art-card {
+  position: absolute; width: min(68%, 255px); aspect-ratio: 5 / 7;
+  padding: 25px 20px; border: 7px double var(--green); border-radius: 13px;
+  background: #fbfaf5; box-shadow: 0 18px 40px #17231a22;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+}
+.v-home .art-card span { color: var(--accent); font-size: 9px; font-weight: 800; letter-spacing: .17em; }
+.v-home .art-card b { margin-top: 14px; color: var(--ink); font-size: clamp(21px, 3vw, 30px); letter-spacing: -.05em; }
+.v-home .art-card-back { left: 0; top: 54px; transform: rotate(-13deg); background: #e6e8dc; }
+.v-home .art-card-mid { left: 26%; top: 22px; transform: rotate(5deg); border-color: #a64a34; }
+.v-home .art-card-front { right: 0; bottom: 10px; transform: rotate(11deg); border-color: #314f43; }
+.v-home .art-card-front i { position: absolute; right: 18px; bottom: 18px; width: 15px; height: 15px; border: 2px solid var(--accent); transform: rotate(45deg); }
+.v-home .site-footer { min-height: 66px; border-top: 1px solid var(--line); color: var(--muted); font-size: 12px; }
+.v-home .site-footer a { color: var(--ink); font-weight: 700; }
+.v-home .reference-shell { width: min(980px, calc(100% - 48px)); margin: 0 auto; padding: 64px 0 84px; }
+.v-home .reference-intro { padding: 16px 0 52px; }
+.v-home .reference-intro .eyebrow { margin-bottom: 15px; }
+.v-home .reference-intro h1 { font-size: clamp(42px, 6vw, 64px); }
+.v-home .reference-intro > p:last-child { color: var(--muted); margin: 17px 0 0; line-height: 1.6; }
+.v-home .reference-section { padding-top: 26px; margin-top: 18px; border-top: 1px solid var(--line); }
+.v-home .section-heading { display: flex; align-items: baseline; gap: 13px; margin-bottom: 18px; }
+.v-home .section-heading span { color: var(--accent); font-size: 11px; font-weight: 800; }
+.v-home .section-heading h2 { margin: 0; font-size: 24px; letter-spacing: -.04em; }
+.v-home .reference-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 32px; }
+.v-home .reference-entry { padding: 15px 0 17px; border-top: 1px solid var(--line); }
+.v-home .reference-entry h3 { margin: 0; font-size: 14px; letter-spacing: -.01em; }
+.v-home .reference-entry p { margin: 6px 0 0; color: var(--muted); font-size: 12px; line-height: 1.55; }
+.v-home .game-groups { display: grid; gap: 26px; }
+.v-home .game-group h3 { margin: 0 0 9px; color: var(--accent); font-size: 11px; letter-spacing: .13em; text-transform: uppercase; }
+.v-home .game-group .reference-entry { padding-block: 12px; }
+@media (max-width: 700px){
+.v-home .site-header, .v-home .site-footer, .v-home .home-shell, .v-home .reference-shell { width: min(100% - 36px, 560px); }
+.v-home .home-shell { min-height: auto; grid-template-columns: 1fr; gap: 12px; padding: 72px 0 42px; }
+.v-home .intro { font-size: 15px; }
+.v-home .deck-art { justify-self: center; width: min(100%, 360px); height: 330px; margin-top: 6px; }
+.v-home .art-card { width: 66%; }
+.v-home .site-footer { min-height: 58px; }
+.v-home .reference-shell { padding-top: 43px; }
+.v-home .reference-intro { padding-bottom: 35px; }
+.v-home .reference-list { grid-template-columns: 1fr; }
+
+}
+
+
+.v-reference {
+  color-scheme: light;
+  --paper: #f4f2eb;
+  --ink: #202b26;
+  --muted: #69736d;
+  --line: #d7d8cf;
+  --accent: #ba4c31;
+  --green: #29453a;
+}
+.v-reference * { box-sizing: border-box; }
+.v-reference { margin: 0; min-height: 100%; }
+.v-reference {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+.v-reference a { color: inherit; }
+.v-reference .site-header, .v-reference .site-footer {
+  width: min(1120px, calc(100% - 48px));
+  margin-inline: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.v-reference .site-header { min-height: 76px; border-bottom: 1px solid var(--line); }
+.v-reference .wordmark { font-size: 14px; font-weight: 800; letter-spacing: -.02em; text-decoration: none; }
+.v-reference .site-header nav { display: flex; gap: 24px; align-items: center; }
+.v-reference .site-header nav a, .v-reference .site-footer a { color: var(--muted); font-size: 13px; text-decoration: none; }
+.v-reference .site-header nav a:hover, .v-reference .site-footer a:hover, .v-reference .reference-link:hover { color: var(--accent); }
+.v-reference .site-header nav .nav-play { color: var(--ink); font-weight: 700; }
+.v-reference .home-shell {
+  width: min(1120px, calc(100% - 48px));
+  min-height: min(690px, calc(100svh - 142px));
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.05fr .95fr;
+  align-items: center;
+  gap: 48px;
+  padding: 64px 0;
+}
+.v-reference .home-copy { max-width: 570px; }
+.v-reference .eyebrow { margin: 0 0 22px; color: var(--accent); font-size: 11px; font-weight: 800; letter-spacing: .16em; text-transform: uppercase; }
+.v-reference h1 { margin: 0; font-size: clamp(46px, 6.6vw, 82px); line-height: .98; letter-spacing: -.075em; font-weight: 780; }
+.v-reference .intro { max-width: 410px; margin: 24px 0 0; color: var(--muted); font-size: 16px; line-height: 1.65; }
+.v-reference .home-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 26px; margin-top: 34px; }
+.v-reference .play-link {
+  display: inline-flex; gap: 26px; align-items: center;
+  padding: 14px 20px; border-radius: 3px;
+  background: var(--green); color: #f7f5ed;
+  font-size: 14px; font-weight: 750; text-decoration: none;
+  transition: background .15s, transform .15s;
+}
+.v-reference .play-link:hover { background: var(--accent); transform: translateY(-2px); }
+.v-reference .play-link span { font-size: 19px; line-height: 1; }
+.v-reference .reference-link { color: var(--muted); font-size: 13px; text-underline-offset: 4px; }
+.v-reference .deck-art { position: relative; width: min(100%, 440px); height: 390px; justify-self: end; }
+.v-reference .art-card {
+  position: absolute; width: min(68%, 255px); aspect-ratio: 5 / 7;
+  padding: 25px 20px; border: 7px double var(--green); border-radius: 13px;
+  background: #fbfaf5; box-shadow: 0 18px 40px #17231a22;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+}
+.v-reference .art-card span { color: var(--accent); font-size: 9px; font-weight: 800; letter-spacing: .17em; }
+.v-reference .art-card b { margin-top: 14px; color: var(--ink); font-size: clamp(21px, 3vw, 30px); letter-spacing: -.05em; }
+.v-reference .art-card-back { left: 0; top: 54px; transform: rotate(-13deg); background: #e6e8dc; }
+.v-reference .art-card-mid { left: 26%; top: 22px; transform: rotate(5deg); border-color: #a64a34; }
+.v-reference .art-card-front { right: 0; bottom: 10px; transform: rotate(11deg); border-color: #314f43; }
+.v-reference .art-card-front i { position: absolute; right: 18px; bottom: 18px; width: 15px; height: 15px; border: 2px solid var(--accent); transform: rotate(45deg); }
+.v-reference .site-footer { min-height: 66px; border-top: 1px solid var(--line); color: var(--muted); font-size: 12px; }
+.v-reference .site-footer a { color: var(--ink); font-weight: 700; }
+.v-reference .reference-shell { width: min(980px, calc(100% - 48px)); margin: 0 auto; padding: 64px 0 84px; }
+.v-reference .reference-intro { padding: 16px 0 52px; }
+.v-reference .reference-intro .eyebrow { margin-bottom: 15px; }
+.v-reference .reference-intro h1 { font-size: clamp(42px, 6vw, 64px); }
+.v-reference .reference-intro > p:last-child { color: var(--muted); margin: 17px 0 0; line-height: 1.6; }
+.v-reference .reference-section { padding-top: 26px; margin-top: 18px; border-top: 1px solid var(--line); }
+.v-reference .section-heading { display: flex; align-items: baseline; gap: 13px; margin-bottom: 18px; }
+.v-reference .section-heading span { color: var(--accent); font-size: 11px; font-weight: 800; }
+.v-reference .section-heading h2 { margin: 0; font-size: 24px; letter-spacing: -.04em; }
+.v-reference .reference-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 32px; }
+.v-reference .reference-entry { padding: 15px 0 17px; border-top: 1px solid var(--line); }
+.v-reference .reference-entry h3 { margin: 0; font-size: 14px; letter-spacing: -.01em; }
+.v-reference .reference-entry p { margin: 6px 0 0; color: var(--muted); font-size: 12px; line-height: 1.55; }
+.v-reference .game-groups { display: grid; gap: 26px; }
+.v-reference .game-group h3 { margin: 0 0 9px; color: var(--accent); font-size: 11px; letter-spacing: .13em; text-transform: uppercase; }
+.v-reference .game-group .reference-entry { padding-block: 12px; }
+@media (max-width: 700px){
+.v-reference .site-header, .v-reference .site-footer, .v-reference .home-shell, .v-reference .reference-shell { width: min(100% - 36px, 560px); }
+.v-reference .home-shell { min-height: auto; grid-template-columns: 1fr; gap: 12px; padding: 72px 0 42px; }
+.v-reference .intro { font-size: 15px; }
+.v-reference .deck-art { justify-self: center; width: min(100%, 360px); height: 330px; margin-top: 6px; }
+.v-reference .art-card { width: 66%; }
+.v-reference .site-footer { min-height: 58px; }
+.v-reference .reference-shell { padding-top: 43px; }
+.v-reference .reference-intro { padding-bottom: 35px; }
+.v-reference .reference-list { grid-template-columns: 1fr; }
+
+}
+
+
+.v-play * { box-sizing: border-box; margin: 0; }
+.v-play { height: 100%; }
+.v-play {
+  --h: 8;
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  background: radial-gradient(ellipse at top, var(--bg1), var(--bg2) 70%);
+  color: var(--text);
+  --frame: hsl(var(--h) var(--fs) var(--fl));
+  --accent: color-mix(in srgb, var(--frame) 75%, var(--ink));
+  display: flex; flex-direction: column;
+}
+.v-play header {
+  display: flex; align-items: center; gap: 12px;
+  padding: 10px 14px; background: color-mix(in srgb, var(--bg2) 85%, transparent);
+  border-bottom: 1px solid color-mix(in srgb, var(--text) 10%, transparent);
+}
+.v-play #selectors { display: flex; align-items: center; gap: 14px; flex: 1; min-width: 0; }
+.v-play .picker { display: flex; align-items: center; gap: 7px; color: color-mix(in srgb, var(--text) 60%, transparent); font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; white-space: nowrap; }
+.v-play #selectors #card-deck { width: 180px; }
+.v-play #selectors #game-deck { width: min(390px, 38vw); }
+.v-play .meta { display: flex; align-items: center; gap: 10px; font-size: 13px; color: color-mix(in srgb, var(--text) 65%, transparent); flex: none; }
+.v-play .page-link { color: inherit; font-size: 11px; font-weight: 700; text-decoration: none; }
+.v-play .page-link:hover { color: var(--frame); }
+.v-play select {
+  background: color-mix(in srgb, var(--text) 8%, transparent); color: var(--text); border: 1px solid color-mix(in srgb, var(--text) 18%, transparent);
+  border-radius: 8px; padding: 5px 8px; font: inherit;
+}
+.v-play select option { color: #000; }
+.v-play main { flex: 1; overflow-y: auto; padding: 20px 16px 40px; }
+.v-play main h2 {
+  font-size: 13px; letter-spacing: .14em; text-transform: uppercase;
+  color: color-mix(in srgb, var(--frame) 60%, var(--text)); margin: 22px 4px 10px;
+}
+.v-play main h2:first-child { margin-top: 0; }
+.v-play .cards {
+  display: grid; gap: 14px;
+  grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+}
+.v-play .card { aspect-ratio: 5 / 7; perspective: 900px; cursor: pointer; }
+.v-play .inner {
+  position: relative; width: 100%; height: 100%;
+  transition: transform .5s cubic-bezier(.3,.8,.3,1.1);
+  transform-style: preserve-3d;
+}
+.v-play .card:hover .inner { transform: translateY(-3px); }
+.v-play .card.flip .inner { transform: rotateY(180deg); }
+.v-play .face {
+  position: absolute; inset: 0; border-radius: 12px;
+  backface-visibility: hidden; -webkit-backface-visibility: hidden;
+  box-shadow: 0 6px 18px #0007, inset 0 0 0 1px #0000001a;
+  overflow: hidden;
+}
+.v-play .front {
+  background: var(--face); color: var(--ink);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center; padding: 30px 14px;
+  border: 6px solid var(--frame);
+}
+.v-play .pip {
+  position: absolute; display: flex; flex-direction: column; align-items: center; gap: 1px;
+  color: var(--accent); font-size: 11px; font-weight: 800; line-height: 1;
+}
+.v-play .pip svg { width: 18px; height: 18px; }
+.v-play .pip.tl { top: 7px; left: 7px; }
+.v-play .pip.br { bottom: 7px; right: 7px; transform: rotate(180deg); }
+.v-play .deckname {
+  font-size: 9px; letter-spacing: .14em; text-transform: uppercase; font-weight: 700;
+  color: var(--accent); opacity: .8; margin-bottom: 8px;
+}
+.v-play [data-frame="double"] .front { border: 6px double var(--frame); }
+.v-play [data-frame="inset"] .front { border: 3px solid var(--frame); box-shadow: 0 6px 18px #0007, inset 0 0 0 4px var(--face), inset 0 0 0 5.5px var(--frame); }
+.v-play [data-frame="thin"] .front { border: 2px solid var(--frame); }
+.v-play [data-frame="dashed"] .front { border: 3px dashed var(--frame); }
+.v-play [data-frame="bars"] .front { border: 0; border-top: 10px solid var(--frame); border-bottom: 10px solid var(--frame); }
+.v-play .front h3 { font-size: 19px; line-height: 1.2; font-weight: 800; }
+.v-play .front h3.big { font-size: 34px; }
+.v-play .front .sub {
+  margin-top: 10px; font-size: 13px; font-weight: 600;
+  color: var(--accent); font-variant-numeric: tabular-nums;
+}
+.v-play .base0front {
+  display: flex; flex-direction: column; align-items: center; gap: 2px;
+  max-width: 100%; margin-top: 8px; color: var(--accent); line-height: 1.15;
+}
+.v-play .base0front b { font-size: 10px; overflow-wrap: anywhere; }
+.v-play .back {
+  transform: rotateY(180deg);
+  background: hsl(var(--h) var(--bs) var(--bl));
+  color: #f6f2ea;
+  background-image: repeating-linear-gradient(45deg, #ffffff06 0 6px, transparent 6px 12px);
+  padding: 12px; font-size: 11.5px; line-height: 1.4;
+  display: flex; flex-direction: column; gap: 8px; overflow-y: auto;
+}
+.v-play .back .details, .v-play .back .allkeys { display: flex; flex-direction: column; gap: 8px; }
+.v-play .back .allkeys { display: none; }
+.v-play .card.keys .details { display: none; }
+.v-play .card.keys .allkeys { display: flex; animation: fade .3s; }
+.v-play .allkeys dl { gap: 2px 8px; }
+.v-play .allkeys dt { text-transform: none; font-size: 11px; color: hsl(var(--h) 80% 82%); font-weight: 700; letter-spacing: 0; }
+.v-play .allkeys dd { font-size: 11px; }
+@keyframes fade{ from { opacity: 0; transform: translateY(4px); } }
+.v-play .back h4 { font-size: 13px; color: hsl(var(--h) 80% 82%); }
+.v-play .back dl { display: grid; grid-template-columns: auto 1fr; gap: 3px 8px; }
+.v-play .back dt { color: #ffffffa0; font-size: 10px; text-transform: uppercase; letter-spacing: .05em; padding-top: 1px; }
+.v-play .back dd { font-weight: 600; }
+.v-play .back p { color: #ffffffd8; }
+.v-play .deal {
+  display: grid; grid-template-columns: repeat(4, minmax(0, 220px));
+  justify-content: center; gap: 20px; margin-top: 10px;
+}
+.v-play .deal.three { grid-template-columns: repeat(3, minmax(0, 220px));}
+.v-play .deal.five { grid-template-columns: repeat(5, minmax(0, 180px)); gap: 14px;}
+.v-play .slot {
+  --frame: hsl(var(--h) var(--fs) var(--fl));
+  --accent: color-mix(in srgb, var(--frame) 75%, var(--ink));
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  animation: dealIn .55s cubic-bezier(.2,.9,.3,1.2) both; }
+.v-play .slot .card { width: 100%; }
+.v-play .slotbtn {
+  border: 1px solid color-mix(in srgb, var(--text) 22%, transparent); border-radius: 999px;
+  padding: 6px 12px; background: color-mix(in srgb, var(--text) 8%, transparent);
+  color: var(--text); font: 600 12px inherit; font-family: inherit; cursor: pointer;
+}
+.v-play .slotbtn:hover { background: color-mix(in srgb, var(--text) 15%, transparent); }
+.v-play .slotbtn.static { cursor: default; }
+.v-play .slotbtn:focus-visible { outline: 2px solid var(--frame); outline-offset: 2px; }
+@keyframes dealIn{
+  from { opacity: 0; transform: translateY(-60px) rotate(-8deg) scale(.9); }
+}
+.v-play .brief {
+  max-width: 700px; margin: 28px auto 0; text-align: center;
+  display: flex; flex-direction: column; align-items: center; gap: 14px;
+  animation: fade .4s .5s both;
+}
+.v-play .brief .line { display: flex; gap: 10px; align-items: baseline; font-size: 18px; }
+.v-play .brief .line span {
+  font-size: 11px; letter-spacing: .14em; text-transform: uppercase;
+  color: color-mix(in srgb, var(--text) 60%, transparent);
+}
+.v-play .brief .chords { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+.v-play .brief .chords i {
+  font-style: normal; font-weight: 800; font-size: 22px;
+  padding: 8px 14px; border-radius: 10px;
+  background: var(--face); color: var(--ink);
+  border: 2px solid var(--frame); min-width: 54px;
+}
+.v-play .picking-tab {
+  margin: 0; padding: 10px 12px; border-radius: 10px;
+  background: var(--face); color: var(--ink);
+  font: 11px/1.35 ui-monospace, SFMono-Regular, Consolas, monospace;
+  text-align: left; white-space: pre; max-width: 100%; overflow-x: auto;
+}
+.v-play .dealbtn {
+  margin-top: 6px; border: 0; cursor: pointer;
+  padding: 11px 26px; border-radius: 999px;
+  background: var(--frame); color: #fff; font: 700 15px inherit; font-family: inherit;
+  box-shadow: 0 4px 14px #0006; transition: transform .1s;
+}
+.v-play .dealbtn:active { transform: scale(.96); }
+@media (max-width: 1000px){
+.v-play .deal.five { grid-template-columns: repeat(3, minmax(0, 220px)); }
+
+}
+@media (max-width: 600px){
+.v-play .deal { grid-template-columns: repeat(2, minmax(0, 220px)); gap: 8px; }
+.v-play .deal.five { grid-template-columns: repeat(2, minmax(0, 220px)); gap: 8px; }
+.v-play .deal.three { grid-template-columns: repeat(2, minmax(0, 220px)); }
+.v-play .brief .chords i { font-size: 17px; padding: 6px 10px; min-width: 0; }
+.v-play header { flex-wrap: wrap; }
+.v-play #selectors { flex-basis: 100%; width: 100%; }
+.v-play #selectors .picker:first-child { flex: 0 0 42%; }
+.v-play #selectors .picker:last-child { flex: 1; min-width: 0; }
+.v-play #selectors .picker select { width: 100%; min-width: 0; }
+.v-play .meta { margin-left: auto; flex-wrap: wrap; justify-content: flex-end; }
+.v-play .cards { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 10px; }
+.v-play .front h3 { font-size: 16px; }
+
+}
+
+
+
+</style>
+</head>
+<body>
+<div id="view-home" class="view v-home landing" hidden>
+
+<header class="site-header">
+  <a class="wordmark" href="#home">Theory Decks</a>
+  <nav aria-label="Main navigation"><a href="#reference">Reference</a></nav>
+</header>
+<main class="home-shell">
+  <section class="home-copy">
+    <p class="eyebrow">A guitar study tool</p>
+    <h1>Turn theory<br>into practice.</h1>
+    <p class="intro">Explore cards for harmony, scales, fretboard patterns and picking. Deal a focused exercise when you're ready to play.</p>
+    <div class="home-actions">
+      <a class="play-link" href="#play">Play <span aria-hidden="true">&rarr;</span></a>
+      <a class="reference-link" href="#reference">Browse the reference</a>
+    </div>
+  </section>
+  <div class="deck-art" aria-hidden="true">
+    <div class="art-card art-card-back"><span>INTERVAL</span><b>1 - 5</b></div>
+    <div class="art-card art-card-mid"><span>KEY</span><b>D major</b></div>
+    <div class="art-card art-card-front"><span>TRIAD</span><b>1 - 3 - 5</b><i></i></div>
+  </div>
+</main>
+<footer class="site-footer"><span>Harmony, patterns, technique.</span><a href="#play">Open the decks</a></footer>
+
+</div>
+<div id="view-play" class="view v-play" hidden>
+
+<header>
+  <nav id="selectors" aria-label="Cards and games">
+    <label class="picker">Cards<select id="card-deck" aria-label="Cards"><option value="">Choose deck</option></select></label>
+    <label class="picker">Games<select id="game-deck" aria-label="Games"><option value="">Choose game</option></select></label>
+  </nav>
+  <div class="meta">
+    <select id="strings" hidden>
+      <option value="2">2 strings</option>
+      <option value="3">3 strings</option>
+      <option value="4">4 strings</option>
+      <option value="5">5 strings</option>
+      <option value="6" selected>6 strings</option>
+      <option value="7">7 strings</option>
+      <option value="8">8 strings</option>
+    </select>
+    <span id="count"></span>
+    <a class="page-link" href="#home">Home</a>
+    <a class="page-link" href="#reference">Reference</a>
+    <select id="theme" title="View"></select>
+    <select id="cardstyle" title="Card style"></select>
+  </div>
+</header>
+<main id="grid"></main>
+
+</div>
+<div id="view-reference" class="view v-reference reference-page" hidden>
+
+<header class="site-header">
+  <a class="wordmark" href="#home">Theory Decks</a>
+  <nav aria-label="Main navigation"><a href="#home">Home</a><a class="nav-play" href="#play">Play</a></nav>
+</header>
+<main class="reference-shell">
+  <div class="reference-intro">
+    <p class="eyebrow">Field guide</p>
+    <h1>Decks &amp; games</h1>
+    <p>Card libraries and the practice deals built from them.</p>
+  </div>
+  <section class="reference-section" aria-labelledby="deck-heading">
+    <div class="section-heading"><span>01</span><h2 id="deck-heading">Decks</h2></div>
+    <div id="deck-list" class="reference-list"></div>
+  </section>
+  <section class="reference-section" aria-labelledby="game-heading">
+    <div class="section-heading"><span>02</span><h2 id="game-heading">Games</h2></div>
+    <div id="game-list" class="reference-list"></div>
+  </section>
+</main>
+<footer class="site-footer"><a href="#play">Play a deal</a><a href="#home">Theory Decks home</a></footer>
+
+</div>
+<script>
+(function () {
+'use strict';
+
+const LS = (() => { try { const t = '__t'; localStorage.setItem(t, t); localStorage.removeItem(t); return localStorage; } catch (e) { const m = {}; return { getItem: k => (k in m ? m[k] : null), setItem: (k, v) => { m[k] = String(v); } }; } })();
+const __factories = {
+"theory.js": function() {
+'use strict';
+const LETTERS = ['C','D','E','F','G','A','B'];
+const NAT = [0, 2, 4, 5, 7, 9, 11];
+const IV_NAMES = ['P1','m2','M2','m3','M3','P4','TT','P5','m6','M6','m7','M7'];
+
+function parseDeg(tok) {
+  const m = tok.trim().match(/^([♭♯b#]*)(\d+)$/);
+  if (!m) return null;
+  let acc = 0;
+  for (const c of m[1]) acc += (c === '♭' || c === 'b') ? -1 : 1;
+  const n = +m[2];
+  return { n, acc, tok: tok.trim(), semis: NAT[(n - 1) % 7] + 12 * Math.floor((n - 1) / 7) + acc };
+}
+
+const parseFormula = (str) => str.split(/[–-]/).map(parseDeg).filter(Boolean);
+
+const accStr = (a) => a > 0 ? '♯'.repeat(a) : a < 0 ? '♭'.repeat(-a) : '';
+
+// tonic: { l: letter index 0-6, acc }
+function spell(tonic, deg) {
+  const li = (tonic.l + deg.n - 1) % 7;
+  const tpc = NAT[tonic.l] + tonic.acc + NAT[(deg.n - 1) % 7] + deg.acc;
+  const a = (((tpc - NAT[li]) % 12) + 18) % 12 - 6;
+  return LETTERS[li] + accStr(a);
+}
+
+const C = { l: 0, acc: 0 };
+
+// The 12 roots used for the "all keys" view
+const ROOTS = [
+  [0, 0], [1, -1], [1, 0], [2, -1], [2, 0], [3, 0], [3, 1], [4, 0], [5, -1], [5, 0], [6, -1], [6, 0],
+].map(([l, acc]) => ({ l, acc, name: LETTERS[l] + accStr(acc), pc: (NAT[l] + acc + 12) % 12 }));
+
+const pcOf = (l, acc) => (NAT[l] + acc + 120) % 12;
+const noteToTonic = (name) => {
+  const l = LETTERS.indexOf(name[0]);
+  let acc = 0;
+  for (const c of name.slice(1)) acc += c === '♭' ? -1 : c === '♯' ? 1 : 0;
+  return { l, acc };
+};
+const DEGREE_OF_PC = ['1', '♭2', '2', '♭3', '3', '4', '♯4/♭5', '5', '♭6', '6', '♭7', '7'];
+const ROMAN_OF_PC = ['I', '♭II', 'II', '♭III', 'III', 'IV', '♯IV/♭V', 'V', '♭VI', 'VI', '♭VII', 'VII'];
+
+// Pitches made ascending in order listed (wrapping up an octave as needed)
+function ascending(degs) {
+  const out = [];
+  let prev = -Infinity;
+  for (const d of degs) {
+    let v = d.semis;
+    while (v <= prev) v += 12;
+    out.push(v); prev = v;
+  }
+  return out;
+}
+
+const STEP = { 1: 'H', 2: 'W', 3: 'W½', 4: '2W' };
+function steps(pitches) {
+  const p = [...pitches];
+  if (p[p.length - 1] - p[0] < 12) p.push(p[0] + 12);
+  const s = [];
+  for (let i = 1; i < p.length; i++) {
+    const d = p[i] - p[i - 1];
+    if (d > 0) s.push(STEP[d] || d + 'st');
+  }
+  return s.join(' ');
+}
+
+function shape(pitches) {
+  return pitches.map(v => IV_NAMES[(v - pitches[0]) % 12]).join(' ');
+}
+
+// Character description from the set of semitones above the first note
+function describe(pitches, rootName) {
+  const set = new Set(pitches.map(v => (v - pitches[0]) % 12));
+  const has = (n) => set.has(n);
+  let quality, chord;
+  if (has(3) && has(4)) quality = 'Blues-tinged sound (both ♭3 and 3)';
+  else if (has(4)) quality = 'Major sound';
+  else if (has(3)) quality = 'Minor sound';
+  else quality = 'Open, suspended sound (no 3rd)';
+
+  const fifth = has(7) ? 'a stable perfect 5th' : has(6) ? 'a diminished 5th' : has(8) ? 'a raised 5th / ♭6' : 'no 5th';
+  const sev = has(11) ? 'a major 7th leading tone' : has(10) ? 'a ♭7' : null;
+  let s = quality + ' with ' + fifth + (sev ? ' and ' + sev : '') + '.';
+
+  const colors = [];
+  if (has(1)) colors.push('♭2 adds a dark, exotic Phrygian edge');
+  if (has(6) && (has(5) || has(7))) colors.push('♭5/♯4 adds tritone tension');
+  if (has(3) && has(9)) colors.push('natural 6 brightens the minor (Dorian color)');
+  if (has(8) && has(7)) colors.push('♭6 adds a melancholy pull');
+  if (has(4) && has(6) && !has(5)) colors.push('♯4 gives a floating Lydian lift');
+  if (has(3) && has(11)) colors.push('major 7 over minor gives harmonic/melodic-minor drama');
+  if (colors.length) s += ' ' + colors[0][0].toUpperCase() + colors.slice(0, 2).join('; ').slice(1) + '.';
+
+  // chord it fits over
+  if (has(4) && has(7)) chord = has(10) ? '7' : has(11) ? 'maj7' : '';
+  else if (has(4) && has(8) && !has(7)) chord = 'aug';
+  else if (has(3) && has(7)) chord = has(10) ? 'm7' : has(11) ? 'm(maj7)' : 'm';
+  else if (has(3) && has(6)) chord = has(10) ? 'm7♭5' : has(9) ? 'dim7' : 'dim';
+  else if (has(5) && has(7)) chord = has(10) ? '7sus4' : 'sus4';
+  else if (has(2) && has(7)) chord = 'sus2';
+  else chord = null;
+  if (chord !== null) s += ' Fits over ' + rootName + chord + '.';
+  return s;
+}
+
+return { LETTERS, parseDeg, parseFormula, accStr, spell, C, ROOTS, pcOf, noteToTonic, DEGREE_OF_PC, ROMAN_OF_PC, ascending, steps, shape, describe };
+},
+"data/scales.js": function() {
+'use strict';
+const SCALES5 = `1–2–3–5–6|Major Pentatonic
+1–2–4–5–♭7|Suspended Pentatonic
+1–♭3–4–5–♭7|Minor Pentatonic
+1–♭3–4–♭6–♭7|Minor Pentatonic ♭6
+1–♭2–4–5–♭7|Phrygian Pentatonic
+1–♭3–4–5–6|Minor Pentatonic Major 6
+1–2–4–5–6|Mixolydian Pentatonic
+1–2–3–5–♭7|Dominant Pentatonic
+1–♭3–4–5–6|Dorian Pentatonic
+1–♭3–♭5–5–♭7|Blues Pentatonic
+1–2–♭3–5–6|Egyptian Pentatonic
+1–2–4–5–♭6|Hirajoshi
+1–♭2–4–5–♭6|In Sen
+1–♭2–4–5–♭7|Kumoi
+1–♭2–4–5–6|Iwato
+1–♭2–♭3–5–♭6|Pelog
+1–♭2–4–♭5–♭7|Ritusen
+1–2–3–5–♭6|Major Pentatonic ♭6
+1–2–♭3–5–♭7|Minor-Major Pentatonic
+1–♭3–4–5–♭6|Minor Pentatonic ♭6
+1–♭3–♭5–5–6|Blues Major 6 Pentatonic
+1–2–♭3–4–5|Major Blues Pentatonic
+1–2–♭3–5–6|Minor Egyptian Pentatonic
+1–♭2–3–5–♭7|Phrygian Major Pentatonic
+1–♭2–3–5–6|Phrygian Major 6 Pentatonic
+1–2–♭3–5–♭6|Dorian ♭6 Pentatonic
+1–♭3–4–♯4–♭7|Minor Tritone Pentatonic
+1–2–4–♭5–♭7|Tritone Pentatonic
+1–♭2–4–♭5–♭7|Iwato Variant
+1–♭2–♭3–5–♭7|Japanese Minor Pentatonic
+1–♭2–♭3–5–6|Japanese Major Pentatonic
+1–2–♭3–4–6|Raga Bhupeshwari Pentatonic
+1–2–3–5–♭6|Raga Shuddha Dhanyasi Variant
+1–♭3–4–5–6|Raga Hindol Variant
+1–2–♭3–5–6|Raga Madhyamavati Variant
+1–♭2–4–5–6|Raga Hamsadhwani Variant
+1–2–4–5–6|Raga Mohanam
+1–♭2–3–5–6|Raga Hamsadhwani Altered
+1–♭3–4–♭5–♭7|Blues Minor Pentatonic
+1–♭3–♭5–♭6–♭7|Locrian Pentatonic
+1–♭2–♭3–♭5–♭7|Locrian Pentatonic ♭2
+1–♭2–♭3–5–♭6|Phrygian Pentatonic
+1–♭2–4–♭5–6|Altered Japanese Pentatonic
+1–2–♭3–4–5|Suspended Blues Pentatonic
+1–2–♭3–4–♭7|Dorian Suspended Pentatonic
+1–2–3–4–♭7|Lydian Dominant Pentatonic
+1–2–3–4–6|Lydian Pentatonic
+1–2–3–♭5–6|Lydian ♭5 Pentatonic
+1–2–♭3–♭5–6|Dorian ♭5 Pentatonic
+1–♭3–4–♭5–6|Dorian Blues Pentatonic
+1–♭3–♭4–5–♭7|Minor Pentatonic ♭4
+1–♭3–♭4–♭6–♭7|Minor Pentatonic ♭4♭6
+1–♭2–4–♭5–6|Phrygian Tritone Pentatonic
+1–♭2–♭3–4–♭7|Phrygian Suspended Pentatonic
+1–♭2–3–4–♭7|Phrygian Major Suspended Pentatonic
+1–2–♭3–4–6|Dorian Pentatonic
+1–2–♭3–4–♭6|Dorian ♭6 Pentatonic
+1–2–3–4–♭6|Lydian ♭6 Pentatonic
+1–♭2–3–4–6|Phrygian Major Pentatonic
+1–♭2–3–4–♭7|Phrygian Dominant Pentatonic
+1–♭2–3–5–♭6|Phrygian Dominant ♭6 Pentatonic
+1–2–3–♭5–♭7|Mixolydian ♭5 Pentatonic
+1–2–4–♭5–6|Mixolydian ♭5 Pentatonic
+1–2–4–5–6|Mixolydian Pentatonic
+1–2–3–5–♭6|Mixolydian ♭6 Pentatonic
+1–♭3–4–5–♭7|Aeolian Pentatonic
+1–♭3–4–♭5–♭7|Aeolian Blues Pentatonic
+1–♭3–4–♭6–6|Minor 6 Pentatonic
+1–♭3–5–♭6–♭7|Minor 7 ♭6 Pentatonic
+1–♭2–♭3–4–♭7|Minor Phrygian Pentatonic
+1–♭2–♭3–5–♭7|Minor Phrygian Pentatonic
+1–♭2–♭3–♭5–6|Diminished Pentatonic
+1–♭2–♭3–♭5–♭6|Super-Locrian Pentatonic
+1–♭2–♭3–♭5–♭7|Half-Whole Diminished Pentatonic
+1–♭2–4–♭5–♭6|Japanese Iwato Altered
+1–♭2–4–5–♭6|Japanese Hirajoshi Variant
+1–2–4–♭5–♭6|Kumoi Variant
+1–♭2–3–5–♭6|In Sen Variant
+1–2–♭3–5–♭6|Ritusen Variant
+1–♭3–♭5–5–6|Blues Major Pentatonic
+1–2–♭3–♭5–♭7|Dominant Blues Pentatonic
+1–2–♭3–4–♭7|Blues Suspended Pentatonic
+1–♭3–4–♭5–6|Minor Blues 6 Pentatonic
+1–♭3–♭5–5–♭6|Blues ♭6 Pentatonic
+1–2–♭3–5–♭6|Minor Pentatonic ♭6
+1–♭2–4–5–♭7|Suspended Phrygian Pentatonic
+1–2–4–5–♭6|Suspended ♭6 Pentatonic
+1–2–4–♭5–♭7|Suspended Tritone Pentatonic
+1–2–3–4–5|Major Suspended Pentatonic
+1–2–3–4–♭7|Dominant Suspended Pentatonic
+1–2–3–4–6|Lydian Suspended Pentatonic
+1–♭2–3–4–5|Phrygian Suspended Pentatonic
+1–♭3–4–5–6|Dorian Major 6 Pentatonic
+1–♭3–4–5–♭6|Aeolian Pentatonic
+1–♭3–4–♭5–♭6|Minor ♭5 Pentatonic
+1–♭3–♭4–5–6|Harmonic Minor Pentatonic
+1–♭2–♭3–5–6|Harmonic Minor Pentatonic Variant
+1–♭2–3–5–6|Harmonic Major Pentatonic
+1–2–3–♭5–6|Harmonic Major ♭5 Pentatonic
+1–2–♭3–♭5–♭7|Dominant ♭5 Pentatonic
+1–♭2–4–♭5–♭7|Altered Dominant Pentatonic
+1–♭2–3–♭5–♭7|Altered Major Pentatonic
+1–2–♭3–♭5–6|Altered Dorian Pentatonic
+1–♭2–♭3–5–♭7|Japanese Minor Pentatonic`;
+
+const SCALES6 = `1–2–3–4–5–6|Major Hexatonic
+1–2–3–4–5–♭7|Major Hexatonic ♭7
+1–2–3–4–♭6–♭7|Major Hexatonic ♭6♭7
+1–2–3–4–6–♭7|Lydian Dominant Hexatonic
+1–2–3–4–♯4–6|Lydian Augmented Hexatonic
+1–2–3–♭5–5–6|Major Hexatonic ♭5
+1–2–3–♭5–6–♭7|Dominant ♭5 Hexatonic
+1–2–3–5–6–♭7|Mixolydian Hexatonic
+1–2–3–5–♭6–♭7|Mixolydian ♭6 Hexatonic
+1–2–3–5–♭6–6|Major Hexatonic ♭6
+1–2–3–♭5–5–♭7|Dominant Blues Hexatonic
+1–2–4–5–6–♭7|Suspended Hexatonic
+1–2–4–5–♭6–♭7|Suspended ♭6 Hexatonic
+1–2–4–5–6–7|Major Suspended Hexatonic
+1–2–4–♭5–5–♭7|Suspended Blues Hexatonic
+1–2–♭3–4–5–♭7|Dorian Hexatonic
+1–2–♭3–4–5–6|Dorian 6 Hexatonic
+1–2–♭3–4–5–♭6|Dorian ♭6 Hexatonic
+1–2–♭3–4–6–♭7|Dorian 6/7 Hexatonic
+1–2–♭3–5–♭6–♭7|Dorian ♭6 Hexatonic
+1–♭2–♭3–4–5–♭7|Phrygian Hexatonic
+1–♭2–♭3–4–5–6|Phrygian 6 Hexatonic
+1–♭2–♭3–4–♭5–♭7|Phrygian ♭5 Hexatonic
+1–♭2–3–4–5–♭7|Phrygian Dominant Hexatonic
+1–♭2–3–4–5–6|Phrygian Dominant 6 Hexatonic
+1–♭2–3–4–♭5–♭7|Phrygian Dominant ♭5 Hexatonic
+1–♭2–3–4–♭6–♭7|Phrygian Dominant ♭6 Hexatonic
+1–2–3–♯4–5–6|Lydian Hexatonic
+1–2–3–♯4–5–7|Lydian Major 7 Hexatonic
+1–2–3–♯4–5–♭7|Lydian Dominant Hexatonic
+1–2–3–♯4–♭6–7|Lydian ♭6 Hexatonic
+1–2–3–♯4–♯5–6|Lydian Augmented Hexatonic
+1–2–3–♯4–♯5–7|Lydian Augmented Major 7
+1–2–3–♯4–♯5–♭7|Lydian Augmented Dominant
+1–2–3–4–5–♭6|Major ♭6 Hexatonic
+1–2–3–4–♭5–6|Major ♭5 Hexatonic
+1–2–3–4–♭5–♭7|Major ♭5 ♭7 Hexatonic
+1–2–3–4–♭6–7|Major ♭6 Major 7 Hexatonic
+1–2–3–4–♭6–♭7|Major ♭6 ♭7 Hexatonic
+1–♭3–4–5–♭7–1|Minor Pentatonic Extended
+1–♭3–4–5–6–♭7|Minor 6/7 Hexatonic
+1–♭3–4–5–♭6–♭7|Minor Hexatonic
+1–♭3–4–♭5–♭7–1|Minor Blues Hexatonic
+1–♭3–♭5–5–♭7–1|Blues Hexatonic
+1–♭3–4–♭5–5–♭7|Blues Scale
+1–♭3–4–♭5–♭6–♭7|Aeolian Blues Hexatonic
+1–♭3–4–♭5–6–♭7|Dorian Blues Hexatonic
+1–♭3–4–5–♭6–6|Minor 6 Hexatonic
+1–♭3–♭5–5–♭6–♭7|Blues ♭6 Hexatonic
+1–♭3–♭4–5–♭6–♭7|Minor ♭4 Hexatonic
+1–♭3–♭4–5–6–♭7|Minor ♭4 Major 6 Hexatonic
+1–♭3–♭4–♭5–♭6–♭7|Locrian Minor Hexatonic
+1–♭2–♭3–♭5–♭6–♭7|Locrian Hexatonic
+1–♭2–♭3–4–♭5–♭7|Locrian ♭4 Hexatonic
+1–♭2–♭3–4–♭6–♭7|Phrygian ♭6 Hexatonic
+1–♭2–♭3–5–♭6–♭7|Phrygian Minor Hexatonic
+1–♭2–♭3–5–6–♭7|Phrygian Major 6 Hexatonic
+1–♭2–♭3–4–5–6|Phrygian Major 6 Hexatonic
+1–♭2–♭3–♭5–5–♭7|Half-Whole Diminished Hexatonic
+1–♭2–♭3–♭5–♭6–6|Diminished Hexatonic
+1–♭2–♭3–♭5–♭6–♭7|Super-Locrian Hexatonic
+1–♭2–♭3–♭4–♭5–♭7|Altered Hexatonic
+1–♭2–3–♭5–♭6–♭7|Altered Dominant Hexatonic
+1–♭2–3–♭5–5–♭7|Altered Blues Hexatonic
+1–♭2–3–4–♭5–♭7|Phrygian Dominant ♭5
+1–♭2–3–4–♭6–6|Phrygian Major 6 Hexatonic
+1–♭2–3–5–♭6–♭7|Phrygian Dominant Hexatonic
+1–♭2–3–5–6–♭7|Phrygian Dominant 6/7
+1–♭2–4–♭5–♭7–1|Iwato Hexatonic
+1–♭2–4–5–♭6–♭7|Japanese Hexatonic
+1–♭2–4–5–♭6–6|Hirajoshi Hexatonic
+1–♭2–♭3–5–♭6–6|In Sen Hexatonic
+1–2–♭3–5–♭6–7|Kumoi Hexatonic
+1–♭2–4–5–6–7|Japanese Major Hexatonic
+1–2–4–5–♭6–7|Ritusen Hexatonic
+1–2–♭3–5–6–7|Minor-Major Hexatonic
+1–♭3–4–5–6–7|Dorian Major 7 Hexatonic
+1–♭3–4–5–♭6–7|Melodic Minor Hexatonic
+1–♭3–4–♭5–6–7|Dorian ♭5 Hexatonic
+1–♭3–♭5–5–6–7|Minor Blues Major 7
+1–♭3–♭5–♭6–♭7–7|Harmonic Minor Hexatonic
+1–♭2–♭3–5–♭6–7|Harmonic Minor Altered Hexatonic
+1–♭2–3–5–♭6–7|Harmonic Major Hexatonic
+1–2–3–4–5–7|Major Major-7 Hexatonic
+1–2–3–4–6–7|Major 6/7 Hexatonic
+1–2–3–♯4–6–7|Lydian 6/7 Hexatonic
+1–2–3–♯4–5–7|Lydian Major Hexatonic
+1–2–3–5–6–7|Major 6/7 Hexatonic
+1–2–3–5–♭6–7|Major ♭6 Major 7
+1–2–3–♭5–6–7|Major ♭5 Major 7
+1–2–♭3–4–5–7|Dorian Major 7 Hexatonic
+1–2–♭3–4–6–7|Dorian 6/7 Hexatonic
+1–2–♭3–5–6–7|Dorian Major 7 Hexatonic
+1–♭2–♭3–4–5–7|Phrygian Major 7 Hexatonic
+1–♭2–3–4–5–7|Phrygian Dominant Major 7
+1–2–♭3–♯4–5–6|Dorian ♯4 Hexatonic
+1–♭2–3–♯4–5–♭7|Phrygian Lydian Hexatonic
+1–2–♭3–♯4–5–♭7|Dorian ♯4 Dominant Hexatonic
+1–♭2–3–♯4–♭6–♭7|Phrygian Lydian ♭6
+1–♭2–3–♯4–5–6|Phrygian Lydian 6
+1–2–3–♯4–♭5–6|Lydian ♭5 Hexatonic`;
+
+const SCALES7 = `1–2–3–4–5–6–7|Major (Ionian)
+1–2–♭3–4–5–6–♭7|Dorian
+1–♭2–♭3–4–5–♭6–♭7|Phrygian
+1–2–3–♯4–5–6–7|Lydian
+1–2–3–4–5–6–♭7|Mixolydian
+1–2–♭3–4–5–♭6–♭7|Aeolian
+1–♭2–♭3–4–♭5–♭6–♭7|Locrian
+1–2–♭3–4–5–6–7|Melodic Minor
+1–2–♭3–4–5–♭6–♭7|Dorian ♭6
+1–♭2–3–4–5–6–♭7|Lydian Augmented
+1–2–3–♯4–♯5–6–7|Lydian Augmented
+1–2–3–♯4–5–6–♭7|Lydian Dominant
+1–♭2–♭3–♭4–5–♭6–♭7|Altered
+1–♭2–♭3–♭4–♭5–♭6–♭7|Super Locrian
+1–♭2–3–4–5–♭6–♭7|Phrygian Dominant
+1–2–3–4–♯4–6–♭7|Mixolydian ♯4
+1–2–♭3–♯4–5–6–♭7|Dorian ♯4
+1–♭2–♭3–4–5–6–♭7|Phrygian ♯6
+1–2–♭3–4–♯4–6–♭7|Dorian ♯4 Variant
+1–♭2–3–♯4–5–6–♭7|Lydian Dominant ♭2
+1–♭2–3–4–5–6–7|Phrygian Major
+1–2–3–4–5–♭6–♭7|Mixolydian ♭6
+1–2–3–♯4–5–♭6–7|Lydian ♭6
+1–2–♭3–4–5–♭6–7|Melodic Minor ♭6
+1–♭2–♭3–4–5–♭6–7|Phrygian Major 7
+1–♭2–3–4–5–♭6–7|Phrygian Dominant Major 7
+1–2–♭3–4–5–6–♭7|Dorian
+1–2–♭3–4–5–♭6–♭7|Dorian ♭6
+1–♭2–♭3–4–5–♭6–♭7|Phrygian
+1–♭2–♭3–4–♭5–♭6–♭7|Locrian ♯6
+1–♭2–♭3–♭4–5–♭6–♭7|Altered ♭4
+1–♭2–♭3–♭4–♭5–♭6–7|Altered Major 7
+1–♭2–3–4–♭5–♭6–♭7|Phrygian ♭5
+1–♭2–3–4–♭5–6–♭7|Phrygian ♭5 ♯6
+1–♭2–3–4–5–♭6–7|Phrygian Dominant
+1–♭2–3–4–5–6–♭7|Phrygian Dominant ♭7
+1–♭2–3–4–5–6–7|Double Harmonic Major
+1–♭2–3–4–5–♭6–7|Double Harmonic Minor
+1–♭2–♭3–4–5–6–7|Hungarian Minor
+1–2–♭3–♯4–5–♭6–7|Hungarian Minor
+1–2–♭3–♯4–5–6–7|Hungarian Major
+1–♭2–♭3–♯4–5–♭6–7|Romanian Minor
+1–2–♭3–♯4–5–6–♭7|Romanian Minor
+1–♭2–3–♯4–5–♭6–7|Ukrainian Dorian
+1–2–♭3–4–♯4–5–6|Prometheus
+1–2–3–♯4–♭6–♭7–7|Prometheus Liszt
+1–♭2–3–♯4–5–♭6–♭7|Spanish 8-Tone
+1–♭2–3–4–5–♭6–♭7|Spanish Phrygian
+1–♭2–3–4–5–6–♭7|Spanish Gypsy
+1–♭2–3–♯4–5–6–♭7|Spanish 8-Tone Variant
+1–2–3–4–5–♭6–7|Harmonic Major
+1–♭2–3–4–5–♭6–7|Harmonic Major Mode 2
+1–2–♭3–4–5–♭6–7|Harmonic Minor
+1–♭2–3–♯4–5–♭6–7|Harmonic Minor Mode 4
+1–2–♭3–4–♭5–5–6|Blues Heptatonic
+1–2–♭3–4–5–♭6–6|Blues Dorian
+1–♭3–4–♭5–5–♭7–1|Blues Scale Extended
+1–2–♭3–4–♭5–♭6–♭7|Dorian ♭5
+1–2–♭3–♭5–5–6–♭7|Dorian ♭5 Variant
+1–♭2–♭3–4–♭5–5–♭7|Locrian Blues
+1–♭2–♭3–4–5–♭6–♭7|Phrygian Blues
+1–♭2–♭3–4–♭5–5–♭7|Phrygian Blues ♭5
+1–♭2–♭3–♭4–5–♭6–♭7|Altered Blues
+1–♭2–3–4–♭5–5–♭7|Phrygian Dominant Blues
+1–2–♭3–4–5–6–7|Jazz Minor
+1–2–♭3–4–♯4–6–7|Dorian ♯4
+1–♭2–♭3–4–5–6–7|Phrygian ♯6
+1–♭2–3–4–5–6–7|Phrygian Major
+1–♭2–3–♯4–5–6–7|Lydian ♯2
+1–2–3–♯4–5–6–♭7|Lydian Dominant
+1–2–3–♯4–♯5–6–♭7|Lydian Augmented Dominant
+1–2–3–♯4–♯5–6–7|Lydian Augmented Major
+1–2–3–4–♯4–5–6|Lydian ♯5 Variant
+1–2–3–4–♭5–6–7|Lydian ♭5
+1–2–3–♯4–♭5–6–7|Lydian ♯4 ♭5
+1–2–3–4–♭5–♭6–7|Lydian ♭5 ♭6
+1–2–3–4–5–♭6–7|Major ♭6
+1–2–3–4–5–6–♭7|Mixolydian
+1–2–3–4–♭5–6–♭7|Mixolydian ♭5
+1–2–3–4–♭5–♭6–♭7|Mixolydian ♭5 ♭6
+1–2–3–4–5–♭6–♭7|Mixolydian ♭6
+1–2–3–4–5–♭6–7|Mixolydian ♭6 Major 7
+1–2–♭3–4–5–6–7|Dorian Major 7
+1–2–♭3–4–♭5–6–♭7|Dorian ♭5
+1–2–♭3–4–♭5–♭6–♭7|Dorian ♭5 ♭6
+1–2–♭3–♯4–5–6–7|Dorian ♯4 Major 7
+1–2–♭3–♯4–5–6–♭7|Dorian ♯4
+1–♭2–♭3–4–♭5–6–♭7|Phrygian ♭5 ♯6
+1–♭2–♭3–4–♭5–♭6–7|Phrygian ♭5 Major 7
+1–♭2–♭3–4–5–6–7|Phrygian Major 7
+1–♭2–♭3–♯4–5–6–♭7|Phrygian ♯4
+1–♭2–3–4–♭5–♭6–7|Phrygian Dominant ♭5
+1–♭2–3–♯4–5–6–♭7|Phrygian Dominant ♯4
+1–♭2–3–♯4–♭5–6–♭7|Phrygian Dominant ♯4 ♭5
+1–♭2–3–4–5–♭6–7|Phrygian Dominant Major 7
+1–♭2–3–4–♭5–6–7|Phrygian Dominant ♭5 Major 7
+1–♭2–♭3–♭4–♭5–6–♭7|Super-Locrian 6
+1–♭2–♭3–♭4–5–6–♭7|Altered 6
+1–♭2–♭3–♭4–♭5–6–7|Altered 6 Major 7
+1–♭2–♭3–♭4–5–6–7|Altered Major 6
+1–♭2–♭3–4–5–6–7|Altered Phrygian
+1–♭2–3–4–5–6–7|Altered Phrygian Major
+1–♭2–3–♯4–5–♭6–♭7|Spanish Phrygian ♯4
+1–♭2–3–♯4–5–6–7|Spanish Lydian
+1–2–♭3–♯4–5–♭6–♭7|Hungarian Minor
+1–2–♭3–♯4–5–6–♭7|Hungarian Dorian
+1–♭2–♭3–♯4–5–♭6–♭7|Romanian Minor
+1–♭2–3–♯4–5–♭6–♭7|Ukrainian Dorian Variant
+1–2–3–♯4–♭5–6–♭7|Lydian Dominant ♭5
+1–2–3–♯4–♭5–♭6–♭7|Lydian ♭5 ♭6
+1–2–♭3–♯4–♭5–6–♭7|Dorian ♯4 ♭5
+1–♭2–♭3–♯4–♭5–6–♭7|Phrygian ♯4 ♭5`;
+
+return { SCALES5, SCALES6, SCALES7 };
+},
+"data/modes.js": function() {
+'use strict';
+const MODES = `1–2–3–4–5–6–7|Ionian / Major
+2–3–4–5–6–7–1|Dorian
+3–4–5–6–7–1–2|Phrygian
+4–5–6–7–1–2–3|Lydian
+5–6–7–1–2–3–4|Mixolydian
+6–7–1–2–3–4–5|Aeolian / Natural Minor
+7–1–2–3–4–5–6|Locrian
+1–3–5|Ionian Major Triad
+1–2–5|Ionian Sus2
+1–4–5|Ionian Sus4
+1–2–4|Ionian Suspended
+2–4–6|Ionian Supertonic Triad
+2–3–6|Ionian 2–3–6 Triad
+2–5–6|Ionian 2–5–6 Triad
+3–5–7|Ionian iii Triad
+3–4–7|Ionian 3–4–7 Triad
+3–6–7|Ionian 3–6–7 Triad
+4–6–1|Ionian IV Triad
+4–5–1|Ionian IV Sus
+4–7–1|Ionian 4–7–1 Triad
+5–7–2|Ionian V Triad
+5–1–2|Ionian V Sus
+5–6–2|Ionian 5–6–2 Triad
+6–1–3|Ionian vi Triad
+6–2–3|Ionian 6–2–3 Triad
+6–4–3|Ionian 6–4–3 Triad
+7–2–4|Ionian vii° Triad
+7–3–4|Ionian 7–3–4 Triad
+7–5–4|Ionian 7–5–4 Triad
+1–2–3–4|Ionian Tetrachord
+2–3–4–5|Ionian Tetrachord II
+3–4–5–6|Ionian Tetrachord III
+4–5–6–7|Ionian Tetrachord IV
+5–6–7–1|Ionian Tetrachord V
+6–7–1–2|Ionian Tetrachord VI
+7–1–2–3|Ionian Tetrachord VII
+1–2–3–5|Major Pentatonic
+1–2–3–4|Major Tetrachord
+1–2–4–5|Suspended Pentatonic Core
+1–2–4–6|Ionian Pentatonic Variant
+1–2–4–7|Ionian Pentatonic Variant
+1–2–5–6|Major Pentatonic Variant
+1–2–5–7|Dominant Pentatonic Core
+1–3–4–5|Major Pentatonic Variant
+1–3–4–6|Major 6 Pentatonic
+1–3–4–7|Major Pentatonic Variant
+1–3–5–6|Major Pentatonic
+1–3–5–7|Major 7 Pentatonic
+1–4–5–6|Suspended Major Pentatonic
+1–4–5–7|Dominant Suspended Pentatonic
+1–4–6–7|Lydian-Color Pentatonic
+1–5–6–7|Dominant Pentatonic
+2–3–4–5–6–7|Ionian Hexatonic
+1–3–4–5–6–7|Ionian Hexatonic
+1–2–4–5–6–7|Ionian Hexatonic
+1–2–3–5–6–7|Ionian Hexatonic
+1–2–3–4–6–7|Ionian Hexatonic
+1–2–3–4–5–7|Ionian Hexatonic
+1–2–3–4–5–6|Ionian Hexatonic
+1–2–♭3–4–5–6–♭7|Dorian
+1–2–♭3|Dorian Minor Triad
+1–2–4|Dorian Sus2
+1–4–5|Dorian Sus4
+1–♭3–4|Dorian Minor Sus
+2–4–6|Dorian ii Triad
+2–♭3–6|Dorian 2–♭3–6
+2–5–6|Dorian 2–5–6
+♭3–5–♭7|Dorian Minor Triad
+♭3–4–♭7|Dorian Minor Sus
+♭3–6–♭7|Dorian Minor 6/7
+4–6–1|Dorian IV Triad
+4–5–1|Dorian IV Sus
+4–♭7–1|Dorian 4–♭7–1
+5–♭7–2|Dorian V Minor
+5–1–2|Dorian V Sus
+5–6–2|Dorian V 6
+6–1–♭3|Dorian VI Triad
+6–2–♭3|Dorian VI Triad
+6–4–♭3|Dorian VI Triad
+♭7–2–4|Dorian ♭VII Triad
+♭7–♭3–4|Dorian ♭VII
+♭7–5–4|Dorian ♭VII
+1–2–♭3–4|Dorian Tetrachord
+2–♭3–4–5|Dorian Tetrachord II
+♭3–4–5–6|Dorian Tetrachord III
+4–5–6–♭7|Dorian Tetrachord IV
+5–6–♭7–1|Dorian Tetrachord V
+6–♭7–1–2|Dorian Tetrachord VI
+♭7–1–2–♭3|Dorian Tetrachord VII
+1–2–♭3–5|Dorian Minor Pentatonic
+1–2–♭3–4|Dorian Pentatonic Variant
+1–2–4–5|Dorian Suspended Pentatonic
+1–2–4–6|Dorian Pentatonic
+1–2–4–♭7|Dorian Pentatonic
+1–2–5–6|Dorian Pentatonic
+1–2–5–♭7|Dorian Dominant Pentatonic
+1–♭3–4–5|Minor Pentatonic
+1–♭3–4–6|Dorian 6 Pentatonic
+1–♭3–4–♭7|Dorian Minor Pentatonic
+1–♭3–5–6|Dorian Minor 6 Pentatonic
+1–♭3–5–♭7|Minor Pentatonic
+1–4–5–6|Dorian Suspended Pentatonic
+1–4–5–♭7|Dorian Suspended Pentatonic
+1–4–6–♭7|Dorian Pentatonic
+1–5–6–♭7|Dorian Dominant Pentatonic
+2–♭3–4–5–6–♭7|Dorian Hexatonic
+1–♭3–4–5–6–♭7|Dorian Hexatonic
+1–2–4–5–6–♭7|Dorian Hexatonic
+1–2–♭3–5–6–♭7|Dorian Hexatonic
+1–2–♭3–4–6–♭7|Dorian Hexatonic
+1–2–♭3–4–5–♭7|Dorian Hexatonic
+1–2–♭3–4–5–6|Dorian Hexatonic
+1–♭2–♭3–4–5–♭6–♭7|Phrygian
+1–♭2–♭3|Phrygian Minor Triad
+1–♭2–4|Phrygian Sus
+1–4–5|Phrygian Sus4
+1–♭3–4|Phrygian Minor Sus
+2–4–♭6|Phrygian ii°
+2–♭3–♭6|Phrygian 2–♭3–♭6
+2–5–♭6|Phrygian 2–5–♭6
+♭3–5–♭7|Phrygian Minor Triad
+♭3–4–♭7|Phrygian Minor Sus
+♭3–♭6–♭7|Phrygian Minor 6/7
+4–♭6–1|Phrygian IV
+4–5–1|Phrygian Sus
+4–♭7–1|Phrygian IV
+5–♭7–♭2|Phrygian V
+5–1–♭2|Phrygian Sus
+5–♭6–♭2|Phrygian V
+♭6–1–♭3|Phrygian ♭VI
+♭6–♭2–♭3|Phrygian ♭VI
+♭6–4–♭3|Phrygian ♭VI
+♭7–♭2–4|Phrygian ♭VII
+♭7–♭3–4|Phrygian ♭VII
+♭7–5–4|Phrygian ♭VII
+1–♭2–♭3–4|Phrygian Tetrachord
+♭2–♭3–4–5|Phrygian Tetrachord II
+♭3–4–5–♭6|Phrygian Tetrachord III
+4–5–♭6–♭7|Phrygian Tetrachord IV
+5–♭6–♭7–1|Phrygian Tetrachord V
+♭6–♭7–1–♭2|Phrygian Tetrachord VI
+♭7–1–♭2–♭3|Phrygian Tetrachord VII
+1–♭2–♭3–5|Phrygian Pentatonic
+1–♭2–♭3–4|Phrygian Pentatonic
+1–♭2–4–5|Phrygian Suspended Pentatonic
+1–♭2–4–♭6|Phrygian Pentatonic
+1–♭2–4–♭7|Phrygian Pentatonic
+1–♭2–5–♭6|Phrygian Pentatonic
+1–♭2–5–♭7|Phrygian Pentatonic
+1–♭3–4–5|Phrygian Minor Pentatonic
+1–♭3–4–♭6|Phrygian Minor Pentatonic
+1–♭3–4–♭7|Phrygian Minor Pentatonic
+1–♭3–5–♭6|Phrygian Minor Pentatonic
+1–♭3–5–♭7|Phrygian Minor Pentatonic
+1–4–5–♭6|Phrygian Suspended Pentatonic
+1–4–5–♭7|Phrygian Suspended Pentatonic
+1–4–♭6–♭7|Phrygian Pentatonic
+1–5–♭6–♭7|Phrygian Pentatonic
+1–♭2–♭3–4–5–♭6|Phrygian Hexatonic
+1–♭2–♭3–4–5–♭7|Phrygian Hexatonic
+1–♭2–♭3–4–♭6–♭7|Phrygian Hexatonic
+1–♭2–♭3–5–♭6–♭7|Phrygian Hexatonic
+1–♭2–4–5–♭6–♭7|Phrygian Hexatonic
+1–♭2–4–5–♭6–♭3|Phrygian Hexatonic
+1–♭2–♭3–5–♭6–♭7|Phrygian Hexatonic
+1–2–3–♯4–5–6–7|Lydian
+1–2–3|Lydian Major Triad
+1–2–♯4|Lydian Augmented Triad
+1–♯4–5|Lydian Sus
+1–2–♯4–5|Lydian Suspended
+2–3–5|Lydian II
+2–3–6|Lydian II
+2–♯4–6|Lydian II
+3–5–7|Lydian III
+3–♯4–7|Lydian III
+3–6–7|Lydian III
+♯4–6–1|Lydian IV
+♯4–5–1|Lydian IV Sus
+♯4–7–1|Lydian IV
+5–7–2|Lydian V
+5–1–2|Lydian V Sus
+5–6–2|Lydian V
+6–1–3|Lydian VI
+6–2–3|Lydian VI
+6–♯4–3|Lydian VI
+7–2–♯4|Lydian vii
+7–3–♯4|Lydian vii
+7–5–♯4|Lydian vii
+1–2–3–♯4|Lydian Tetrachord
+2–3–♯4–5|Lydian Tetrachord II
+3–♯4–5–6|Lydian Tetrachord III
+♯4–5–6–7|Lydian Tetrachord IV
+5–6–7–1|Lydian Tetrachord V
+6–7–1–2|Lydian Tetrachord VI
+7–1–2–3|Lydian Tetrachord VII
+1–2–3–5|Lydian Major Pentatonic
+1–2–3–♯4|Lydian Pentatonic
+1–2–♯4–5|Lydian Suspended Pentatonic
+1–2–♯4–6|Lydian Pentatonic
+1–2–♯4–7|Lydian Pentatonic
+1–2–5–6|Lydian Pentatonic
+1–2–5–7|Lydian Dominant Pentatonic
+1–3–♯4–5|Lydian Pentatonic
+1–3–♯4–6|Lydian Pentatonic
+1–3–♯4–7|Lydian Pentatonic
+1–3–5–6|Lydian Major Pentatonic
+1–3–5–7|Lydian Major 7 Pentatonic
+1–♯4–5–6|Lydian Suspended Pentatonic
+1–♯4–5–7|Lydian Dominant Pentatonic
+1–♯4–6–7|Lydian Pentatonic
+1–5–6–7|Lydian Dominant Pentatonic
+1–2–3–♯4–5–6|Lydian Hexatonic
+1–2–3–♯4–5–7|Lydian Hexatonic
+1–2–3–♯4–6–7|Lydian Hexatonic
+1–2–3–5–6–7|Lydian Hexatonic
+1–2–♯4–5–6–7|Lydian Hexatonic
+1–3–♯4–5–6–7|Lydian Hexatonic
+2–3–♯4–5–6–7|Lydian Hexatonic
+1–2–3–4–5–6–♭7|Mixolydian
+1–2–3|Mixolydian Major Triad
+1–2–5|Mixolydian Sus2
+1–4–5|Mixolydian Sus4
+1–2–4|Mixolydian Suspended
+2–3–5|Mixolydian II
+2–3–6|Mixolydian II
+2–5–6|Mixolydian II
+3–5–♭7|Mixolydian III
+3–4–♭7|Mixolydian III
+3–6–♭7|Mixolydian III
+4–6–1|Mixolydian IV
+4–5–1|Mixolydian IV Sus
+4–♭7–1|Mixolydian IV
+5–♭7–2|Dominant Triad
+5–1–2|Dominant Sus
+5–6–2|Dominant 6
+6–1–3|Mixolydian VI
+6–2–3|Mixolydian VI
+6–4–3|Mixolydian VI
+♭7–2–4|Mixolydian ♭VII
+♭7–3–4|Mixolydian ♭VII
+♭7–5–4|Mixolydian ♭VII
+1–2–3–4|Mixolydian Tetrachord
+2–3–4–5|Mixolydian Tetrachord II
+3–4–5–6|Mixolydian Tetrachord III
+4–5–6–♭7|Mixolydian Tetrachord IV
+5–6–♭7–1|Mixolydian Tetrachord V
+6–♭7–1–2|Mixolydian Tetrachord VI
+♭7–1–2–3|Mixolydian Tetrachord VII
+1–2–3–5|Mixolydian Major Pentatonic
+1–2–3–4|Mixolydian Pentatonic
+1–2–4–5|Mixolydian Suspended Pentatonic
+1–2–4–6|Mixolydian Pentatonic
+1–2–4–♭7|Mixolydian Pentatonic
+1–2–5–6|Mixolydian Pentatonic
+1–2–5–♭7|Dominant Pentatonic
+1–3–4–5|Mixolydian Pentatonic
+1–3–4–6|Mixolydian 6 Pentatonic
+1–3–4–♭7|Mixolydian Pentatonic
+1–3–5–6|Mixolydian Major Pentatonic
+1–3–5–♭7|Dominant Pentatonic
+1–4–5–6|Mixolydian Suspended Pentatonic
+1–4–5–♭7|Dominant Suspended Pentatonic
+1–4–6–♭7|Mixolydian Pentatonic
+1–5–6–♭7|Dominant Pentatonic
+1–2–3–4–5–6|Mixolydian Hexatonic
+1–2–3–4–5–♭7|Mixolydian Hexatonic
+1–2–3–4–6–♭7|Mixolydian Hexatonic
+1–2–3–5–6–♭7|Mixolydian Hexatonic
+1–2–4–5–6–♭7|Mixolydian Hexatonic
+1–3–4–5–6–♭7|Mixolydian Hexatonic
+2–3–4–5–6–♭7|Mixolydian Hexatonic
+1–2–♭3–4–5–♭6–♭7|Aeolian / Natural Minor
+1–2–♭3|Minor Triad
+1–2–5|Minor Sus2
+1–4–5|Minor Sus4
+1–2–4|Minor Suspended
+2–♭3–5|Aeolian ii°
+2–♭3–♭6|Aeolian ii
+2–5–♭6|Aeolian ii
+♭3–5–♭7|Minor Triad
+♭3–4–♭7|Minor Sus
+♭3–♭6–♭7|Minor 6/7
+4–♭6–1|Aeolian IV
+4–5–1|Aeolian Sus
+4–♭7–1|Aeolian IV
+5–♭7–2|Minor V
+5–1–2|Minor Sus
+5–♭6–2|Minor V
+♭6–1–♭3|Aeolian ♭VI
+♭6–♭2–♭3|Aeolian ♭VI
+♭6–4–♭3|Aeolian ♭VI
+♭7–2–4|Aeolian ♭VII
+♭7–♭3–4|Aeolian ♭VII
+♭7–5–4|Aeolian ♭VII
+1–2–♭3–4|Aeolian Tetrachord
+2–♭3–4–5|Aeolian Tetrachord II
+♭3–4–5–♭6|Aeolian Tetrachord III
+4–5–♭6–♭7|Aeolian Tetrachord IV
+5–♭6–♭7–1|Aeolian Tetrachord V
+♭6–♭7–1–2|Aeolian Tetrachord VI
+♭7–1–2–♭3|Aeolian Tetrachord VII
+1–2–♭3–5|Minor Pentatonic
+1–2–♭3–4|Aeolian Pentatonic
+1–2–4–5|Aeolian Suspended Pentatonic
+1–2–4–♭6|Aeolian Pentatonic
+1–2–4–♭7|Aeolian Pentatonic
+1–2–5–♭6|Aeolian Pentatonic
+1–2–5–♭7|Aeolian Pentatonic
+1–♭3–4–5|Minor Pentatonic
+1–♭3–4–♭6|Aeolian Minor Pentatonic
+1–♭3–4–♭7|Minor Pentatonic
+1–♭3–5–♭6|Minor Pentatonic
+1–♭3–5–♭7|Minor Pentatonic
+1–4–5–♭6|Aeolian Suspended Pentatonic
+1–4–5–♭7|Aeolian Suspended Pentatonic
+1–4–♭6–♭7|Aeolian Pentatonic
+1–5–♭6–♭7|Aeolian Pentatonic
+1–2–♭3–4–5–♭6|Aeolian Hexatonic
+1–2–♭3–4–5–♭7|Aeolian Hexatonic
+1–2–♭3–4–♭6–♭7|Aeolian Hexatonic
+1–2–♭3–5–♭6–♭7|Aeolian Hexatonic
+1–2–4–5–♭6–♭7|Aeolian Hexatonic
+1–♭3–4–5–♭6–♭7|Aeolian Hexatonic
+2–♭3–4–5–♭6–♭7|Aeolian Hexatonic
+1–♭2–♭3–4–♭5–♭6–♭7|Locrian
+1–♭2–♭5|Locrian Diminished Triad
+1–♭3–♭5|Locrian Diminished
+1–♭2–4|Locrian Sus
+1–4–♭5|Locrian Sus
+1–♭2–♭3–4|Locrian Tetrachord
+♭2–♭3–4–♭5|Locrian Tetrachord II
+♭3–4–♭5–♭6|Locrian Tetrachord III
+4–♭5–♭6–♭7|Locrian Tetrachord IV
+♭5–♭6–♭7–1|Locrian Tetrachord V
+♭6–♭7–1–♭2|Locrian Tetrachord VI
+♭7–1–♭2–♭3|Locrian Tetrachord VII
+1–♭2–♭3–♭5|Locrian Pentatonic
+1–♭2–♭3–4|Locrian Pentatonic
+1–♭2–4–♭5|Locrian Pentatonic
+1–♭2–4–♭6|Locrian Pentatonic
+1–♭2–4–♭7|Locrian Pentatonic
+1–♭2–♭5–♭6|Locrian Pentatonic
+1–♭2–♭5–♭7|Locrian Pentatonic
+1–♭3–4–♭5|Locrian Minor Pentatonic
+1–♭3–4–♭6|Locrian Pentatonic
+1–♭3–4–♭7|Locrian Pentatonic
+1–♭3–♭5–♭6|Locrian Pentatonic
+1–♭3–♭5–♭7|Locrian Pentatonic
+1–4–♭5–♭6|Locrian Suspended
+1–4–♭5–♭7|Locrian Suspended
+1–4–♭6–♭7|Locrian Pentatonic
+1–♭5–♭6–♭7|Locrian Pentatonic
+1–♭2–♭3–4–♭5–♭6|Locrian Hexatonic
+1–♭2–♭3–4–♭5–♭7|Locrian Hexatonic
+1–♭2–♭3–4–♭6–♭7|Locrian Hexatonic
+1–♭2–♭3–♭5–♭6–♭7|Locrian Hexatonic
+1–♭2–4–♭5–♭6–♭7|Locrian Hexatonic
+1–♭2–♭3–♭5–♭6–♭7|Locrian Hexatonic
+♭2–♭3–4–♭5–♭6–♭7|Locrian Hexatonic`;
+
+return { MODES };
+},
+"data/keys.js": function() {
+'use strict';
+const { spell, parseFormula, ROOTS, pcOf, ROMAN_OF_PC } = __req("theory.js");
+
+const KEYS = [
+  ['C', 0, 0, 'Am', '0', 'No sharps or flats. Home base for theory — every open chord shape (C, F, G, Am, Dm, Em) lives here.'],
+  ['G', 4, 0, 'Em', '1♯', 'Bright and open on guitar. G, C, D, Em, Am all ring with open strings — a campfire staple.'],
+  ['D', 1, 0, 'Bm', '2♯', 'Resonant key with open D and A strings as drones. Popular in folk and rock.'],
+  ['A', 5, 0, 'F♯m', '3♯', 'Blues and rock favourite. Open A string root, easy E7 to resolve home.'],
+  ['E', 2, 0, 'C♯m', '4♯', 'The guitar\'s natural key — lowest open string is the root. Heavy riffs and blues live here.'],
+  ['B', 6, 0, 'G♯m', '5♯', 'Mostly barre chords. Common in modern rock and when tuning down from C♯.'],
+  ['F♯ / G♭', 3, 1, 'D♯m / E♭m', '6♯ / 6♭', 'Enharmonic pivot of the circle of fifths. All barre shapes; a half-step below G.'],
+  ['D♭', 1, -1, 'B♭m', '5♭', 'Same as C♯. Lush on keys; on guitar usually played with barre shapes or a capo.'],
+  ['A♭', 5, -1, 'Fm', '4♭', 'Warm, soulful key common in R&B, gospel and jazz ballads.'],
+  ['E♭', 2, -1, 'Cm', '3♭', 'Horn-friendly jazz key. Half-step-down tuning turns E shapes into E♭.'],
+  ['B♭', 6, -1, 'Gm', '2♭', 'Jazz and big-band staple. Barre at fret 1 or 6; brass sections love it.'],
+  ['F', 3, 0, 'Dm', '1♭', 'One flat (B♭). The first barre chord most guitarists learn.'],
+];
+
+const MAJOR = parseFormula('1–2–3–4–5–6–7');
+
+const keyCards = KEYS.map(([name, l, acc, rel, sig, desc], i) => {
+  const notes = MAJOR.map(d => spell({ l, acc }, d)).join(' ');
+  return {
+    title: name, sub: 'Major key',
+    rows: [['Notes', notes], ['Relative minor', rel], ['Key signature', sig], ['Circle of 5ths', '#' + (i + 1)]],
+    desc,
+    allKeysLabel: name.split(' ')[0] + ' as a degree of each key',
+    transpose: (r) => ROMAN_OF_PC[(pcOf(l, acc) - r.pc + 12) % 12],
+  };
+});
+
+return { keyCards };
+},
+"data/intervals.js": function() {
+'use strict';
+const { parseDeg, spell } = __req("theory.js");
+
+// [short, name, degree, semitones, description]
+const IV = [
+  ['P1', 'Perfect Unison', '1', 0, 'The same note twice. The root — every formula is measured from here.'],
+  ['m2', 'Minor 2nd', '♭2', 1, 'One fret. The tightest, most tense interval — think Jaws theme.'],
+  ['M2', 'Major 2nd', '2', 2, 'Two frets — a whole step. The building block of scales.'],
+  ['A2', 'Augmented 2nd', '♯2', 3, 'Sounds like a minor 3rd but spelled as a 2nd. The exotic gap in harmonic minor.'],
+  ['m3', 'Minor 3rd', '♭3', 3, 'Three frets. Defines minor chords and scales — sad, dark color.'],
+  ['M3', 'Major 3rd', '3', 4, 'Four frets. Defines major chords — bright and happy.'],
+  ['P4', 'Perfect 4th', '4', 5, 'Five frets — the distance between most adjacent guitar strings. Wants to resolve to the 3rd.'],
+  ['A4', 'Augmented 4th', '♯4', 6, 'The tritone spelled sharp. The Lydian color note — dreamy and floating.'],
+  ['d5', 'Diminished 5th', '♭5', 6, 'The tritone spelled flat. The blue note and the heart of diminished chords.'],
+  ['P5', 'Perfect 5th', '5', 7, 'Seven frets. The power chord interval — stable, strong, neutral.'],
+  ['A5', 'Augmented 5th', '♯5', 8, 'A raised 5th. Gives augmented chords their unresolved, rising tension.'],
+  ['m6', 'Minor 6th', '♭6', 8, 'Eight frets. Bittersweet; the signature tone of Aeolian minor.'],
+  ['M6', 'Major 6th', '6', 9, 'Nine frets. Sweet and vintage — the 6 chord and Dorian color.'],
+  ['d7', 'Diminished 7th', '𝄫7', 9, 'Sounds like a major 6th; the 7th of a fully diminished chord.'],
+  ['m7', 'Minor 7th', '♭7', 10, 'Ten frets. The bluesy 7th in dominant and minor 7 chords.'],
+  ['M7', 'Major 7th', '7', 11, 'One fret below the octave. Smooth, jazzy and yearning — the leading tone.'],
+  ['P8', 'Perfect Octave', '8', 12, 'Twelve frets. The same note, higher — octave shapes skip a string.'],
+  ['m9', 'Minor 9th', '♭9', 13, 'Extension: ♭2 an octave up. Dark tension on dominant chords (7♭9).'],
+  ['M9', 'Major 9th', '9', 14, 'Extension: 2 an octave up. Lush color in maj9, m9 and 9 chords.'],
+  ['A9', 'Augmented 9th', '♯9', 15, 'Extension: the "Hendrix" note — ♭3 clashing over a major 3rd in 7♯9.'],
+  ['m10', 'Minor 10th', '♭10', 15, 'Compound minor 3rd. Wide, open minor voicing.'],
+  ['M10', 'Major 10th', '10', 16, 'Compound major 3rd. Classic spread voicing in jazz and fingerstyle.'],
+  ['P11', 'Perfect 11th', '11', 17, 'Extension: 4 an octave up. Suspended, modern color in m11 and 11 chords.'],
+  ['A11', 'Augmented 11th', '♯11', 18, 'Extension: ♯4 an octave up. The Lydian sparkle in maj7♯11.'],
+  ['P12', 'Perfect 12th', '12', 19, 'Compound 5th — an octave plus a 5th. Natural harmonic at fret 7.'],
+  ['m13', 'Minor 13th', '♭13', 20, 'Extension: ♭6 an octave up. Altered dominant tension (7♭13).'],
+  ['M13', 'Major 13th', '13', 21, 'Extension: 6 an octave up. Sophisticated jazz color in 13 chords.'],
+  ['m14', 'Minor 14th', '♭14', 22, 'Compound ♭7. Wide dominant/minor seventh spread.'],
+  ['M14', 'Major 14th', '14', 23, 'Compound major 7th. Very wide, shimmering spread.'],
+  ['P15', 'Double Octave', '15', 24, 'Two octaves — 24 frets. The full range of many guitar necks.'],
+];
+
+const intervalCards = IV.map(([short, name, deg, st, desc]) => ({
+  title: name, sub: short + ' · ' + deg,
+  rows: [['Degree', deg], ['Semitones / frets', String(st)], ['Type', st > 12 ? 'Compound / extension' : 'Simple']],
+  desc,
+  allKeysLabel: deg + ' above each root',
+  transpose: (r) => spell(r, parseDeg(deg.replace('𝄫', '♭♭'))),
+}));
+
+return { intervalCards };
+},
+"data/chords.js": function() {
+'use strict';
+const { parseFormula, spell, C } = __req("theory.js");
+
+// [name, symbol suffix, formula, description]
+const TRIADS = [
+  ['Major', '', '1–3–5', 'The bright, stable foundation of Western harmony. I, IV and V of a major key.'],
+  ['Minor', 'm', '1–♭3–5', 'Darker and sadder. ii, iii and vi of a major key.'],
+  ['Diminished', '°', '1–♭3–♭5', 'Two stacked minor 3rds. Tense and unstable — the vii° chord.'],
+  ['Augmented', '+', '1–3–♯5', 'Two stacked major 3rds. Symmetrical, dreamy and unresolved.'],
+  ['Suspended 2nd', 'sus2', '1–2–5', 'The 3rd is replaced by the 2nd — open, airy, neither major nor minor.'],
+  ['Suspended 4th', 'sus4', '1–4–5', 'The 3rd is replaced by the 4th — wants to resolve down to major.'],
+  ['Major ♭5', '(♭5)', '1–3–♭5', 'Major 3rd with a flattened 5th. A rootless dominant / Lydian color.'],
+  ['Minor ♯5', 'm(♯5)', '1–♭3–♯5', 'Sounds like a major triad in 1st inversion. Used in line clichés.'],
+  ['Diminished ♭3', '°(♭♭3)', '1–♭♭3–♭5', 'Rare, clustered: a whole step and a major 3rd. Mostly theoretical.'],
+  ['Suspended ♭2', 'sus♭2', '1–♭2–5', 'Phrygian flavour — dark and Spanish sounding.'],
+  ['Suspended ♯4', 'sus♯4', '1–♯4–5', 'Lydian suspension — bright and floating.'],
+  ['Suspended 2 ♭5', 'sus2(♭5)', '1–2–♭5', 'Whole-tone fragment; ambiguous and modern.'],
+  ['Quartal', 'quartal', '1–4–♭7', 'Stacked perfect 4ths. Modern jazz and fusion sound (So What).'],
+  ['Quintal', 'quintal', '1–5–9', 'Stacked perfect 5ths. Wide, open and powerful.'],
+  ['Shell Dominant 7', '7(no5)', '1–3–♭7', 'Root, 3rd and 7th — the essential jazz guitar dominant voicing.'],
+  ['Shell Major 7', 'maj7(no5)', '1–3–7', 'Root, 3rd and major 7th — compact jazz voicing.'],
+  ['Shell Minor 7', 'm7(no5)', '1–♭3–♭7', 'Root, ♭3 and ♭7 — the core of every minor 7 chord.'],
+  ['Shell Major 6', '6(no5)', '1–3–6', 'Root, 3rd and 6th — swing and western-swing staple.'],
+  ['Add 9 (no 3)', 'add9(no3)', '1–5–9', 'Power chord with a 9th on top — shimmering rock voicing.'],
+  ['Power Chord + Octave', '5', '1–5–8', 'Root, 5th, octave. The rock and metal workhorse; no 3rd, so it works over major or minor.'],
+];
+
+const TETRADS = [
+  ['Major 7', 'maj7', '1–3–5–7', 'Smooth, dreamy and jazzy. I and IV of a major key.'],
+  ['Dominant 7', '7', '1–3–5–♭7', 'Bluesy tension that wants to resolve to I. The V7 chord.'],
+  ['Minor 7', 'm7', '1–♭3–5–♭7', 'Mellow and soulful. ii, iii and vi in a major key.'],
+  ['Minor Major 7', 'm(maj7)', '1–♭3–5–7', 'Mysterious, film-noir sound. Tonic of melodic/harmonic minor.'],
+  ['Half-Diminished', 'm7♭5', '1–♭3–♭5–♭7', 'Minor 7 with ♭5. The vii chord of major and ii of minor ii–V–i.'],
+  ['Diminished 7', '°7', '1–♭3–♭5–𝄫7', 'Stacked minor 3rds; symmetrical — any note can be the root. Passing chord.'],
+  ['Augmented Major 7', 'maj7♯5', '1–3–♯5–7', 'Bright and unsettled. Tonic of Lydian augmented.'],
+  ['Augmented 7', '7♯5', '1–3–♯5–♭7', 'Dominant with a raised 5th — pushes hard toward resolution.'],
+  ['Dominant 7 ♭5', '7♭5', '1–3–♭5–♭7', 'Dominant with a ♭5; whole-tone flavour, tritone-sub friendly.'],
+  ['Major 7 ♭5', 'maj7♭5', '1–3–♭5–7', 'Lydian-tinged major 7 — the ♭5 acts like a ♯11.'],
+  ['Diminished Major 7', '°(maj7)', '1–♭3–♭5–7', 'Dark and dissonant; diminished triad with a major 7th.'],
+  ['Minor Major 7 ♭5', 'm(maj7)♭5', '1–♭3–♭5–7', 'Same notes as °(maj7); spelled as a minor-major family chord.'],
+  ['Dominant 7 sus4', '7sus4', '1–4–5–♭7', 'Suspended dominant — modern, modal and open.'],
+  ['Dominant 7 sus2', '7sus2', '1–2–5–♭7', 'Airy dominant with no 3rd.'],
+  ['Major 7 sus4', 'maj7sus4', '1–4–5–7', 'Suspended major 7 — ethereal and unresolved.'],
+  ['Major 7 sus2', 'maj7sus2', '1–2–5–7', 'Open, shimmering major 7 without a 3rd.'],
+  ['Major 6', '6', '1–3–5–6', 'Sweet, vintage major sound. Swing and surf staple.'],
+  ['Minor 6', 'm6', '1–♭3–5–6', 'Dorian-flavoured minor; dark gypsy-jazz color.'],
+  ['Minor ♭6', 'm(♭6)', '1–♭3–5–♭6', 'Aeolian minor with ♭6 — melancholic film-score sound.'],
+  ['Add 9', 'add9', '1–3–5–9', 'Major triad plus 9th — bright, modern pop-rock sound.'],
+  ['Minor Add 9', 'madd9', '1–♭3–5–9', 'Minor triad plus 9th — lush and emotional.'],
+  ['Add 11', 'add11', '1–3–5–11', 'Major triad with a 4th on top — open and ringing.'],
+  ['Minor Add 11', 'madd11', '1–♭3–5–11', 'Minor triad with 11th — open, modern minor.'],
+  ['Add ♯11', 'add♯11', '1–3–5–♯11', 'Major triad with ♯11 — Lydian sparkle.'],
+  ['6 sus4', '6sus4', '1–4–5–6', 'Suspended 6 chord — pastoral and open.'],
+  ['6/9 (no 5)', '6/9(no5)', '1–3–6–9', 'Jazz and bossa voicing — warm and unresolved.'],
+  ['Minor 6/9 (no 5)', 'm6/9(no5)', '1–♭3–6–9', 'Dorian-colored jazz minor voicing.'],
+  ['Dominant 7♭9 (no 5)', '7♭9(no5)', '1–3–♭7–♭9', 'Dark dominant tension — resolves strongly to minor.'],
+  ['Dominant 7♯9 (no 5)', '7♯9(no5)', '1–3–♭7–♯9', 'The "Hendrix chord" — major and minor 3rd clash.'],
+  ['Dominant 9 (no 5)', '9(no5)', '1–3–♭7–9', 'Funky, soulful dominant — James Brown voicing.'],
+  ['Minor 9 (no 5)', 'm9(no5)', '1–♭3–♭7–9', 'Smooth neo-soul minor sound.'],
+  ['Major 9 (no 5)', 'maj9(no5)', '1–3–7–9', 'Lush, dreamy major voicing.'],
+  ['Augmented Add 9', '+add9', '1–3–♯5–9', 'Whole-tone flavoured augmented color.'],
+  ['Diminished Add 9', '°add9', '1–♭3–♭5–9', 'Diminished triad with a 9th — tense and cinematic.'],
+];
+
+const MAP = { '𝄫7': '♭♭7' };
+const toCard = (kind) => ([name, sym, formula, desc]) => {
+  const degs = parseFormula(formula.split('–').map(t => MAP[t] || t).join('–'));
+  return {
+    title: name, sub: formula,
+    rows: [['Symbol (in C)', 'C' + sym], ['Notes in C', degs.map(d => spell(C, d)).join(' ')], ['Tones', kind]],
+    desc,
+    allKeysLabel: name + ' in all 12 keys',
+    transpose: (r) => ({ k: r.name + sym, v: degs.map(d => spell(r, d)).join(' ') }),
+  };
+};
+
+const triadCards = TRIADS.map(toCard('3'));
+const tetradCards = TETRADS.map(toCard('4'));
+
+return { TRIADS, TETRADS, triadCards, tetradCards };
+},
+"data/strings.js": function() {
+'use strict';
+const { noteToTonic, pcOf, DEGREE_OF_PC } = __req("theory.js");
+
+// Standard tuning, string 1 = thinnest
+const STD = [
+  ['E4', 329.63, 'Thinnest string — melodies, lead lines and the top note of most chords.'],
+  ['B3', 246.94, 'The odd one out: tuned a major 3rd (4 frets) above G, not a 4th. Shifts every shape that crosses it.'],
+  ['G3', 196.00, 'Middle of the neck\'s range. A favourite for bends and triad voicings on strings 2–4.'],
+  ['D3', 146.83, 'Root string for D-shape chords and the top of most power-chord voicings.'],
+  ['A2', 110.00, 'Root string for A-shape (5th-string) barre chords and power chords.'],
+  ['E2', 82.41, 'Lowest string on a standard guitar. Root for E-shape barre chords and riffs.'],
+  ['B1', 61.74, 'Low B on 7-string guitars — a 4th below the low E. Extended-range metal and jazz.'],
+  ['F♯1', 46.25, 'Low F♯ on 8-string guitars — a 4th below B. Djent and extended-range playing.'],
+];
+
+function stringCards(count) {
+  return STD.slice(0, count).map(([note, hz, desc], i) => ({
+    title: 'String ' + (i + 1), sub: note.replace(/\d/, '') + ' string',
+    rows: [['Open note', note], ['Frequency', hz.toFixed(2) + ' Hz'], ['Tuning', count + '-string standard']],
+    desc,
+    allKeysLabel: 'Open ' + note.replace(/\d/, '') + ' as a degree of each key',
+    transpose: (r) => { const t = noteToTonic(note); return DEGREE_OF_PC[(pcOf(t.l, t.acc) - r.pc + 12) % 12]; },
+  }));
+}
+
+return { stringCards };
+},
+"data/techniques.js": function() {
+'use strict';
+const RAW = `# Picking
+Alternate Picking|Pick down and up in an alternating pattern for efficient, even note articulation.
+Downpicking|Pick every note with a downward stroke for strong, consistent attack.
+Upstrokes|Pick notes primarily with upward strokes, often used for accents and rhythmic patterns.
+Economy Picking|Combines alternate picking with sweep strokes when changing strings.
+Sweep Picking|Uses one continuous pick motion across adjacent strings to play arpeggios or runs.
+Strict Alternate Picking|Maintains a consistent down-up-down-up sequence regardless of string changes.
+Hybrid Picking|Combines pick strokes with the middle, ring, or other picking fingers.
+Fingerstyle|Plucks strings directly with the fingers instead of using a pick.
+Travis Picking|Alternates a bass pattern with the thumb while fingers play syncopated treble notes.
+Chicken Picking|Produces sharp, percussive country-style articulation using pick and fingers.
+Tremolo Picking|Rapidly repeats a single note with alternating pick strokes.
+String Skipping|Jumps over one or more strings while playing a melodic or rhythmic pattern.
+Crosspicking|Repeatedly moves across strings with a patterned picking sequence.
+Raking|Drags the pick across muted strings before striking a target note.
+Inside Picking|Picks notes between adjacent strings with strokes moving toward the space between them.
+Outside Picking|Picks notes on the outer sides of adjacent strings.
+Rest Stroke Picking|Allows the pick or finger to come to rest against the next string after a stroke.
+Sweep Arpeggio|Uses one-direction picking across strings to articulate an arpeggio efficiently.
+# Muting
+Palm Muting|Lightly rests the picking hand on the strings near the bridge to shorten sustain.
+Left-Hand Muting|Uses fretting-hand contact to prevent unwanted strings from sounding.
+Pick Muting|Uses the pick or picking fingers to partially damp individual notes or strings.
+Dead Notes|Produces percussive sounds by muting strings while striking them.
+Fretting-Hand Muting|Releases fretting pressure while maintaining string contact to create muted notes.
+Selective Muting|Mutes specific strings while allowing neighboring strings to ring.
+Open-String Ringing|Allows open strings to sustain alongside fretted notes.
+# Legato & Slides
+Legato|Connects notes smoothly using hammer-ons, pull-offs, or slides with minimal picking.
+Hammer-On|Sounds a higher note by forcefully placing a fretting finger onto the string.
+Pull-Off|Sounds a lower note by releasing a fretting finger from a sounding string.
+Trill|Rapidly alternates between two notes using repeated hammer-ons and pull-offs.
+Slide|Moves a fretting finger along the string from one pitch to another.
+Legato Slide|Connects two notes with a slide while minimizing additional picking.
+Shift Slide|Slides the fretting hand to a new position between phrases or notes.
+Glissando|Produces a continuous pitch transition between notes by sliding along a string.
+# Vibrato
+Vibrato|Repeatedly varies pitch around a note by controlled fretting-hand movement.
+Wrist Vibrato|Produces vibrato primarily through controlled wrist movement.
+Finger Vibrato|Produces vibrato through controlled movement of the fretting finger.
+Classical Vibrato|Uses a controlled rolling motion of the fretting finger along the string axis.
+Wide Vibrato|Uses a larger pitch variation for an expressive vocal-like effect.
+Narrow Vibrato|Uses a small pitch variation for subtle sustain and expression.
+# Bends
+Bend|Raises a note's pitch by pushing or pulling the string with the fretting hand.
+Half-Step Bend|Bends a note upward by one semitone.
+Whole-Step Bend|Bends a note upward by two semitones.
+Whole-and-a-Half-Step Bend|Raises a note approximately three semitones through string tension.
+Pre-Bend|Bends the string before picking the note, then releases or sustains the bent pitch.
+Bend-and-Release|Bends a note upward and then returns it to its original pitch.
+Unison Bend|Bends one note until it matches the pitch of another sounding note.
+Bend Vibrato|Combines repeated bending with vibrato for expressive pitch movement.
+Microtonal Bend|Raises a note by less than a semitone for subtle pitch coloration.
+Behind-the-Nut Bend|Bends a string segment between the nut and tuning machine to alter pitch.
+# Harmonics
+Harmonics|Produces high partials by lightly touching specific points on a vibrating string.
+Natural Harmonics|Produces harmonics at nodes of an open string, commonly at the 12th, 7th, and 5th frets.
+Artificial Harmonics|Produces harmonics on fretted notes using the picking hand.
+Pinch Harmonics|Uses pick and thumb contact to emphasize a high harmonic after the pick attack.
+Tapped Harmonics|Produces harmonics by striking a string at a harmonic node with a picking-hand finger.
+Touch Harmonics|Lightly touches a string at a harmonic node while another action initiates the vibration.
+# Tapping
+Tapping|Uses a picking-hand finger to hammer notes directly onto the fretboard.
+Two-Hand Tapping|Combines fretting-hand and picking-hand tapping to create extended patterns.
+Multi-Finger Tapping|Uses several picking-hand fingers for rapid tapped passages.
+Tapped Arpeggios|Uses tapping to extend arpeggios beyond normal fretting-hand reach.
+Tapped Harmonics|Combines tapping with harmonic nodes to create bell-like tones.
+# Percussion
+Percussive Tapping|Strikes the guitar body or strings to create rhythmic percussion.
+Body Tapping|Uses fingers or hands against the guitar body as a percussion instrument.
+String Tapping|Taps muted or fretted strings to create rhythmic effects.
+Slap|Strikes a string with the thumb to create a sharp percussive attack.
+Pop|Pulls and releases a string with a finger to produce a bright percussive attack.
+Thumb Slap|Uses the thumb to strike strings forcefully, commonly associated with bass-style techniques.
+Finger Slap|Strikes the strings with a finger or fingernail for a percussive sound.
+# Flamenco & Classical
+Rasgueado|Rapidly fans several fingers across the strings, associated with flamenco guitar.
+Flamenco Golpe|Strikes the guitar top with a finger to create a percussive accent.
+Flamenco Picado|Uses rapid alternating finger strokes for fast single-note passages.
+Flamenco Tremolo|Uses repeated finger patterns to create sustained melodic tremolo.
+Rest-Stroke Apoyando|Plucks a string so the finger comes to rest against the adjacent string.
+Free-Stroke Tirando|Plucks a string without the finger coming to rest on another string.
+# Chords & Harmony
+Arpeggiation|Plays the individual notes of a chord sequentially rather than simultaneously.
+Chord Melody|Combines melody and chord accompaniment simultaneously.
+Chord-Melody Hybrid Picking|Uses pick and fingers to articulate melody and harmony independently.
+Partial Chords|Plays only selected notes from a larger chord.
+Triad Playing|Uses three-note chord shapes to outline harmony across the fretboard.
+Double Stops|Plays two notes simultaneously.
+Triple Stops|Plays three notes simultaneously, often as compact chord fragments.
+Dyads|Uses two-note combinations to imply harmony, intervals, or riffs.
+Octave Playing|Plays the same pitch class simultaneously in different octaves.
+Power Chords|Uses root, fifth, and optionally octave tones without specifying major or minor quality.
+Suspended Chords|Replaces the third with the second or fourth to create suspended harmonic tension.
+Barre Chords|Uses one finger to fret multiple strings at the same fret.
+Partial Barre|Bars only a selected group of strings rather than the entire fretboard.
+Thumb-Over Chords|Wraps the fretting thumb around the neck to fret or mute bass strings.
+Open Chords|Uses open strings together with fretted notes to form chords.
+Chord Inversions|Places a chord tone other than the root in the lowest voice.
+Voice Leading|Moves individual chord tones smoothly between successive chords.
+Chord Slides|Slides a complete or partial chord shape between positions.
+Percussive Chording|Combines chord shapes with muted rhythmic strikes.
+Raking Chords|Sweeps through a chord with controlled string muting or staggered articulation.
+Rhythmic Chopping|Uses short, muted chord strokes to create a tight rhythmic texture.
+Palm-Muted Chords|Applies palm muting to chord strums for a shortened, punchy sound.
+Staccato Chords|Quickly stops chord resonance after the attack.
+Harmonic Chords|Combines chord shapes with selected harmonic notes.
+# Tone & Feedback
+Feedback Control|Uses amplifier and guitar position to deliberately produce and control feedback.
+Sustained Feedback|Maintains a note by positioning the guitar relative to the amplifier's sound field.
+Volume Swell|Uses the volume control to fade notes in after they are played.
+Tone-Rolloff|Reduces the guitar's tone control to create a darker, smoother sound.
+Pickup Switching|Changes pickups during playing to alter tonal response and articulation.
+# Whammy & Effects
+Whammy-Bar Dive|Depresses the tremolo arm to lower the pitch dramatically.
+Whammy-Bar Raise|Pulls the tremolo arm upward to raise pitch when the bridge permits it.
+Tremolo Flutter|Rapidly manipulates the tremolo arm to create a fluttering pitch effect.
+Whammy-Bar Vibrato|Uses the tremolo arm to create controlled pitch vibrato.
+Behind-the-Bridge Playing|Strikes the string between the bridge and tailpiece to produce high, metallic tones.
+E-Bow Playing|Uses an electromagnetic sustainer device to continuously excite a string.
+# Slide & Tunings
+Slide Guitar|Uses a slide over the strings to create continuous pitch movement and gliding notes.
+Bottleneck Vibrato|Combines slide technique with lateral movement for expressive pitch modulation.
+Open-Tuning Playing|Uses an altered tuning in which open strings form a chord or specific sonority.
+Scordatura|Retunes one or more strings to expand the instrument's available pitches or facilitate particular voicings.`;
+
+let group = '';
+const techniqueCards = [];
+for (const line of RAW.split('\n')) {
+  if (line.startsWith('# ')) { group = line.slice(2); continue; }
+  const [title, desc] = line.split('|');
+  techniqueCards.push({ title, sub: group, group, rows: [['Category', group]], desc });
+}
+
+return { techniqueCards };
+},
+"data/progressions.js": function() {
+'use strict';
+const { spell, accStr, LETTERS } = __req("theory.js");
+
+const NAT = [0, 2, 4, 5, 7, 9, 11];
+const ROMAN = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII'];
+
+function parseChord(s) {
+  const m = s.trim().match(/^([A-G])([♭♯#]*)(.*)$/);
+  let acc = 0;
+  for (const c of m[2]) acc += c === '♭' ? -1 : 1;
+  const l = LETTERS.indexOf(m[1]);
+  return { l, acc, pc: (NAT[l] + acc + 12) % 12, q: m[3] };
+}
+
+function parseRoman(tok) {
+  const m = tok.trim().match(/^([♭♯#]*)(VII|VI|IV|V|III|II|I|vii|vi|iv|v|iii|ii|i)/);
+  if (!m) return { n: 1, acc: 0, minor: false };
+  let acc = 0;
+  for (const c of m[1]) acc += c === '♭' ? -1 : 1;
+  return { n: ROMAN.indexOf(m[2].toUpperCase()) + 1, acc, minor: m[2] === 'i' };
+}
+
+// raw lines: "title|example|description"
+function progressionCards(raw) {
+  return raw.trim().split('\n').map(line => {
+    const [title, ex, desc] = line.split('|').map(s => s.trim());
+    const chords = ex.split('–').map(parseChord);
+    const first = parseRoman(title.split('–')[0]);
+    // tonic = first chord root moved down by the first numeral's degree
+    const tl = (chords[0].l - (first.n - 1) + 7) % 7;
+    const tpc = (chords[0].pc - (NAT[first.n - 1] + first.acc) + 24) % 12;
+    const tonic = { l: tl, acc: ((tpc - NAT[tl] + 18) % 12) - 6 };
+    const degs = chords.map(c => {
+      const n = (c.l - tl + 7) % 7 + 1;
+      const acc = ((c.pc - tpc - NAT[n - 1] + 30) % 12) - 6;
+      return { n, acc, q: c.q };
+    });
+    const keyName = LETTERS[tl] + accStr(tonic.acc) + (first.minor ? ' minor' : ' major');
+    return {
+      title, sub: ex,
+      rows: [['Example', ex], ['Key', keyName], ['Chords', String(chords.length)]],
+      desc: desc + '.',
+      allKeysLabel: 'In all 12 ' + (first.minor ? 'minor' : 'major') + ' keys',
+      transpose: (r) => ({
+        k: r.name + (first.minor ? 'm' : ''),
+        v: degs.map(d => spell(r, d) + d.q).join('–'),
+      }),
+    };
+  });
+}
+
+return { progressionCards };
+},
+"data/andalusian.js": function() {
+'use strict';
+const { parseDeg, spell } = __req("theory.js");
+
+const RAW = `Ascending Andalusian|Am–C–Dm–E–F|Classic ascending motion with E as turnaround
+Descending Andalusian|Am–G–F–E|Classic descending Andalusian cadence
+Full Ascend/Descend|Am–C–Dm–E–F–E–Dm–C–Am|Ascending phrase returning through E
+Descend to Turnaround|Am–G–F–E|Descending tonic-to-dominant cycle
+Ascend with G|Am–C–Dm–E–F–G–E|Ascending sequence extended through G
+Descend Extended|Am–G–F–E–Dm–C–G–E|Descending line with extended turnaround
+Andalusian Six-Chord|Am–G–F–E–Dm–E|Descending foundation with Dm–E turnaround
+Ascending Six-Chord|Am–C–Dm–E–F–E|Ascending cadence resolving back through E
+|Am–G–F–E–Am|Complete descending cycle
+|Am–C–Dm–E–Am|Compact ascending turnaround
+|Am–G–F–Dm–E|Descending line with Dm replacing final F movement
+|Am–G–F–C–E|Descending opening with C before turnaround
+|Am–C–G–F–E|Ascending/descending hybrid
+|Am–F–G–E|Minor tonic followed by predominant turnaround
+|Am–F–C–E|Broad descending harmonic movement
+|Am–Dm–C–E|Dorian-flavored predominant movement into E
+|Am–Dm–G–F–E|Extended descent into turnaround
+|Am–C–G–F–E–Am|Hybrid cadence with final tonic
+|Am–C–Dm–G–F–E|Ascending opening followed by descent
+|Am–Dm–C–G–F–E|Long descending dominant approach
+|Am–G–C–F–E|Descending sequence interrupted by C
+|Am–F–G–C–E|Circle-like detour before E
+|Am–C–F–G–E|Bright major-chord detour
+|Am–F–C–G–E|Four-chord pre-turnaround sequence
+|Am–G–Dm–F–E|Descending tonic with minor predominant
+|Am–G–C–Dm–E|Descending/ascending hybrid
+|Am–F–Dm–E|Compact minor cadence
+|Am–Dm–F–E|Predominant buildup to E
+|Am–C–F–Dm–E|Ascending color followed by dominant
+|Am–G–F–Dm–E|Classic descent with expanded ending
+|Am–C–Dm–F–E|Ascending cadence with F substitution
+|Am–C–Dm–G–E|Ascending sequence with dominant preparation
+|Am–G–F–C–Dm–E|Extended descending progression
+|Am–F–G–F–E|Repeated predominant motion
+|Am–G–F–G–E|Descending line with return to G
+|Am–C–G–F–G–E|Mixed ascending and descending contour
+|Am–Dm–G–C–F–E|Long functional sequence into E
+|Am–F–C–Dm–E|Wide harmonic descent
+|Am–C–Dm–C–F–E|Pedal-like return to C
+|Am–G–F–G–F–E|Repeated Andalusian descent
+|Am–G–F–E–F–E|E turnaround emphasized twice
+|Am–C–Dm–E–Dm–E|Ascending cadence with repeated dominant preparation
+|Am–F–E–Dm–E|E-centered turnaround
+|Am–G–F–E–Dm–E|Descending cadence extended after E
+|Am–G–F–E–F–G–E|Descending cycle with turnaround expansion
+|Am–C–Dm–E–G–F–E|Ascending opening followed by secondary descent
+|Am–F–G–F–Dm–E|Repeated predominant movement
+|Am–Dm–F–G–E|Minor opening with rising predominant sequence
+|Am–C–G–Dm–F–E|Mixed major/minor Andalusian colors
+|Am–G–Dm–C–F–E|Descending bass-like harmonic contour
+|Am–F–G–C–Dm–E|Long predominant chain to E
+|Am–C–F–G–F–E|Major-color detour before dominant
+|Am–G–C–F–Dm–E|Descending opening with expanding harmony
+|Am–Dm–C–F–E|Minor predominant sequence
+|Am–F–Dm–C–E|Wide descending movement to E
+|Am–C–Dm–G–C–F–E|Extended turnaround progression
+|Am–G–F–C–G–E|Andalusian opening with dominant preparation
+|Am–F–C–G–F–E|Descending harmonic colors
+|Am–C–G–Dm–C–E|Mixed-direction progression
+|Am–G–F–Dm–C–E|Descending sequence resolving toward E
+|Am–C–Dm–F–G–E|Ascending sequence with dominant turnaround
+|Am–G–F–Dm–G–E|Descending Andalusian variant
+|Am–F–G–Dm–E|Predominant chain ending in E
+|Am–Dm–G–F–E|Circle-inspired descent
+|Am–C–F–Dm–G–E|Expanded predominant movement
+|Am–G–C–Dm–F–E|Descending opening with ascending middle
+|Am–F–C–G–Dm–E|Long pre-turnaround sequence
+|Am–C–G–F–Dm–E|Major-to-minor descent
+|Am–Dm–C–G–F–E|Extended Andalusian descent
+|Am–G–F–C–Dm–F–E|Repeated predominant ending
+|Am–C–Dm–E–F–G–F–E|Ascending phrase followed by descending turnaround
+|Am–G–F–E–G–F–E|E-centered repeated turnaround
+|Am–F–G–E–F–Dm–E|Dominant interruption followed by resolution
+|Am–Dm–F–E–G–F–E|Repeated descent into E
+|Am–C–F–E–Dm–E|Alternating predominant and dominant
+|Am–G–F–E–C–Dm–E|Full descent followed by secondary turnaround
+|Am–C–Dm–G–F–E–Am|Extended cadence resolving to tonic
+|Am–G–F–E–Dm–C–E|Long descending turnaround
+|Am–F–G–C–F–Dm–E|Major-key colors surrounding minor tonic
+|Am–Dm–G–C–F–E|Circle-of-fifths-like movement ending on E
+|Am–C–G–F–Dm–C–E|Broad harmonic descent
+|Am–G–F–C–G–F–E|Repeating descending harmonic cells
+|Am–F–C–Dm–G–F–E|Extended pre-dominant chain
+|Am–G–Dm–F–C–E|Descending minor movement with C before E
+|Am–C–Dm–F–C–G–E|Ascending opening with expanded turnaround
+|Am–F–Dm–G–C–E|Functional circle-like approach
+|Am–G–C–F–G–E|Descending start with dominant preparation
+|Am–C–F–G–Dm–E|Major-color expansion into minor dominant preparation
+|Am–Dm–C–F–G–E|Descending progression with rising ending
+|Am–G–F–E–G–C–E|Full Andalusian descent with extended turnaround
+|Am–C–Dm–E–F–G–F–E–Am|Long ascending/descending cycle
+|Am–G–F–E–Dm–C–Dm–E|Descending cycle with minor turnaround
+|Am–F–G–C–Dm–F–E–Am|Extended cadence resolving to Am
+|Am–C–G–F–E–Dm–E|Hybrid descent with repeated E
+|Am–G–F–C–Dm–G–F–E|Extended Andalusian-style descent
+|Am–C–Dm–F–G–C–F–E|Large ascending harmonic expansion
+|Am–G–F–E–C–G–F–E|Repeated turnaround architecture
+|Am–F–Dm–C–G–F–E|Long descending predominant movement
+|Am–C–Dm–E–F–G–C–F–E|Ascending Andalusian opening with expanded turnaround
+Complete Andalusian Cycle|Am–C–Dm–E–F–G–F–E–Dm–C–G–F–E–Am|Full ascending/descending journey with E functioning as the turnaround`;
+
+// Chords of A minor (with the Phrygian-dominant E major) as degrees of the minor tonic
+const CHORDS = {
+  Am: ['1', 'm', 'i'], C: ['♭3', '', '♭III'], Dm: ['4', 'm', 'iv'],
+  E: ['5', '', 'V'], F: ['♭6', '', '♭VI'], G: ['♭7', '', '♭VII'],
+};
+
+const andalusianCards = RAW.split('\n').map((line, i) => {
+  const [name, ex, desc] = line.split('|');
+  const chords = ex.split('–');
+  const roman = chords.map(c => CHORDS[c][2]).join('–');
+  return {
+    title: name || ex, sub: name ? ex : roman,
+    rows: [['Example (A minor)', ex], ['Numerals', roman], ['Chords', String(chords.length)]],
+    desc: desc + '.',
+    allKeysLabel: 'In all 12 minor keys',
+    transpose: (r) => ({
+      k: r.name + 'm',
+      v: chords.map(c => { const [d, q] = CHORDS[c]; return spell(r, parseDeg(d)) + q; }).join('–'),
+    }),
+  };
+});
+
+return { andalusianCards };
+},
+"data/deceptive.js": function() {
+'use strict';
+const { progressionCards } = __req("data/progressions.js");
+
+const deceptiveCards = progressionCards(`Major–IV–Minor IV|C–F–Fm|Classic borrowed iv shift creating immediate instability
+I–IV–iv–I|C–F–Fm–C|Major tonic destabilized by minor IV before returning
+I–iv–V|C–Fm–G|Borrowed minor IV creates tension before dominant
+I–IV–♭VII|C–F–B♭|Major tonic moving outside the diatonic scale
+I–♭VII–IV|C–B♭–F|Mixolydian-colored movement without firm resolution
+I–♭VI–V|C–A♭–G|Chromatic minor-color descent toward dominant
+I–♭VI–♭VII–V|C–A♭–B♭–G|Expanding borrowed-chord tension
+I–♭III–IV–V|C–E♭–F–G|Minor-mode color inserted into major harmony
+I–III–IV–iv|C–E–F–Fm|Chromatic major-third rise followed by minor-IV destabilization
+I–III–vi–iv|C–E–Am–Fm|Chromatic major III leading into borrowed minor IV
+I–V–IV–iv|C–G–F–Fm|Dominant release followed by sudden modal shift
+I–V–♭VI–V|C–G–A♭–G|Chromatic upper-neighbor motion around the dominant
+I–IV–♭VI–V|C–F–A♭–G|Borrowed ♭VI interrupts diatonic movement
+I–IV–♭VII–iv|C–F–B♭–Fm|Multiple modal colors before minor IV
+I–vi–IV–iv|C–Am–F–Fm|Familiar progression destabilized by borrowed iv
+I–vi–ii–♭II|C–Am–Dm–D♭|Chromatic Neapolitan-like interruption
+I–ii–♭II–V|C–Dm–D♭–G|Chromatic descent into dominant
+I–♭II–V|C–D♭–G|Tritone-rich chromatic tension around the dominant
+I–♭II–I|C–D♭–C|Chromatic upper-neighbor tension
+I–♭III–I|C–E♭–C|Major/minor color shift without functional resolution
+I–III–♭III–ii|C–E–E♭–Dm|Descending chromatic third movement
+I–IV–♯IV–V|C–F–F♯–G|Chromatic passing harmony between IV and V
+I–IV–♯IV–iv|C–F–F♯–Fm|Chromatic approach intensifying the minor-IV change
+I–V–♭VI–IV|C–G–A♭–F|Dominant destabilized by chromatic mediant motion
+I–♭VI–IV–V|C–A♭–F–G|Borrowed ♭VI gives a darker harmonic turn
+I–♭VI–iv–V|C–A♭–Fm–G|Multiple minor-mode colors leading to dominant
+I–♭VII–♭VI–V|C–B♭–A♭–G|Chromatic descending bass-like motion
+I–♭VII–VI–V|C–B♭–A–G|Chromatic/modal mixture around the descent
+I–VI–♭VI–V|C–A–A♭–G|Chromatic descending root motion
+I–vi–♭VI–V|C–Am–A♭–G|Minor vi followed by chromatic ♭VI
+I–IV–ii–iv|C–F–Dm–Fm|Alternation between major and minor predominant colors
+I–ii–IV–iv|C–Dm–F–Fm|Diatonic expansion ending with borrowed minor IV
+I–vi–IV–♭VI|C–Am–F–A♭|Abrupt chromatic mediant shift
+I–vi–♭VI–IV|C–Am–A♭–F|Descending bass with borrowed harmony
+I–iii–IV–iv|C–Em–F–Fm|Parallel major/minor transformation at IV
+I–iii–♭III–ii|C–Em–E♭–Dm|Chromatic descending inner movement
+I–V–iii–♭III|C–G–Em–E♭|Chromatic major/minor-third relationship
+I–V–♭VI–♭VII|C–G–A♭–B♭|Dominant followed by modal expansion
+I–♭VII–IV–♭VI|C–B♭–F–A♭|Non-diatonic modal sequence
+I–IV–♭III–V|C–F–E♭–G|Borrowed ♭III interrupts predominant-to-dominant motion
+I–♭III–♭VI–V|C–E♭–A♭–G|Strong minor-mode coloration
+I–♭III–IV–iv|C–E♭–F–Fm|Modal mixture culminating in borrowed iv
+I–♭VI–♭VII–I|C–A♭–B♭–C|Backdoor/modal return to tonic
+I–♭VII–iv–I|C–B♭–Fm–C|Minor predominant inserted into modal harmony
+I–iv–♭VI–V|C–Fm–A♭–G|Borrowed minor IV followed by dark predominant
+I–iv–♭VII–V|C–Fm–B♭–G|Minor IV with modal dominant preparation
+I–IV–iv–♭VII|C–F–Fm–B♭|Classic destabilization extended into modal harmony
+I–IV–iv–♭VI|C–F–Fm–A♭|Major-to-minor parallel shift followed by ♭VI
+I–IV–iv–ii|C–F–Fm–Dm|Minor IV turns a stable progression inward
+I–IV–iv–V|C–F–Fm–G|Strong borrowed-iv dominant cadence
+I–IV–♭VI–iv|C–F–A♭–Fm|Two successive borrowed minor-mode colors
+I–ii–♭VI–V|C–Dm–A♭–G|Unexpected chromatic predominant substitution
+I–ii–iv–V|C–Dm–Fm–G|Diatonic ii transformed into darker minor predominant
+I–iii–iv–V|C–Em–Fm–G|Chromatic mediant followed by minor predominant
+I–iii–IV–♭VI|C–Em–F–A♭|Chromatic mediant shift between diatonic chords
+I–V–vi–♭VI|C–G–Am–A♭|Descending chromatic shift from vi
+I–V–IV–♭VI|C–G–F–A♭|Dominant-to-predominant followed by borrowed ♭VI
+I–vi–IV–♭VII|C–Am–F–B♭|Familiar vi–IV disrupted by modal ♭VII
+I–vi–iv–V|C–Am–Fm–G|Minor IV replaces expected IV
+I–vi–♭VI–iv|C–Am–A♭–Fm|Descending chromatic/modal sequence
+I–IV–V–iv|C–F–G–Fm|Dominant appears before a destabilizing minor IV
+I–V–IV–iv–I|C–G–F–Fm–C|Classic unstable detour that eventually returns home
+I–IV–iv–I–♭VII|C–F–Fm–C–B♭|Borrowed iv followed by modal expansion
+I–IV–iv–I–♭VI|C–F–Fm–C–A♭|Minor IV followed by borrowed ♭VI
+I–♭VI–V–iv|C–A♭–G–Fm|Dark descending dominant cycle
+I–♭VII–IV–iv–V|C–B♭–F–Fm–G|Modal opening with borrowed minor-IV cadence
+I–♭III–♭VII–IV|C–E♭–B♭–F|Rock/modal progression without strong functional closure
+I–♭VII–♭VI–iv|C–B♭–A♭–Fm|Descending modal sequence into minor IV
+I–♭VI–♭VII–iv|C–A♭–B♭–Fm|Minor-mode harmonic colors against major tonic
+I–♭III–♭VI–♭VII|C–E♭–A♭–B♭|Parallel minor colors surrounding major tonic
+I–VI–ii–♭II|C–A–Dm–D♭|Chromatic bass movement toward dominant territory
+I–III–vi–♭VI|C–E–Am–A♭|Chromatic third-related descent
+I–iii–♭III–vi|C–Em–E♭–Am|Major/minor parallel shift between mediants
+I–V–♭VII–♭VI|C–G–B♭–A♭|Dominant followed by descending modal colors
+I–IV–♯IV–V–iv|C–F–F♯–G–Fm|Chromatic ascent into dominant then minor-IV shock
+I–V–♭VI–iv–V|C–G–A♭–Fm–G|Chromatic predominant chain into dominant
+I–vi–♭VI–V–iv|C–Am–A♭–G–Fm|Descending chromatic movement with borrowed iv
+I–IV–♭VII–♭VI–V|C–F–B♭–A♭–G|Large modal detour resolving through dominant
+I–♭VI–IV–iv–V|C–A♭–F–Fm–G|Borrowed ♭VI and iv frame the dominant
+I–♭III–IV–♭VI–V|C–E♭–F–A♭–G|Mixed modal and chromatic predominant movement
+I–V–♭VI–♭VII–iv|C–G–A♭–B♭–Fm|Dominant followed by modal expansion
+I–IV–♭III–♭VI–V|C–F–E♭–A♭–G|Non-diatonic descending color before dominant
+I–♭VII–IV–♭VI–V|C–B♭–F–A♭–G|Modal mixture surrounding dominant preparation
+I–vi–IV–Fm–G|C–Am–F–Fm–G|Familiar progression destabilized before dominant
+I–V–vi–IV–iv|C–G–Am–F–Fm|Familiar pop cycle transformed at the end
+I–vi–IV–iv–V|C–Am–F–Fm–G|Strong major/minor IV contrast before dominant
+I–IV–I–iv–V|C–F–C–Fm–G|Tonic restatement followed by borrowed iv
+I–V–I–iv–V|C–G–C–Fm–G|Stable tonic/dominant motion interrupted by iv
+I–IV–iv–I–V|C–F–Fm–C–G|Classic borrowed-chord detour followed by dominant
+I–vi–IV–iv–I|C–Am–F–Fm–C|Major progression collapses briefly into minor
+I–♭VI–IV–iv–I|C–A♭–F–Fm–C|Multiple borrowed chords resolve back to tonic
+I–♭VII–♭VI–iv–V|C–B♭–A♭–Fm–G|Descending modal sequence into dominant
+I–♭III–♭VI–iv–V|C–E♭–A♭–Fm–G|Strong parallel-minor coloration before V
+I–III–♭III–IV–iv|C–E–E♭–F–Fm|Chromatic mediant descent into major/minor IV
+I–VI–♭VI–V–iv|C–A–A♭–G–Fm|Chromatic descending line with minor-IV extension
+I–♭II–I–IV–iv|C–D♭–C–F–Fm|Chromatic upper-neighbor tonic followed by modal mixture
+I–IV–♯IV–V–♭VI|C–F–F♯–G–A♭|Chromatic cluster around IV–V
+I–V–♭VI–V–IV–iv|C–G–A♭–G–F–Fm|Oscillating dominant/♭VI followed by major/minor IV
+I–IV–iv–♭VI–V|C–F–Fm–A♭–G|Major/minor IV transformation followed by borrowed ♭VI
+I–IV–iv–♭VI–♭VII–V|C–F–Fm–A♭–B♭–G|Extended unstable modal progression culminating in dominant`);
+
+return { deceptiveCards };
+},
+"data/majorminor.js": function() {
+'use strict';
+const { progressionCards } = __req("data/progressions.js");
+
+const majorMinorCards = progressionCards(`I–IV–V|C–F–G|Fundamental major progression from Ionian
+I–V–vi–IV|C–G–Am–F|Major tonic with relative-minor vi
+I–vi–IV–V|C–Am–F–G|Major-to-relative-minor movement
+I–IV–vi–V|C–F–Am–G|Major framework with minor vi
+I–vi–ii–V|C–Am–Dm–G|Major tonic moving through relative minor
+I–iii–vi–IV|C–Em–Am–F|Descending minor-third relationship
+I–iii–IV–V|C–Em–F–G|Major progression with minor mediant
+I–ii–V–I|C–Dm–G–C|Classic ii–V–I
+I–vi–ii–V|C–Am–Dm–G|Circle movement through minor and major chords
+I–iii–IV–I|C–Em–F–C|Minor mediant resolving to major subdominant
+I–IV–I–V|C–F–C–G|Strong tonic/subdominant/dominant cycle
+I–V–IV–I|C–G–F–C|Reversed dominant/subdominant motion
+I–ii–IV–V|C–Dm–F–G|Minor ii between major functions
+I–iii–ii–V|C–Em–Dm–G|Descending diatonic minor movement
+I–vi–iii–IV|C–Am–Em–F|Relative-minor chain
+I–vi–iii–V|C–Am–Em–G|Minor chain resolving through V
+I–iii–vi–V|C–Em–Am–G|Three minor chords surrounding dominant
+I–ii–vi–V|C–Dm–Am–G|Minor predominant and relative-minor center
+I–IV–ii–V|C–F–Dm–G|Major IV framing minor ii
+I–V–ii–IV|C–G–Dm–F|Dominant followed by minor predominant
+vi–IV–I–V|Am–F–C–G|Relative minor opening into major
+vi–IV–V–I|Am–F–G–C|Minor opening resolving to major tonic
+vi–ii–V–I|Am–Dm–G–C|Relative-minor-to-major cadence
+vi–iii–IV–V|Am–Em–F–G|Minor opening with major dominant preparation
+vi–iii–ii–V|Am–Em–Dm–G|Descending diatonic minor sequence
+vi–V–IV–I|Am–G–F–C|Aeolian opening resolving through major chords
+vi–IV–ii–V|Am–F–Dm–G|Minor tonic with major IV and minor ii
+vi–I–IV–V|Am–C–F–G|Relative-minor/major alternation
+vi–I–ii–V|Am–C–Dm–G|Minor-to-major tonic exchange
+vi–iii–IV–I|Am–Em–F–C|Minor opening with major resolution
+ii–V–I–vi|Dm–G–C–Am|Major cadence extended into relative minor
+ii–V–vi–IV|Dm–G–Am–F|Dominant resolves deceptively to minor
+iii–vi–ii–V|Em–Am–Dm–G|All-diatonic descending cycle
+iii–vi–IV–V|Em–Am–F–G|Minor chain opening into major cadence
+iii–IV–I–V|Em–F–C–G|Minor mediant against major framework
+iii–ii–vi–V|Em–Dm–Am–G|Descending minor-chord sequence
+IV–vi–V–I|F–Am–G–C|Major IV with minor vi
+IV–I–vi–V|F–C–Am–G|Major subdominant with relative minor
+IV–ii–V–I|F–Dm–G–C|IV–ii–V–I progression
+IV–vi–ii–V|F–Am–Dm–G|Minor chords embedded between major functions
+V–vi–IV–I|G–Am–F–C|Dominant deceptively moving to relative minor
+V–vi–ii–I|G–Am–Dm–C|Dominant-to-minor movement with modal color
+V–iii–vi–IV|G–Em–Am–F|Dominant followed by descending minor chain
+V–ii–vi–IV|G–Dm–Am–F|Dominant-centered modal progression
+V–IV–vi–I|G–F–Am–C|Dominant/subdominant/minor-to-major cycle
+I–♭VII–IV–I|C–B♭–F–C|Mixolydian major-mode progression
+I–♭VII–IV–V|C–B♭–F–G|Mixolydian color returning to Ionian V
+I–♭VII–I|C–B♭–C|Major tonic with Mixolydian ♭VII
+I–IV–♭VII–I|C–F–B♭–C|Major/Mixolydian modal mixture
+I–♭VII–vi–IV|C–B♭–Am–F|Mixolydian major chord followed by relative minor
+I–♭VII–vi–V|C–B♭–Am–G|Modal major-to-minor descent
+I–♭VII–IV–vi|C–B♭–F–Am|Mixolydian colors with relative minor
+I–♭VII–IV–ii|C–B♭–F–Dm|Modal major chords surrounding minor ii
+i–♭VII–♭VI–V|Am–G–F–E|Aeolian/parallel-minor descending cadence
+i–♭VII–♭VI–♭VII|Am–G–F–G|Aeolian minor cycle
+i–♭VI–♭VII–i|Am–F–G–Am|Natural-minor tonic cycle
+i–iv–♭VII–♭III|Am–Dm–G–C|Aeolian minor moving toward relative major
+i–♭III–♭VII–IV|Am–C–G–D|Minor tonic with modal major IV
+i–♭III–♭VI–♭VII|Am–C–F–G|Pure Aeolian progression
+i–♭VII–♭III–♭VI|Am–G–C–F|Aeolian/modal cycle
+i–iv–♭III–♭VII|Am–Dm–C–G|Minor predominant with modal majors
+i–♭VI–iv–V|Am–F–Dm–E|Minor tonic with borrowed dominant from harmonic minor
+i–♭III–iv–V|Am–C–Dm–E|Minor-major alternation with dominant
+i–♭VII–IV–i|Am–G–D–Am|Dorian-style minor with major IV
+i–IV–♭VII–i|Am–D–G–Am|Dorian minor with major IV and ♭VII
+i–ii–♭VII–i|Am–Bm–G–Am|Dorian minor with major ii
+i–IV–ii–i|Am–D–Bm–Am|Dorian major-chord contrast
+i–♭III–IV–i|Am–C–D–Am|Dorian-flavored minor-to-major movement
+i–♭VII–IV–V|Am–G–D–E|Dorian/modal minor leading to dominant
+i–♭II–♭VII–i|Am–B♭–G–Am|Phrygian minor with major ♭II
+i–♭II–♭III–i|Am–B♭–C–Am|Phrygian major-chord tension around minor tonic
+i–♭II–♭VII–♭VI|Am–B♭–G–F|Phrygian descending modal colors
+i–♭II–iv–i|Am–B♭–Dm–Am|Phrygian tonic with characteristic ♭II
+i–♭III–♭II–i|Am–C–B♭–Am|Descending Phrygian modal movement
+I–II–V–I|C–D–G–C|Lydian major with major II
+I–II–vi–I|C–D–Am–C|Lydian major II resolving toward relative minor
+I–II–iii–V|C–D–Em–G|Lydian major with minor iii
+I–II–IV–I|C–D–F–C|Major tonic surrounded by Lydian II
+I–#IV°–V–I|C–F#dim–G–C|Lydian diminished leading chord
+I–II–V–vi|C–D–G–Am|Lydian opening resolving into relative minor
+I–♭III–♭VII–IV|C–E♭–B♭–F|Aeolian/Dorian modal mixture
+I–♭III–IV–I|C–E♭–F–C|Minor-mode ♭III against major tonic
+I–♭III–V–IV|C–E♭–G–F|Major tonic with parallel-minor ♭III
+I–♭VI–♭VII–I|C–A♭–B♭–C|Parallel-minor/modal cadence
+I–♭VI–IV–I|C–A♭–F–C|Major tonic framed by minor-mode colors
+I–♭VI–ii–V|C–A♭–Dm–G|Borrowed ♭VI leading into diatonic cadence
+I–iv–V–I|C–Fm–G–C|Major tonic with parallel-minor subdominant
+I–IV–iv–V|C–F–Fm–G|Major IV transformed into minor IV
+I–vi–iv–V|C–Am–Fm–G|Relative minor followed by borrowed minor IV
+I–iii–iv–V|C–Em–Fm–G|Minor mediant and borrowed minor IV
+I–IV–♭III–V|C–F–E♭–G|Modal/minor ♭III between major functions
+I–♭VII–iv–V|C–B♭–Fm–G|Mixolydian and minor-mode mixture
+I–♭VI–iv–V|C–A♭–Fm–G|Parallel-minor predominant chain
+I–♭III–iv–V|C–E♭–Fm–G|Minor-mode colors against major tonic
+I–vi–IV–iv–I|C–Am–F–Fm–C|Relative minor followed by major-to-minor IV transformation
+I–IV–iv–I|C–F–Fm–C|Classic parallel major/minor subdominant shift
+I–vi–IV–♭VII|C–Am–F–B♭|Relative minor with Mixolydian ♭VII
+I–iii–IV–iv|C–Em–F–Fm|Diatonic minor iii leading to modal minor IV
+I–V–vi–♭VI|C–G–Am–A♭|Relative minor followed by chromatic/modal ♭VI
+I–♭VII–IV–iv–I|C–B♭–F–Fm–C|Mixolydian and parallel-minor mixture
+I–♭VI–♭VII–IV–I|C–A♭–B♭–F–C|Parallel-minor colors resolving through major IV
+I–ii–IV–iv–I|C–Dm–F–Fm–C|Diatonic ii followed by transformed IV
+I–vi–ii–iv–V|C–Am–Dm–Fm–G|Minor predominant sequence inside major tonality
+I–iii–vi–iv–V|C–Em–Am–Fm–G|Three minor chords leading to dominant
+I–IV–vi–iv–V|C–F–Am–Fm–G|Major IV and minor IV juxtaposed
+I–♭VII–vi–IV–iv–I|C–B♭–Am–F–Fm–C|Extended modal major/minor interchange
+i–♭III–♭VI–IV–i|Am–C–F–D–Am|Minor tonic surrounded by Dorian major IV
+i–♭VII–IV–♭III–i|Am–G–D–C–Am|Dorian/modal minor-major cycle
+i–♭VI–♭VII–IV–i|Am–F–G–D–Am|Aeolian-to-Dorian modal mixture
+i–iv–♭III–IV–i|Am–Dm–C–D–Am|Minor tonic with alternating minor/major IV
+I–vi–♭VII–IV–I|C–Am–B♭–F–C|Relative minor combined with Mixolydian ♭VII
+I–iv–♭VII–I|C–Fm–B♭–C|Parallel-minor iv plus Mixolydian ♭VII
+I–♭III–♭VII–IV–I|C–E♭–B♭–F–C|Major tonic surrounded by minor-mode and Mixolydian chords
+I–♭VI–♭VII–IV–I|C–A♭–B♭–F–C|Parallel-minor/modal major cycle
+I–IV–♭VII–iv–I|C–F–B♭–Fm–C|Major IV and Mixolydian ♭VII before minor iv
+I–vi–♭VII–iv–V|C–Am–B♭–Fm–G|Relative minor and modal mixture before dominant
+i–IV–♭VII–♭III–i|Am–D–G–C–Am|Dorian major IV combined with Aeolian colors
+i–♭III–IV–♭VII–i|Am–C–D–G–Am|Dorian-style minor-major modal cycle
+I–II–iii–IV–V–vi|C–D–Em–F–G–Am|Lydian-to-Ionian color across the diatonic collection
+i–♭III–♭VII–IV–I|Am–C–G–D–C|Minor opening resolving into major tonic
+I–vi–IV–♭VII–i|C–Am–F–B♭–Am|Major framework collapsing into relative minor
+I–IV–iv–♭VII–I|C–F–Fm–B♭–C|Major/minor IV transformation with Mixolydian color
+I–♭VI–♭VII–iv–I|C–A♭–B♭–Fm–C|Parallel-minor/modal sequence returning to major tonic`);
+
+return { majorMinorCards };
+},
+"data/blues.js": function() {
+'use strict';
+const { progressionCards } = __req("data/progressions.js");
+
+const bluesCards = progressionCards(`I–IV–V|C7–F7–G7|Basic 12-bar blues framework
+I–I–IV–V|C7–C7–F7–G7|Tonic held before moving to IV
+I–IV–I–V|C7–F7–C7–G7|Classic blues movement
+I–IV–I–V–IV|C7–F7–C7–G7–F7|Expanded turnaround approach
+I–IV–V–IV|C7–F7–G7–F7|Cyclic blues progression
+I–I–I–I|C7–C7–C7–C7|Tonic-heavy blues opening
+I–IV–IV–I|C7–F7–F7–C7|Four-bar blues movement
+I–V–IV–I|C7–G7–F7–C7|Descending functional blues
+I–V–I–IV|C7–G7–C7–F7|Dominant-to-tonic blues motion
+I–IV–V–I|C7–F7–G7–C7|Complete blues cadence
+I–I–IV–IV–I–I–V–IV–I|C7–C7–F7–F7–C7–C7–G7–F7–C7|Nine-bar blues skeleton
+I–I–I–IV–IV–I–I–V–IV–I|C7–C7–C7–F7–F7–C7–C7–G7–F7–C7|Ten-bar blues variant
+I–IV–I–V–IV–I|C7–F7–C7–G7–F7–C7|Compact blues cycle
+I–IV–V–IV–I|C7–F7–G7–F7–C7|Blues with plagal return
+I–V–IV–V|C7–G7–F7–G7|Dominant-centered turnaround
+I–IV–I–IV|C7–F7–C7–F7|Alternating tonic/subdominant blues
+I–V–I–V|C7–G7–C7–G7|Tonic/dominant vamp
+I–IV–V–V|C7–F7–G7–G7|Dominant-heavy blues phrase
+I–I–IV–I–V–IV–I|C7–C7–F7–C7–G7–F7–C7|Shortened 12-bar structure
+I–IV–IV–I–V–IV–I|C7–F7–F7–C7–G7–F7–C7|Strong IV-centered blues
+I–IV–I–IV–V–IV–I|C7–F7–C7–F7–G7–F7–C7|Alternating blues progression
+I–I–IV–I–V–I|C7–C7–F7–C7–G7–C7|Simple turnaround blues
+I–IV–V–I–IV–V|C7–F7–G7–C7–F7–G7|Repeating dominant cycle
+I–V–IV–I–V|C7–G7–F7–C7–G7|Blues turnaround loop
+I–IV–♭VII–IV|C7–F7–B♭7–F7|Mixolydian blues color
+I–♭VII–IV–I|C7–B♭7–F7–C7|Backward blues movement
+I–♭VII–IV–V|C7–B♭7–F7–G7|Modal dominant blues
+I–IV–♭VII–I|C7–F7–B♭7–C7|Modal return to tonic
+I–♭VII–I|C7–B♭7–C7|Rock-blues dominant vamp
+I–IV–I–♭VII|C7–F7–C7–B♭7|Blues ending on modal ♭VII
+I7–IV7–I7–V7|C7–F7–C7–G7|Dominant-seventh blues skeleton
+I7–IV7–V7–IV7|C7–F7–G7–F7|Four-chord dominant blues
+I7–V7–IV7–I7|C7–G7–F7–C7|Descending dominant blues
+I7–IV7–V7–I7|C7–F7–G7–C7|Dominant-seventh blues cadence
+I7–IV7–I7–IV7|C7–F7–C7–F7|Dominant tonic/subdominant vamp
+I7–V7–I7–IV7|C7–G7–C7–F7|Dominant turnaround into IV
+I7–IV7–♭VII7–I7|C7–F7–B♭7–C7|Blues/modal dominant cycle
+I7–♭VII7–IV7–I7|C7–B♭7–F7–C7|Descending dominant-subdominant cycle
+I7–VI7–II7–V7|C7–A7–D7–G7|Chain of dominant substitutions
+I7–VI7–II7–V7–I7|C7–A7–D7–G7–C7|Blues-flavored circle-of-fifths turnaround
+I7–III7–VI7–II7–V7|C7–E7–A7–D7–G7|Extended dominant chain
+I7–III7–VI7–II7–V7–I7|C7–E7–A7–D7–G7–C7|Full dominant cycle
+I7–VI7–II7–V7|C7–A7–D7–G7|Common blues/jazz turnaround
+I7–IV7–VII7–III7|C7–F7–B7–E7|Chromatic dominant sequence
+I7–♭III7–IV7–V7|C7–E♭7–F7–G7|Blues chromatic-mediant color
+I7–♭VI7–V7–IV7|C7–A♭7–G7–F7|Chromatic descending dominant motion
+I7–♭VII7–VI7–V7|C7–B♭7–A7–G7|Descending dominant turnaround
+I7–VI7–♭VI7–V7|C7–A7–A♭7–G7|Chromatic dominant descent
+I7–♭VII7–VI7–♭VI7–V7|C7–B♭7–A7–A♭7–G7|Extended chromatic descent
+I7–IV7–#IV°–V7|C7–F7–F#dim–G7|Diminished passing chord into V
+I7–IV7–#IV°–I7|C7–F7–F#dim–C7|Diminished approach back to tonic
+I7–VI7–II7–#II°–III7|C7–A7–D7–D#dim–E7|Chromatic dominant chain
+I7–IV7–iv7–I7|C7–F7–Fm7–C7|Major/minor IV blues color
+I7–IV7–iv7–V7|C7–F7–Fm7–G7|Borrowed minor IV before dominant
+I7–iv7–I7|C7–Fm7–C7|Tonic with minor-subdominant blues color
+I7–♭VI7–V7–I7|C7–A♭7–G7–C7|Chromatic minor-color turnaround
+I7–♭III7–IV7–I7|C7–E♭7–F7–C7|Bluesy chromatic-mediant movement
+I7–VI7–♭II7–V7|C7–A7–D♭7–G7|Tritone-related turnaround colors
+I7–IV7–♭VII7–V7|C7–F7–B♭7–G7|Modal dominant turnaround
+I7–V7–♭VI7–V7|C7–G7–A♭7–G7|Dominant oscillation with ♭VI
+I7–IV7–I7–♭VI7–V7|C7–F7–C7–A♭7–G7|Extended turnaround
+I7–VI7–II7–V7–IV7–I7|C7–A7–D7–G7–F7–C7|Circle movement with blues plagal return
+I7–III7–VI7–IV7|C7–E7–A7–F7|Dominant chain interrupted by IV
+I7–VI7–IV7–V7|C7–A7–F7–G7|Blues turnaround with VI7
+I7–II7–IV7–V7|C7–D7–F7–G7|Dominant-colored upward blues movement
+I7–II7–I7–V7|C7–D7–C7–G7|Dominant supertonic tension
+I7–♭VII7–I7–IV7|C7–B♭7–C7–F7|Rock-blues tonic/♭VII motion
+I7–♭VII7–IV7–V7|C7–B♭7–F7–G7|Classic modal blues vocabulary
+I7–IV7–♭VII7–IV7|C7–F7–B♭7–F7|Dominant modal cycle
+I7–♭VII7–♭VI7–V7|C7–B♭7–A♭7–G7|Descending dominant-color sequence
+I7–IV7–V7–♭VII7|C7–F7–G7–B♭7|Dominant chords with modal extension
+i–iv–V|Cm7–Fm7–G7|Minor blues harmonic skeleton
+i–i–iv–V|Am7–Am7–Dm7–E7|Minor blues opening
+i–iv–i–V|Am7–Dm7–Am7–E7|Minor blues tonic/predominant/dominant
+i–♭VI–V|Am7–F7–E7|Minor blues cadence
+i–♭VII–♭VI–V|Am7–G7–F7–E7|Descending minor-blues cadence
+i–iv–♭VII–♭VI|Am7–Dm7–G7–F7|Minor modal blues sequence
+i–♭VII–iv–V|Am7–G7–Dm7–E7|Minor blues with modal ♭VII
+i–♭VI–iv–V|Am7–F7–Dm7–E7|Dark minor-blues turnaround
+i–iv–♭VI–V|Am7–Dm7–F7–E7|Minor predominant chain
+i–♭III–iv–V|Am7–C7–Dm7–E7|Minor tonic with major ♭III
+i–♭VII–♭III–iv|Am7–G7–C7–Dm7|Minor/modal blues cycle
+i–♭VI–♭VII–V|Am7–F7–G7–E7|Minor blues with dominant turnaround
+i–iv–♭VII–V|Am7–Dm7–G7–E7|Minor modal movement into dominant
+i–♭III–♭VII–iv|Am7–C7–G7–Dm7|Minor blues with major-mode colors
+i–♭VI–♭VII–iv–V|Am7–F7–G7–Dm7–E7|Extended minor-blues turnaround
+i–iv–♭VI–♭VII–V|Am7–Dm7–F7–G7–E7|Modal minor buildup into V
+i–♭VII–♭VI–iv–V|Am7–G7–F7–Dm7–E7|Descending minor blues into dominant
+i–♭III–iv–♭VI–V|Am7–C7–Dm7–F7–E7|Minor blues with major ♭III and ♭VI
+i–♭VI–♭VII–♭III–V|Am7–F7–G7–C7–E7|Extended minor/modal cadence
+i–iv–i–♭VI–V|Am7–Dm7–Am7–F7–E7|Tonic return followed by minor-blues cadence
+I7–IV7–I7–iv7–I7|C7–F7–C7–Fm7–C7|Major blues with sudden minor IV
+I7–IV7–iv7–I7–V7|C7–F7–Fm7–C7–G7|Minor IV used as dominant preparation
+I7–♭VII7–IV7–iv7–I7|C7–B♭7–F7–Fm7–C7|Modal blues plus parallel-minor subdominant
+I7–VI7–II7–V7–iv7–I7|C7–A7–D7–G7–Fm7–C7|Dominant chain followed by minor blues color
+I7–IV7–I7–V7–♭VII7–I7|C7–F7–C7–G7–B♭7–C7|Extended dominant/modal turnaround
+I7–V7–IV7–iv7–I7|C7–G7–F7–Fm7–C7|Descending blues with major/minor IV
+I7–IV7–♭VI7–V7–I7|C7–F7–A♭7–G7–C7|Chromatic turnaround into tonic
+I7–♭VII7–VI7–♭VI7–V7–I7|C7–B♭7–A7–A♭7–G7–C7|Full chromatic dominant descent
+I7–IV7–#IV°–V7–I7|C7–F7–F#dim–G7–C7|Classic diminished passing motion
+I7–VI7–II7–V7–I7–IV7|C7–A7–D7–G7–C7–F7|Extended circle-of-fifths blues cycle
+I7–IV7–V7–IV7–I7–V7|C7–F7–G7–F7–C7–G7|Repeating dominant blues cycle
+I7–♭VII7–IV7–I7–V7|C7–B♭7–F7–C7–G7|Modal opening returning to traditional V
+I7–IV7–♭VII7–I7–iv7|C7–F7–B♭7–C7–Fm7|Major blues resolving into minor subdominant
+i–♭VII–♭VI–V–i|Am7–G7–F7–E7–Am7|Complete descending minor-blues cadence
+I7–IV7–I7–V7–IV7–I7|C7–F7–C7–G7–F7–C7|Compact complete blues cycle`);
+
+return { bluesCards };
+},
+"data/romannumerals.js": function() {
+'use strict';
+const { C, accStr, parseDeg, spell } = __req("theory.js");
+const { intervalCards } = __req("data/intervals.js");
+
+const DIATONIC_IDS = ['I', 'ii', 'iii', 'IV', 'V', 'vi', 'vii°'];
+
+const romanNumeralCards = intervalCards.map((interval) => {
+  const degreeText = interval.rows.find(([label]) => label === 'Degree')[1].replace('𝄫', '♭♭');
+  const degree = parseDeg(degreeText);
+  const scaleDegree = (degree.n - 1) % 7;
+  const roman = accStr(degree.acc) + DIATONIC_IDS[scaleDegree];
+  return {
+    title: interval.title,
+    sub: interval.sub,
+    rows: [
+      ['Interval', interval.rows.find(([label]) => label === 'Degree')[1]],
+      ['Root in C', spell(C, degree)],
+      ['Roman ID in major', roman],
+    ],
+    desc: interval.desc + ' The Roman ID uses the diatonic triad quality of the corresponding major-scale degree.',
+    allKeysLabel: interval.title + ' chord-root Roman ID in all 12 keys',
+    transpose: (root) => ({ k: root.name, v: spell(root, degree) + ' · ' + roman }),
+  };
+});
+
+return { romanNumeralCards };
+},
+"data/melodicpatterns.js": function() {
+'use strict';
+const { parseFormula, spell, C } = __req("theory.js");
+
+const RAW = `# Linear
+Four-note ascent|1–2–3–4|Play a four-note slice of the scale upward, then continue from a new starting degree.
+Four-note descent|4–3–2–1|Play a four-note slice downward with even articulation.
+Octave ascent|1–2–3–4–5–6–7–8|Connect the scale degrees through the octave.
+Octave descent|8–7–6–5–4–3–2–1|Return through the scale in one continuous line.
+Three-note ascent|1–2–3–4–5–6|Play overlapping groups of three notes across the scale.
+Three-note descent|6–5–4–3–2–1|Reverse the overlapping three-note groups.
+# Sequences
+Thirds ascending|1–3–2–4–3–5–4–6|Move through the scale in alternating thirds.
+Thirds descending|6–4–5–3–4–2–3–1|Descend through alternating scale thirds.
+Four-note sequence|1–2–3–4–2–3–4–5|Repeat a four-note cell one scale step higher.
+Three-note sequence|1–2–3–2–3–4–3–4–5|Repeat a three-note cell through the scale.
+Ascending 1-3 sequence|1–3–2–4–3–5–4–6–5–7|Shift a 1-3 shape up one scale degree each time.
+Descending 1-3 sequence|7–5–6–4–5–3–4–2–3–1|Repeat descending thirds in a connected line.
+# Arpeggios
+Major triad arpeggio|1–3–5–8–5–3–1|Outline the tonic major triad across an octave.
+Minor triad arpeggio|1–♭3–5–8–5–♭3–1|Outline a tonic minor triad across an octave.
+Dominant seventh arpeggio|1–3–5–♭7–8–♭7–5–3–1|Connect the chord tones of a dominant seventh.
+Major seventh arpeggio|1–3–5–7–8–7–5–3–1|Connect the chord tones of a major seventh.
+Minor seventh arpeggio|1–♭3–5–♭7–8–♭7–5–♭3–1|Connect the chord tones of a minor seventh.
+Broken triad|1–5–3–8–5–3–1|Alternate chord tones instead of playing the triad in stepwise order.
+# Motifs
+Neighbor turn|1–2–1–7–1|Circle the tonic with upper and lower neighboring notes.
+Upper neighbor|3–4–3–2|Touch the next scale tone and resolve back through the third.
+Lower neighbor|3–2–3–5|Resolve a lower neighboring note into a stable chord tone.
+Tonic turnaround|5–7–1–3–2–1|Lead from the dominant through the tonic triad.
+Pentatonic call|1–♭3–4–5–♭7–5–4–1|Shape a compact minor-pentatonic phrase.
+Blues curl|1–♭3–4–♭5–5–♭7–5–1|Lean into the blue fifth before resolving to the root.
+Six-note ascent|1–2–3–5–4–6|Use a skip to create a wider, less scalar contour.
+Six-note descent|6–4–5–3–2–1|Combine descending skips with a stepwise landing.
+Octave leap motif|1–8–5–3–1|Use an octave leap to open a short tonic arpeggio.
+# Longer Lines
+Five-note ascent|1–2–3–4–5|Extend the scale run through a complete five-note cell.
+Five-note descent|5–4–3–2–1|Reverse a five-note scale cell with a relaxed return.
+Root pedal rise|1–2–1–3–1–4–1–5|Return to the tonic between each ascending scale degree.
+Root pedal fall|1–5–1–4–1–3–1–2|Return to the tonic between descending scale degrees.
+Step-skip ascent|1–2–4–3–5–4–6–5–7|Mix steps and skips to create a rising contour.
+Down-up cascade|5–4–3–4–3–2–3–2–1|Repeat a small turn while descending the scale.
+Full octave cascade|1–2–3–4–5–6–7–8–7–6–5–4–3–2–1|Ascend through the octave, then retrace the scale.
+Tonic pentachord|1–2–3–4–5–3–1|Open with a five-note ascent and resolve through the triad.
+Fifth to octave|5–6–7–8–7–5–3–1|Shape an upper-register rise into a tonic resolution.
+# Interval Leaps
+Thirds and fourths|1–3–2–5–3–6–4–8|Alternate thirds with wider fourth-degree skips.
+Fourth-step ladder|1–4–2–5–3–6–4–7|Move upward in a repeated fourth-and-step contour.
+Fifths and steps|1–5–2–6–3–7–4–8|Pair each scale degree with a fifth above.
+Descending leap chain|8–6–7–5–6–4–5–3|Connect descending skips with stepwise links.
+Wide arpeggio weave|1–3–6–5–2–4–7–6|Outline changing triad tones through a wide contour.
+Triad leap turn|1–4–3–6–5–8–7–5|Leap to each new chord tone, then approach the octave.
+Fifth displacement|5–1–6–2–7–3–8–4|Shift the same wide interval shape up the scale.
+Broken seventh leap|1–5–3–7–5–2–8–5|Mix chord-tone skips with a descending resolution.
+Mixed skips|1–6–3–5–2–7–4–8|Practice large changes in direction across the octave.
+# Pentatonic Lines
+Minor pentatonic rise|1–♭3–4–5–♭7–8|Ascend through the minor pentatonic collection to the octave.
+Minor pentatonic fall|8–♭7–5–4–♭3–1|Descend through minor pentatonic chord colors.
+Pentatonic turn|1–5–♭7–5–4–♭3–1|Rise to the flat seventh and curl back to the tonic.
+Minor triad phrase|1–♭3–5–4–♭3–1|Outline a minor triad with a neighboring fourth.
+Flat-seven turnaround|5–♭7–1–♭3–4–♭3–1|Use the flat seventh as a pickup into a minor phrase.
+Blues pentatonic line|1–2–♭3–5–4–♭3–2–1|Blend a passing second into a minor-pentatonic descent.
+Major pentatonic rise|1–2–3–5–6–8|Outline the major pentatonic scale through the octave.
+Major pentatonic fall|8–6–5–3–2–1|Return through the major pentatonic tones.
+Major sixth turn|1–5–6–5–3–2–1|Emphasize the bright sixth before resolving home.
+# Chromatic Color
+Chromatic lower approach|1–♭2–2–♭3–3–4|Move through adjacent chromatic colors into the fourth.
+Descending chromatic approach|3–♭3–2–♭2–1|Resolve a chromatic descent onto the tonic.
+Leading-tone approach|5–♯4–5–♭7–7–1|Approach the tonic from both the fifth and leading tone.
+Chromatic bass contour|1–♭7–6–♭6–5|Create a descending chromatic-color line.
+Raised tonic pickup|1–♯1–2–3–2–1|Use a raised tonic as a brief approach to the second degree.
+Chromatic upper climb|4–♯4–5–♯5–6|Connect the fourth and sixth with chromatic passing tones.
+Minor-major third turn|1–♭3–3–4–♯4–5|Contrast minor and major thirds before rising to the fifth.
+Leading-tone neighbor|♭7–7–1–♭2–2|Resolve into the tonic, then continue upward.
+Tritone color turn|3–4–♯4–5–♭6–6|Surround the fifth with chromatic neighbors.
+# Sequence Variations
+Three-note repeat|1–2–3–1–2–3–4–2|Repeat a three-note fragment, extending the second cell.
+Four-note repeat|1–2–3–4–1–2–3–5|Repeat a four-note cell with a changing final note.
+Ascending thirds sequence|1–3–2–4–3–5–4–6–5–7|Shift a rising third-based cell through the scale.
+Alternating fourth sequence|1–4–2–5–3–6–4–7|Repeat the same interval contour from each new degree.
+Offset skip sequence|1–2–4–2–3–5–3–4–6|Move a skipped-note cell through adjacent positions.
+Descending cell sequence|3–2–1–4–3–2–5–4–3|Repeat a descending three-note cell from higher degrees.
+Ascending triad sequence|1–3–5–2–4–6–3–5–7|Arpeggiate each scale degree as a moving triad fragment.
+Descending triad sequence|7–5–3–6–4–2–5–3–1|Repeat triad fragments while moving down the scale.
+Step-and-third sequence|1–2–1–3–2–4–3–5–4–6|Join stepwise turns into a rising sequence.
+# Contour Studies
+Wave ascent|1–3–2–5–4–6–5–8|Rise in waves before landing on the octave.
+Wave descent|8–6–7–5–6–4–5–3|Descend with a short upward rebound at each turn.
+Alternating contour|1–4–5–2–3–6–7–4|Alternate upward and downward skips across the scale.
+Descending answer|5–3–4–2–3–1–2–7|Answer a rising phrase with a falling, tonic-directed line.
+Tonic orbit|1–7–5–6–4–5–3–1|Circle the tonic through its surrounding chord tones.
+Broken resolution|1–5–4–2–3–7–1|Resolve from a wide fifth through the leading tone.
+Upper-register turn|3–5–4–6–5–7–8–5|Build toward the octave, then fall back to the fifth.
+Octave return|8–5–6–4–5–3–2–1|Descend from the octave with a final stepwise landing.
+Full-scale contour|1–2–5–3–6–4–7–8|Reach each scale region with alternating skips.
+`;
+
+let group = '';
+const melodicPatternCards = [];
+for (const line of RAW.split('\n')) {
+  if (!line) continue;
+  if (line.startsWith('# ')) { group = line.slice(2); continue; }
+  const [title, formula, desc] = line.split('|');
+  const degrees = parseFormula(formula);
+  const notes = degrees.map(degree => spell(C, degree));
+  melodicPatternCards.push({
+    title,
+    sub: formula,
+    group,
+    rows: [['Degrees', formula], ['Notes in C', notes.join(' ')], ['Note count', String(notes.length)]],
+    desc,
+    allKeysLabel: title + ' in all 12 keys',
+    transpose: (root) => degrees.map(degree => spell(root, degree)).join(' '),
+  });
+}
+
+return { melodicPatternCards };
+},
+"data/lefthand.js": function() {
+'use strict';
+function makeCards() {
+  const cards = [];
+  const sequence = [];
+  const used = [0, 0, 0, 0];
+
+  function addSequences(targetLength) {
+    if (sequence.length === targetLength) {
+      const fingers = sequence.join('-');
+      const first = sequence[0];
+      const relative = sequence.map(finger => {
+        const offset = finger - first;
+        return offset > 0 ? '+' + offset : String(offset);
+      }).join(' ');
+      cards.push({
+        title: fingers,
+        sub: targetLength + (targetLength === 1 ? ' finger' : ' fingers'),
+        rows: [
+          ['Finger sequence', fingers],
+          ['Length', String(targetLength)],
+          ['Finger counts', [1, 2, 3, 4].map(finger => finger + '×' + used[finger - 1]).join('  ')],
+        ],
+        desc: 'Ordered left-hand finger configuration. Each finger appears no more than twice.',
+        base0: relative,
+      });
+      return;
+    }
+
+    for (let finger = 1; finger <= 4; finger++) {
+      if (used[finger - 1] === 2) continue;
+      sequence.push(finger);
+      used[finger - 1]++;
+      addSequences(targetLength);
+      used[finger - 1]--;
+      sequence.pop();
+    }
+  }
+
+  for (let length = 1; length <= 8; length++) addSequences(length);
+  return cards;
+}
+
+const leftHandCards = makeCards();
+
+return { leftHandCards };
+},
+"data/righthand.js": function() {
+'use strict';
+const { stringCards } = __req("data/strings.js");
+
+const OPEN_NOTES = stringCards(8).map(card => card.rows[0][1]);
+
+function makePatterns() {
+  const cards = [];
+
+  for (let stringSet = 1; stringSet <= 8; stringSet++) {
+    const available = Array.from({ length: stringSet }, (_, index) => stringSet - index);
+    const path = [];
+    const used = new Set();
+
+    function addPatterns(length) {
+      if (path.length === length) {
+        const sequence = path.join('');
+        const notes = path.map(string => OPEN_NOTES[string - 1]).join(' ');
+        cards.push({
+          title: sequence,
+          stringSet,
+          sub: length + (length === 1 ? ' note' : ' notes') + ' · ' + stringSet + '-string',
+          group: stringSet + '-string set',
+          rows: [
+            ['String sequence', sequence],
+            ['Open notes', notes],
+            ['String set', stringSet + ' strings'],
+            ['Pattern length', String(length)],
+          ],
+          desc: 'Ordered right-hand picking path across distinct strings.',
+        });
+        return;
+      }
+
+      for (const string of available) {
+        if (used.has(string)) continue;
+        used.add(string);
+        path.push(string);
+        addPatterns(length);
+        path.pop();
+        used.delete(string);
+      }
+    }
+
+    for (let length = 2; length <= stringSet; length++) addPatterns(length);
+  }
+
+  return cards;
+}
+
+const rightHandCards = makePatterns();
+
+function rightHandTab(sequence, stringCount = 8) {
+  const positions = Array.from(sequence, Number);
+  const width = Math.max(11, positions.length * 2 + 5);
+  return Array.from({ length: stringCount }, (_, index) => {
+    const string = index + 1;
+    const marks = Array(width).fill('-');
+    positions.forEach((pickedString, step) => {
+      if (pickedString === string) marks[step * 2 + 1] = 'x';
+    });
+    return string + '|' + marks.join('') + '|';
+  }).join(String.fromCharCode(10));
+}
+
+return { rightHandCards, rightHandTab };
+},
+"decks.js": function() {
+'use strict';
+const { parseFormula, spell, ascending, steps, shape, describe, noteToTonic, pcOf } = __req("theory.js");
+const { SCALES5, SCALES6, SCALES7 } = __req("data/scales.js");
+const { MODES } = __req("data/modes.js");
+const { keyCards } = __req("data/keys.js");
+const { intervalCards } = __req("data/intervals.js");
+const { triadCards, tetradCards } = __req("data/chords.js");
+const { stringCards } = __req("data/strings.js");
+const { techniqueCards } = __req("data/techniques.js");
+const { andalusianCards } = __req("data/andalusian.js");
+const { deceptiveCards } = __req("data/deceptive.js");
+const { majorMinorCards } = __req("data/majorminor.js");
+const { bluesCards } = __req("data/blues.js");
+const { romanNumeralCards } = __req("data/romannumerals.js");
+const { melodicPatternCards } = __req("data/melodicpatterns.js");
+const { leftHandCards } = __req("data/lefthand.js");
+const { rightHandCards } = __req("data/righthand.js");
+
+const C = { l: 0, acc: 0 };
+const MODE_NAMES = ['Ionian', 'Dorian', 'Phrygian', 'Lydian', 'Mixolydian', 'Aeolian', 'Locrian'];
+
+function scaleCard(formula, name, group) {
+  const degs = parseFormula(formula);
+  const notes = degs.map(d => spell(C, d));
+  const p = ascending(degs);
+  return {
+    title: name, sub: formula, group,
+    rows: [['Notes', notes.join(' ')], ['Steps', steps(p)], ['Shape', shape(p)], ['Tones', String(new Set(p.map(v => v % 12)).size)]],
+    desc: describe(p, notes[0]),
+    allKeysLabel: name + ' in all 12 keys',
+    transpose: (r) => degs.map(d => spell(r, d)).join(' '),
+  };
+}
+
+const rows = (txt) => txt.trim().split('\n').map(l => l.split('|').map(s => s.trim()));
+const scaleDeck = (txt) => rows(txt).map(([f, n]) => scaleCard(f, n));
+
+function scaleCombinationCards() {
+  const cards = [];
+  for (let length = 2; length <= 6; length++) {
+    const build = (sequence, counts) => {
+      if (sequence.length === length) {
+        const formula = sequence.join('');
+        cards.push({
+          title: 'Pattern ' + formula,
+          sub: formula,
+          group: length + '-note patterns',
+          rows: [['Base 0', formula], ['Positions', sequence.join(' ')], ['Note count', String(length)]],
+          desc: 'A scale-step pattern normalized to its first degree (0), spanning positions 0–7.',
+        });
+        return;
+      }
+      const first = sequence[sequence.length - 1];
+      for (let digit = first; digit <= 7; digit++) {
+        if (counts[digit] === 2) continue;
+        counts[digit]++;
+        build([...sequence, digit], counts);
+        counts[digit]--;
+      }
+    };
+    const counts = Array(8).fill(0);
+    counts[0] = 1;
+    build([0], counts);
+  }
+  return cards;
+}
+
+function modesDeck() {
+  let group = 'The 7 Modes';
+  return rows(MODES).map(([f, n], i) => {
+    if (i >= 7) {
+      const first = n.split(/[ /]/)[0];
+      if (MODE_NAMES.includes(first) && f.split('–').length === 7 && f.startsWith('1')) group = first;
+      else if (i === 7) group = 'Ionian';
+    }
+    return scaleCard(f, n, group);
+  });
+}
+
+const DECKS = [
+  { id: 'keys', name: 'Key', hue: 8, cards: keyCards },
+  { id: 'intervals', name: 'Interval', hue: 32, cards: intervalCards },
+  { id: 'romannumerals', name: 'Roman Numeral ID', hue: 5, cards: romanNumeralCards },
+  { id: 'triads', name: 'Chord · Triad', hue: 52, cards: triadCards },
+  { id: 'tetrads', name: 'Chord · 4 Tone', hue: 140, cards: tetradCards },
+  { id: 'scales5', name: 'Scale · 5 Tone', hue: 180, cards: scaleDeck(SCALES5) },
+  { id: 'scales6', name: 'Scale · 6 Tone', hue: 210, cards: scaleDeck(SCALES6) },
+  { id: 'scales7', name: 'Scale · 7 Tone', hue: 250, cards: scaleDeck(SCALES7) },
+  { id: 'modes', name: 'Ionian & Modes', hue: 285, cards: modesDeck() },
+  { id: 'melodicpatterns', name: 'Melodic Patterns', hue: 315, cards: melodicPatternCards },
+  { id: 'melodic7base0', name: '7-Tone Base 0 Patterns', hue: 315, cards: scaleCombinationCards() },
+  { id: 'strings', name: 'String', hue: 330, strings: true, cards: stringCards(6) },
+  { id: 'techniques', name: 'Technique', hue: 100, cards: techniqueCards },
+  { id: 'andalusian', name: 'Andalusian', hue: 15, cards: andalusianCards },
+  { id: 'deceptive', name: 'Deceptive', hue: 300, cards: deceptiveCards },
+  { id: 'majorminor', name: 'Major / Minor', hue: 75, cards: majorMinorCards },
+  { id: 'blues', name: 'Blues', hue: 225, cards: bluesCards },
+  { id: 'lefthand', name: '1-2-3-4', hue: 115, cards: leftHandCards },
+  { id: 'righthand', name: 'Right Hand', hue: 205, cards: rightHandCards },
+];
+
+
+const BASE0_KIND = {
+  intervals: 'Interval',
+  triads: 'Chord',
+  tetrads: '4 Tone Chord',
+  scales5: 'Scale',
+  scales6: 'Scale',
+  scales7: 'Scale',
+  modes: 'Scale',
+  melodicpatterns: 'Melodic Pattern',
+  andalusian: 'Progression',
+  deceptive: 'Progression',
+  majorminor: 'Progression',
+  blues: 'Progression',
+};
+const BASE0_PROGRESSIONS = new Set(['andalusian', 'deceptive', 'majorminor', 'blues']);
+const base0Deck = { id: 'base0', name: 'Base 0', hue: 190, cards: [] };
+
+DECKS.forEach(sourceDeck => {
+  if (['keys', 'strings', 'techniques'].includes(sourceDeck.id)) return;
+  sourceDeck.cards.forEach((sourceCard, sourceIndex) => {
+    if (sourceDeck.id === 'lefthand') {
+      const formula = sourceCard.base0;
+      base0Deck.cards.push({
+        title: 'Base 0 · ' + sourceCard.title,
+        sub: formula,
+        group: 'Left Hand',
+        rows: [['Base finger', sourceCard.title[0]], ['Relative finger offsets', formula], ['Source deck', sourceDeck.name]],
+        desc: 'Finger positions normalized so the first finger in the sequence is 0.',
+        sourceDeckId: sourceDeck.id,
+        sourceCardIndex: sourceIndex,
+      });
+      return;
+    }
+    if (!sourceCard.transpose) return;
+    const result = sourceCard.transpose(C);
+    const value = typeof result === 'object' ? result.v : result;
+    const tokens = String(value).split(BASE0_PROGRESSIONS.has(sourceDeck.id) ? '–' : ' ');
+    const offsets = tokens.map(token => {
+      const match = token.match(/^([A-G][♭♯#]*)/);
+      if (!match) return null;
+      const root = noteToTonic(match[1].replace(/#/g, '♯'));
+      return root.l < 0 ? null : pcOf(root.l, root.acc);
+    }).filter(offset => offset !== null);
+    if (!offsets.length) return;
+    const base = sourceDeck.id === 'modes' ? offsets[0] : 0;
+    const formula = offsets.map(offset => (offset - base + 12) % 12).join('-');
+    const kind = BASE0_KIND[sourceDeck.id] || sourceDeck.name;
+    const sourceTitle = sourceDeck.id === 'scales7' && sourceCard.sub === '1–2–3–4–5–6–7'
+      ? 'Major'
+      : sourceCard.title;
+    base0Deck.cards.push({
+      title: 'X ' + sourceTitle + ' ' + kind,
+      sub: formula,
+      group: sourceDeck.name,
+      rows: [['Base root', 'X = 0'], ['Semitone offsets', formula], ['Source deck', sourceDeck.name]],
+      desc: 'Pitch classes measured in semitones from an arbitrary root X, independent of key.',
+      sourceDeckId: sourceDeck.id,
+      sourceCardIndex: sourceIndex,
+    });
+  });
+});
+
+DECKS.push(base0Deck);
+
+
+
+return { stringCards, DECKS };
+},
+"themes.js": function() {
+'use strict';
+// [name, bg1, bg2, text, face, ink, frameSat, frameLight, backSat, backLight]
+const THEMES = [
+  ['Felt Table', '#1f3a2c', '#0e1d16', '#f3eee2', '#fbf6ea', '#2a2620', 55, 48, 45, 22],
+  ['Dark Mode', '#1b1b1f', '#0c0c0e', '#e8e8ea', '#26262b', '#ececf0', 45, 50, 30, 18],
+  ['Light Mode', '#f4f4f6', '#e3e3e8', '#1d1d22', '#ffffff', '#1d1d22', 55, 50, 45, 30],
+  ['Midnight', '#12183a', '#05081a', '#dfe4ff', '#f1f3ff', '#151a33', 60, 52, 50, 22],
+  ['OLED Black', '#000000', '#000000', '#e6e6e6', '#0d0d0d', '#f0f0f0', 60, 50, 35, 12],
+  ['Sepia', '#e9dcc3', '#cdb994', '#3b2d1a', '#f8f0de', '#3b2d1a', 40, 40, 35, 28],
+  ['Parchment', '#efe6cf', '#d9caa3', '#3a2f1e', '#fffaf0', '#2f2618', 35, 38, 30, 30],
+  ['Nord', '#3b4252', '#2e3440', '#eceff4', '#eceff4', '#2e3440', 35, 55, 25, 28],
+  ['Dracula', '#343746', '#21222c', '#f8f8f2', '#44475a', '#f8f8f2', 70, 65, 40, 20],
+  ['Solarized Dark', '#073642', '#002b36', '#eee8d5', '#fdf6e3', '#073642', 55, 45, 45, 20],
+  ['Solarized Light', '#fdf6e3', '#eee8d5', '#586e75', '#ffffff', '#073642', 55, 45, 40, 30],
+  ['Gruvbox', '#3c3836', '#282828', '#ebdbb2', '#fbf1c7', '#3c3836', 50, 45, 35, 22],
+  ['Monokai', '#3e3d32', '#272822', '#f8f8f2', '#f8f8f2', '#272822', 70, 50, 35, 20],
+  ['Ocean', '#0f3d57', '#06202f', '#dff4ff', '#eaf8ff', '#0b2a3c', 60, 45, 55, 24],
+  ['Forest', '#26402a', '#101d12', '#e5f0e0', '#f2f7ec', '#1c2a1d', 45, 40, 40, 20],
+  ['Sunset', '#6b2d4a', '#2a0f1f', '#ffe8d9', '#fff1e6', '#3a1424', 65, 55, 50, 26],
+  ['Desert', '#c99a63', '#8a5d34', '#2b1b0d', '#fbefdc', '#3a2512', 50, 42, 40, 26],
+  ['Rose', '#f7dfe5', '#e7bcc8', '#4a1f2b', '#fff6f8', '#4a1f2b', 55, 55, 40, 32],
+  ['Lavender', '#e6e0f5', '#c9bde8', '#2d2445', '#fbf9ff', '#2d2445', 50, 55, 35, 30],
+  ['Mint', '#dff5ea', '#b6e6cf', '#163a2a', '#f7fffb', '#163a2a', 50, 42, 40, 26],
+  ['Coffee', '#3e2c22', '#1e140f', '#f1e3d3', '#f5e9da', '#2e1f16', 40, 40, 35, 20],
+  ['Espresso', '#241812', '#0f0905', '#e9d8c4', '#2e2019', '#f1e1cb', 40, 45, 30, 14],
+  ['Cherry Wood', '#5a1f17', '#2a0c08', '#f8e1d0', '#fbeee2', '#3a120c', 60, 40, 50, 22],
+  ['Maple', '#d9b98a', '#b38b56', '#2c1d0c', '#fff7e8', '#2c1d0c', 55, 42, 40, 28],
+  ['Rosewood', '#3d1d1d', '#1c0b0b', '#f0d9d0', '#f7ebe4', '#2a1414', 45, 38, 40, 18],
+  ['Ebony', '#1a1714', '#0a0807', '#e8e0d4', '#1f1b17', '#efe6d8', 30, 50, 20, 14],
+  ['Tobacco Burst', '#7a3f12', '#1f0d03', '#ffe9c9', '#fff3df', '#3a1d08', 70, 45, 55, 20],
+  ['Cherry Sunburst', '#8a1c1c', '#2b0505', '#ffe2d6', '#fff2ea', '#3b0b0b', 70, 45, 55, 22],
+  ['Seafoam', '#9fd8c8', '#5fa595', '#0f2e27', '#f3fffb', '#0f2e27', 45, 40, 40, 24],
+  ['Fiesta Red', '#c8372d', '#5e130e', '#fff0ea', '#fff6f1', '#4a120d', 70, 45, 55, 24],
+  ['Neon', '#0d0221', '#000000', '#f0e6ff', '#14062e', '#f5eaff', 100, 60, 70, 14],
+  ['Synthwave', '#2b0f4c', '#0e0420', '#ffd6f5', '#1e0b38', '#ffe6fb', 90, 62, 60, 18],
+  ['Cyberpunk', '#1a1a00', '#000000', '#f9f871', '#111111', '#f9f871', 100, 55, 70, 14],
+  ['Matrix', '#001a07', '#000000', '#a6ffb8', '#020f05', '#b6ffc6', 80, 45, 70, 10],
+  ['Terminal Amber', '#1a1000', '#000000', '#ffcc66', '#0f0a00', '#ffcc66', 90, 50, 60, 10],
+  ['Blueprint', '#1d4e89', '#0e2a52', '#e6f0ff', '#1f5596', '#ffffff', 40, 80, 50, 25],
+  ['Chalkboard', '#2e3b33', '#1b241f', '#f0f0e8', '#33423a', '#f5f5ee', 15, 80, 15, 22],
+  ['Newspaper', '#ecebe7', '#d7d5cf', '#1a1a1a', '#fbfaf7', '#111111', 0, 25, 0, 22],
+  ['Monochrome', '#2a2a2a', '#111111', '#eeeeee', '#f5f5f5', '#111111', 0, 35, 0, 18],
+  ['High Contrast', '#000000', '#000000', '#ffffff', '#ffffff', '#000000', 100, 45, 100, 20],
+  ['Ice', '#e8f4fb', '#c3dff0', '#0e2a3a', '#ffffff', '#0e2a3a', 60, 55, 50, 30],
+  ['Arctic Night', '#0d2633', '#04121a', '#d8f1ff', '#e9f7ff', '#062030', 60, 60, 50, 20],
+  ['Autumn', '#6b3a1c', '#2d160a', '#ffe5c7', '#fff3e2', '#3a1d0c', 65, 42, 50, 22],
+  ['Spring', '#e9f7d9', '#c7e8a8', '#23381a', '#fffff6', '#23381a', 55, 48, 45, 28],
+  ['Flamenco', '#7a0e1a', '#250306', '#ffe1c4', '#fff4e6', '#2a0508', 75, 45, 60, 20],
+  ['Andalucía', '#f4e3c1', '#d9b77a', '#3d220c', '#fffaf0', '#3d220c', 70, 42, 55, 26],
+  ['Jazz Club', '#1d1530', '#0b0715', '#f3d9a6', '#231a38', '#f6e3b8', 55, 58, 45, 16],
+  ['Blues Bar', '#0e1f4a', '#050c22', '#cfe0ff', '#f2f6ff', '#0c1a3e', 70, 48, 60, 22],
+  ['Stage Lights', '#2a0a3a', '#0a0010', '#fff3c4', '#fffbea', '#2a0a3a', 85, 55, 65, 22],
+  ['Vintage Tweed', '#c8b48a', '#8e7a52', '#2b2214', '#f7efda', '#2b2214', 40, 38, 35, 24],
+];
+
+function applyTheme(i) {
+  const [, bg1, bg2, text, face, ink, fs, fl, bs, bl] = THEMES[i] || THEMES[0];
+  const s = document.documentElement.style;
+  Object.entries({ bg1, bg2, text, face, ink }).forEach(([k, v]) => s.setProperty('--' + k, v));
+  s.setProperty('--fs', fs + '%'); s.setProperty('--fl', fl + '%');
+  s.setProperty('--bs', bs + '%'); s.setProperty('--bl', bl + '%');
+}
+
+return { THEMES, applyTheme };
+},
+"cardstyles.js": function() {
+'use strict';
+// 20 card styles: corner motif (24x24 SVG) + frame type
+const S = 'fill="none" stroke="currentColor"';
+const HOLE = 'style="fill:var(--face)"';
+const STYLES = [
+  ['Diamond', 'solid', '<path d="M12 2 20 12 12 22 4 12z"/>'],
+  ['Pick', 'double', '<path d="M12 22C6 15 3 10 4 6c1-3 5-4 8-4s7 1 8 4c1 4-2 9-8 16z"/>'],
+  ['Eighth Note', 'inset', '<ellipse cx="9" cy="18" rx="4" ry="3" transform="rotate(-20 9 18)"/><path d="M12.3 17V3H14c0 3 5 4 5 8-1-2-3-3-5-3v9z"/>'],
+  ['Sound Hole', 'thin', '<circle cx="12" cy="12" r="9" ' + S + ' stroke-width="2"/><circle cx="12" cy="12" r="5"/>'],
+  ['Fret Dots', 'bars', '<circle cx="6" cy="12" r="3"/><circle cx="18" cy="12" r="3"/><rect x="11" y="2" width="2" height="20"/>'],
+  ['Star', 'dashed', '<path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7L12 17.3l-6.2 3.6 1.6-7L2 9.2l7.1-.6z"/>'],
+  ['Sunburst', 'solid', '<circle cx="12" cy="12" r="5"/><path ' + S + ' stroke-width="2" stroke-linecap="round" d="M12 1v3M12 20v3M1 12h3M20 12h3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/>'],
+  ['Art Deco', 'double', '<path d="M2 22A20 20 0 0 1 22 2v20z" opacity=".25"/><path ' + S + ' stroke-width="1.5" d="M2 22A20 20 0 0 1 22 2M22 22H2M22 22 5 12M22 22 12 5M22 22V2"/>'],
+  ['Bracket', 'inset', '<path ' + S + ' stroke-width="2.5" d="M3 21V3h18"/><path ' + S + ' stroke-width="1.5" d="M8 16V8h8"/>'],
+  ['Vibrato', 'thin', '<path ' + S + ' stroke-width="2.4" stroke-linecap="round" d="M1 12c2.5-5 5-5 5.5 0s3 5 5.5 0 3-5 5.5 0 3 5 5.5 0"/>'],
+  ['Staff', 'bars', '<path ' + S + ' stroke-width="1.3" d="M1 6h22M1 9.5h22M1 13h22M1 16.5h22M1 20h22"/><ellipse cx="13" cy="13" rx="3.2" ry="2.4"/>'],
+  ['Tuning Peg', 'solid', '<circle cx="8" cy="12" r="6"/><rect x="13" y="10.5" width="9" height="3" rx="1.5"/><circle cx="8" cy="12" r="2" ' + HOLE + '/>'],
+  ['Flamenco Rose', 'double', '<circle cx="12" cy="6" r="4"/><circle cx="18" cy="12" r="4"/><circle cx="12" cy="18" r="4"/><circle cx="6" cy="12" r="4"/><circle cx="12" cy="12" r="3" ' + HOLE + '/>'],
+  ['Triangle', 'dashed', '<path ' + S + ' stroke-width="2.2" d="M12 3 22 21H2z"/><path d="M12 10l4 7H8z"/>'],
+  ['Hexagon', 'inset', '<path ' + S + ' stroke-width="2" d="M12 2l8.7 5v10L12 22l-8.7-5V7z"/><circle cx="12" cy="12" r="3"/>'],
+  ['Rings', 'thin', '<circle cx="12" cy="12" r="10" ' + S + ' stroke-width="1.5"/><circle cx="12" cy="12" r="6" ' + S + ' stroke-width="1.5"/><circle cx="12" cy="12" r="2"/>'],
+  ['Leaf', 'solid', '<path d="M3 21C3 10 10 3 21 3c0 11-7 18-18 18z"/><path d="M4 20 16 8" style="stroke:var(--face)" stroke-width="1.5"/>'],
+  ['Pixel', 'bars', '<path d="M4 4h4v4H4zM12 4h4v4h-4zM8 8h4v4H8zM16 8h4v4h-4zM4 12h4v4H4zM12 12h4v4h-4zM8 16h4v4H8zM16 16h4v4h-4z"/>'],
+  ['Lightning', 'dashed', '<path d="M14 1 4 14h7l-2 9 11-14h-7z"/>'],
+  ['Fretboard', 'double', '<path ' + S + ' stroke-width="1.4" d="M3 3h18v18H3zM3 9h18M3 15h18M9 3v18M15 3v18"/><circle cx="12" cy="12" r="2.2"/>'],
+];
+
+const motifSvg = (i) => '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">' + STYLES[i][2] + '</svg>';
+
+return { STYLES, motifSvg };
+},
+"game.js": function() {
+'use strict';
+const { noteToTonic } = __req("theory.js");
+const { stringCards } = __req("data/strings.js");
+const { rightHandTab } = __req("data/righthand.js");
+
+const esc = (s) => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+const PROGRESSION_DECKS = new Set(['andalusian', 'deceptive', 'majorminor', 'blues']);
+const DRAW_LABELS = {
+  intervals: 'New interval',
+  melodicpatterns: 'New pattern',
+  triads: 'New triad',
+  tetrads: 'New chord',
+  scales5: 'New scale',
+  scales6: 'New scale',
+  scales7: 'New scale',
+  modes: 'New mode',
+  andalusian: 'New progression',
+  deceptive: 'New progression',
+  majorminor: 'New progression',
+  blues: 'New progression',
+};
+
+function findBase0(decks, sourceDeckId, sourceCardIndex) {
+  const deck = decks.find(item => item.id === 'base0');
+  const index = deck.cards.findIndex(card => card.sourceDeckId === sourceDeckId && card.sourceCardIndex === sourceCardIndex);
+  return { deck, index, card: deck.cards[index] };
+}
+
+function renderDeckDealGame(root, { decks, cardEl, motif }, middleId) {
+  const keyDeck = decks.find(d => d.id === 'keys');
+  const middleDeck = decks.find(d => d.id === middleId);
+  const techDeck = decks.find(d => d.id === 'techniques');
+  const bags = new Map();
+
+  function draw(deck) {
+    let bag = bags.get(deck);
+    if (!bag || bag.cards.length === 0) {
+      const cards = deck.cards.map((_, i) => i);
+      for (let i = cards.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [cards[i], cards[j]] = [cards[j], cards[i]];
+      }
+      if (bag && cards.length > 1 && cards[cards.length - 1] === bag.last) {
+        [cards[0], cards[cards.length - 1]] = [cards[cards.length - 1], cards[0]];
+      }
+      bag = { cards, last: null };
+      bags.set(deck, bag);
+    }
+    bag.last = bag.cards.pop();
+    return bag.last;
+  }
+
+  const selection = { key: draw(keyDeck), middle: draw(middleDeck), technique: draw(techDeck) };
+  const isProgression = PROGRESSION_DECKS.has(middleId);
+
+  function renderDeal() {
+    const key = keyDeck.cards[selection.key];
+    const subject = middleDeck.cards[selection.middle];
+    const technique = techDeck.cards[selection.technique];
+    const majorTonic = noteToTonic(key.rows[0][1].split(' ')[0]);
+    const relativeMinor = key.rows.find(([label]) => label === 'Relative minor')?.[1];
+    const tonic = middleId === 'andalusian' && relativeMinor
+      ? noteToTonic(relativeMinor.split(/[ /]/)[0].replace(/m$/, ''))
+      : majorTonic;
+    const transposed = subject.transpose(tonic);
+    const value = typeof transposed === 'object' ? transposed.v : transposed;
+    const subjectName = typeof transposed === 'object' && !isProgression
+      ? transposed.k
+      : subject.title;
+    const subjectCard = {
+      ...subject,
+      sub: typeof transposed === 'object' && !isProgression
+        ? transposed.k + ' · ' + value
+        : value,
+      rows: [[isProgression && typeof transposed === 'object' ? 'In ' + transposed.k : 'In ' + key.title, value], ...subject.rows],
+    };
+    const base0 = findBase0(decks, middleId, selection.middle);
+
+    root.innerHTML = '';
+    const table = document.createElement('div');
+    table.className = 'deal';
+    [
+      { card: key, index: selection.key, deck: keyDeck, label: 'New key', pick: 'key' },
+      { card: subjectCard, index: selection.middle, deck: middleDeck, label: DRAW_LABELS[middleId] || 'New card', pick: 'middle' },
+      { card: technique, index: selection.technique, deck: techDeck, label: 'New technique', pick: 'technique' },
+      { card: base0.card, index: base0.index, deck: base0.deck, label: 'Base 0' },
+    ].forEach(({ card, index, deck, label, pick }, n) => {
+      const slot = document.createElement('div');
+      slot.className = 'slot';
+      slot.style.setProperty('--h', deck.hue);
+      slot.style.animationDelay = (n * 0.15) + 's';
+      const labelEl = document.createElement(pick ? 'button' : 'span');
+      labelEl.className = 'slotbtn' + (pick ? '' : ' static');
+      if (pick) {
+        labelEl.type = 'button';
+        labelEl.onclick = () => { selection[pick] = draw(deck); renderDeal(); };
+      }
+      labelEl.textContent = label;
+      slot.append(labelEl, cardEl(card, index, deck, motif));
+      table.appendChild(slot);
+    });
+
+    const tokenSeparator = isProgression ? '–' : ' ';
+    const brief = document.createElement('div');
+    brief.className = 'brief';
+    brief.innerHTML =
+      '<div class="line"><span>Key</span><b>' + esc(key.title) + ' major</b></div>' +
+      '<div class="line"><span>' + esc(middleDeck.name) + '</span><b>' + esc(subjectName) + '</b></div>' +
+      '<div class="chords">' + value.split(tokenSeparator).map(note => '<i>' + esc(note) + '</i>').join('') + '</div>' +
+      '<div class="line"><span>Technique</span><b>' + esc(technique.title) + '</b></div>' +
+      '<div class="line"><span>Base 0</span><b>' + esc(base0.card.sub) + '</b></div>' +
+      '<button class="dealbtn">Deal again</button>';
+    brief.querySelector('button').onclick = () => {
+      selection.key = draw(keyDeck);
+      selection.middle = draw(middleDeck);
+      selection.technique = draw(techDeck);
+      renderDeal();
+    };
+    root.append(table, brief);
+  }
+
+  renderDeal();
+}
+
+const PATTERN_SUBJECT_LABELS = {
+  intervals: 'New interval',
+  andalusian: 'New progression',
+  deceptive: 'New progression',
+  majorminor: 'New progression',
+  blues: 'New progression',
+  triads: 'New triad',
+  tetrads: 'New chord',
+  scales5: 'New scale',
+  scales6: 'New scale',
+  scales7: 'New scale',
+  modes: 'New mode',
+};
+
+function renderPatternDealGame(root, { decks, cardEl, motif }, subjectId, { patternGroup = null, withTechnique = false } = {}) {
+  const keyDeck = decks.find(d => d.id === 'keys');
+  const subjectDeck = decks.find(d => d.id === subjectId);
+  const sourcePatternDeck = decks.find(d => d.id === 'melodicpatterns');
+  const patternDeck = patternGroup
+    ? { ...sourcePatternDeck, cards: sourcePatternDeck.cards.filter(card => card.group === patternGroup) }
+    : sourcePatternDeck;
+  const techniqueDeck = withTechnique ? decks.find(d => d.id === 'techniques') : null;
+  const bags = new Map();
+
+  function draw(deck) {
+    let bag = bags.get(deck);
+    if (!bag || bag.cards.length === 0) {
+      const cards = deck.cards.map((_, i) => i);
+      for (let i = cards.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [cards[i], cards[j]] = [cards[j], cards[i]];
+      }
+      if (bag && cards.length > 1 && cards[cards.length - 1] === bag.last) {
+        [cards[0], cards[cards.length - 1]] = [cards[cards.length - 1], cards[0]];
+      }
+      bag = { cards, last: null };
+      bags.set(deck, bag);
+    }
+    bag.last = bag.cards.pop();
+    return bag.last;
+  }
+
+  const selection = { key: draw(keyDeck), subject: draw(subjectDeck), pattern: draw(patternDeck) };
+  if (techniqueDeck) selection.technique = draw(techniqueDeck);
+
+  function renderDeal() {
+    const key = keyDeck.cards[selection.key];
+    const subject = subjectDeck.cards[selection.subject];
+    const pattern = patternDeck.cards[selection.pattern];
+    const technique = techniqueDeck ? techniqueDeck.cards[selection.technique] : null;
+    const relativeMinor = key.rows.find(([label]) => label === 'Relative minor')?.[1];
+    const tonic = PROGRESSION_DECKS.has(subjectId) && relativeMinor
+      ? noteToTonic(relativeMinor.split(/[ /]/)[0].replace(/m$/, ''))
+      : noteToTonic(key.rows[0][1].split(' ')[0]);
+    const transposedSubject = subject.transpose(tonic);
+    const subjectValue = typeof transposedSubject === 'object'
+      ? transposedSubject.k + ' · ' + transposedSubject.v
+      : transposedSubject;
+    const patternNotes = pattern.transpose(tonic);
+    const subjectCard = {
+      ...subject,
+      sub: subjectValue,
+      rows: [['In ' + key.title, subjectValue], ...subject.rows],
+    };
+    const patternCard = {
+      ...pattern,
+      sub: patternNotes,
+      rows: [['In ' + key.title, patternNotes], ...pattern.rows],
+    };
+    const base0 = findBase0(decks, subjectId, selection.subject);
+
+    root.innerHTML = '';
+    const table = document.createElement('div');
+    table.className = withTechnique ? 'deal five' : 'deal';
+    const dealtCards = [
+      { card: key, index: selection.key, deck: keyDeck, label: 'New key', pick: 'key' },
+      { card: subjectCard, index: selection.subject, deck: subjectDeck, label: PATTERN_SUBJECT_LABELS[subjectId], pick: 'subject' },
+      { card: patternCard, index: selection.pattern, deck: patternDeck, label: patternGroup || 'New melodic pattern', pick: 'pattern' },
+    ];
+    if (techniqueDeck) dealtCards.push({ card: technique, index: selection.technique, deck: techniqueDeck, label: 'New technique', pick: 'technique' });
+    dealtCards.push({ card: base0.card, index: base0.index, deck: base0.deck, label: 'Base 0' });
+    dealtCards.forEach(({ card, index, deck, label, pick }, n) => {
+      const slot = document.createElement('div');
+      slot.className = 'slot';
+      slot.style.setProperty('--h', deck.hue);
+      slot.style.animationDelay = (n * 0.15) + 's';
+      const labelEl = document.createElement(pick ? 'button' : 'span');
+      labelEl.className = 'slotbtn' + (pick ? '' : ' static');
+      if (pick) {
+        labelEl.type = 'button';
+        labelEl.onclick = () => { selection[pick] = draw(deck); renderDeal(); };
+      }
+      labelEl.textContent = label;
+      slot.append(labelEl, cardEl(card, index, deck, motif));
+      table.appendChild(slot);
+    });
+
+    const brief = document.createElement('div');
+    brief.className = 'brief';
+    brief.innerHTML =
+      '<div class="line"><span>Key</span><b>' + esc(key.title) + ' major</b></div>' +
+      '<div class="line"><span>' + esc(subjectDeck.name) + '</span><b>' + esc(subject.title) + '</b></div>' +
+      '<div class="line"><span>Melodic pattern</span><b>' + esc(pattern.title) + '</b></div>' +
+      '<div class="chords">' + patternNotes.split(' ').map(note => '<i>' + esc(note) + '</i>').join('') + '</div>' +
+      (technique ? '<div class="line"><span>Technique</span><b>' + esc(technique.title) + '</b></div>' : '') +
+      '<div class="line"><span>Base 0</span><b>' + esc(base0.card.sub) + '</b></div>' +
+      '<button class="dealbtn">Deal again</button>';
+    brief.querySelector('button').onclick = () => {
+      selection.key = draw(keyDeck);
+      selection.subject = draw(subjectDeck);
+      selection.pattern = draw(patternDeck);
+      if (techniqueDeck) selection.technique = draw(techniqueDeck);
+      renderDeal();
+    };
+    root.append(table, brief);
+  }
+
+  renderDeal();
+}
+
+function renderScaleCombinationGame(root, { decks, cardEl, motif }) {
+  const keyDeck = decks.find(deck => deck.id === 'keys');
+  const allModes = decks.find(deck => deck.id === 'modes');
+  const modeDeck = { ...allModes, cards: allModes.cards.slice(0, 7) };
+  const patternDeck = decks.find(deck => deck.id === 'melodic7base0');
+  const base0Deck = decks.find(deck => deck.id === 'base0');
+  const bags = new Map();
+
+  function draw(deck) {
+    let bag = bags.get(deck);
+    if (!bag || bag.cards.length === 0) {
+      const cards = deck.cards.map((_, index) => index);
+      for (let index = cards.length - 1; index > 0; index--) {
+        const swap = Math.floor(Math.random() * (index + 1));
+        [cards[index], cards[swap]] = [cards[swap], cards[index]];
+      }
+      if (bag && cards.length > 1 && cards[cards.length - 1] === bag.last) {
+        [cards[0], cards[cards.length - 1]] = [cards[cards.length - 1], cards[0]];
+      }
+      bag = { cards, last: null };
+      bags.set(deck, bag);
+    }
+    bag.last = bag.cards.pop();
+    return bag.last;
+  }
+
+  const selection = { key: draw(keyDeck), mode: draw(modeDeck), pattern: draw(patternDeck) };
+
+  function renderDeal() {
+    const key = keyDeck.cards[selection.key];
+    const mode = modeDeck.cards[selection.mode];
+    const pattern = patternDeck.cards[selection.pattern];
+    const tonic = noteToTonic(key.rows[0][1].split(' ')[0]);
+    const modeNotes = mode.transpose(tonic);
+    const scaleNotes = modeNotes.split(' ');
+    const patternNotes = pattern.sub.split('').map(position => scaleNotes[Number(position)] || scaleNotes[0]).join(' ');
+    const modeCard = {
+      ...mode,
+      sub: modeNotes,
+      rows: [['In ' + key.title + ' major', modeNotes], ...mode.rows],
+    };
+    const patternCard = {
+      ...pattern,
+      rows: [['Base 0 positions', pattern.sub], ['Notes in ' + key.title, patternNotes], ...pattern.rows],
+    };
+    const base0Card = {
+      title: 'Base 0 · ' + pattern.title,
+      sub: pattern.sub,
+      rows: [['Base root', 'Scale position 0'], ['Pattern positions', pattern.sub], ['Scale', mode.title]],
+      desc: 'Scale positions measured from position 0, independent of key.',
+    };
+
+    root.innerHTML = '';
+    const table = document.createElement('div');
+    table.className = 'deal';
+    [
+      { card: key, index: selection.key, deck: keyDeck, label: 'New key', pick: 'key' },
+      { card: modeCard, index: selection.mode, deck: modeDeck, label: 'New mode', pick: 'mode' },
+      { card: patternCard, index: selection.pattern, deck: patternDeck, label: 'New pattern', pick: 'pattern' },
+      { card: base0Card, index: selection.pattern, deck: base0Deck, label: 'Base 0' },
+    ].forEach(({ card, index, deck, label, pick }, slotIndex) => {
+      const slot = document.createElement('div');
+      slot.className = 'slot';
+      slot.style.setProperty('--h', deck.hue);
+      slot.style.animationDelay = (slotIndex * 0.15) + 's';
+      const labelEl = document.createElement(pick ? 'button' : 'span');
+      labelEl.className = 'slotbtn' + (pick ? '' : ' static');
+      if (pick) {
+        labelEl.type = 'button';
+        labelEl.onclick = () => { selection[pick] = draw(pick === 'mode' ? modeDeck : pick === 'pattern' ? patternDeck : keyDeck); renderDeal(); };
+      }
+      labelEl.textContent = label;
+      slot.append(labelEl, cardEl(card, index, deck, motif));
+      table.appendChild(slot);
+    });
+
+    const brief = document.createElement('div');
+    brief.className = 'brief';
+    brief.innerHTML =
+      '<div class="line"><span>Key</span><b>' + esc(key.title) + ' major</b></div>' +
+      '<div class="line"><span>Mode</span><b>' + esc(mode.title) + '</b></div>' +
+      '<div class="line"><span>Base 0 pattern</span><b>' + esc(pattern.sub) + '</b></div>' +
+      '<div class="chords">' + patternNotes.split(' ').map(note => '<i>' + esc(note) + '</i>').join('') + '</div>' +
+      '<button class="dealbtn">Deal again</button>';
+    brief.querySelector('button').onclick = () => {
+      selection.key = draw(keyDeck);
+      selection.mode = draw(modeDeck);
+      selection.pattern = draw(patternDeck);
+      renderDeal();
+    };
+    root.append(table, brief);
+  }
+
+  renderDeal();
+}
+
+function renderLeftHandPracticeGame(root, { decks, cardEl, motif }) {
+  const handDeck = decks.find(deck => deck.id === 'lefthand');
+  const sourceStringDeck = decks.find(deck => deck.id === 'strings');
+  const stringDeck = { ...sourceStringDeck, cards: stringCards(6) };
+  const bags = new Map();
+
+  function draw(deck) {
+    let bag = bags.get(deck);
+    if (!bag || bag.cards.length === 0) {
+      const cards = deck.cards.map((_, index) => index);
+      for (let index = cards.length - 1; index > 0; index--) {
+        const swap = Math.floor(Math.random() * (index + 1));
+        [cards[index], cards[swap]] = [cards[swap], cards[index]];
+      }
+      if (bag && cards.length > 1 && cards[cards.length - 1] === bag.last) {
+        [cards[0], cards[cards.length - 1]] = [cards[cards.length - 1], cards[0]];
+      }
+      bag = { cards, last: null };
+      bags.set(deck, bag);
+    }
+    bag.last = bag.cards.pop();
+    return bag.last;
+  }
+
+  const selection = { hand: draw(handDeck), string: draw(stringDeck) };
+
+  function renderDeal() {
+    const hand = handDeck.cards[selection.hand];
+    const string = stringDeck.cards[selection.string];
+    const base0 = findBase0(decks, 'lefthand', selection.hand);
+    const openNote = string.rows[0][1];
+
+    root.innerHTML = '';
+    const table = document.createElement('div');
+    table.className = 'deal three';
+    [
+      { card: hand, index: selection.hand, deck: handDeck, label: 'New configuration', pick: 'hand' },
+      { card: string, index: selection.string, deck: stringDeck, label: 'New string', pick: 'string' },
+      { card: base0.card, index: base0.index, deck: base0.deck, label: 'Base 0' },
+    ].forEach(({ card, index, deck, label, pick }, slotIndex) => {
+      const slot = document.createElement('div');
+      slot.className = 'slot';
+      slot.style.setProperty('--h', deck.hue);
+      slot.style.animationDelay = (slotIndex * 0.15) + 's';
+      const labelEl = document.createElement(pick ? 'button' : 'span');
+      labelEl.className = 'slotbtn' + (pick ? '' : ' static');
+      if (pick) {
+        labelEl.type = 'button';
+        labelEl.onclick = () => { selection[pick] = draw(pick === 'hand' ? handDeck : stringDeck); renderDeal(); };
+      }
+      labelEl.textContent = label;
+      slot.append(labelEl, cardEl(card, index, deck, motif));
+      table.appendChild(slot);
+    });
+
+    const brief = document.createElement('div');
+    brief.className = 'brief';
+    brief.innerHTML =
+      '<div class="line"><span>Configuration</span><b>' + esc(hand.title) + '</b></div>' +
+      '<div class="line"><span>String</span><b>' + esc(string.title) + ' · ' + esc(openNote) + '</b></div>' +
+      '<div class="chords">' + hand.title.split('-').map(finger => '<i>' + esc(finger) + '</i>').join('') + '</div>' +
+      '<div class="line"><span>Base 0</span><b>' + esc(base0.card.sub) + '</b></div>' +
+      '<button class="dealbtn">Deal again</button>';
+    brief.querySelector('button').onclick = () => {
+      selection.hand = draw(handDeck);
+      selection.string = draw(stringDeck);
+      renderDeal();
+    };
+    root.append(table, brief);
+  }
+
+  renderDeal();
+}
+
+
+function renderRightHandPracticeGame(root, { decks, cardEl, motif, stringCount }) {
+  const keyDeck = decks.find(deck => deck.id === 'keys');
+  const sourcePatternDeck = decks.find(deck => deck.id === 'righthand');
+  const patternDeck = {
+    ...sourcePatternDeck,
+    cards: sourcePatternDeck.cards.filter(card => card.stringSet === stringCount),
+  };
+  const techniqueDeck = decks.find(deck => deck.id === 'techniques');
+  const lastDrawn = new Map();
+
+  function draw(deck) {
+    const previous = lastDrawn.get(deck);
+    let index = Math.floor(Math.random() * deck.cards.length);
+    if (previous !== undefined && deck.cards.length > 1) {
+      index = Math.floor(Math.random() * (deck.cards.length - 1));
+      if (index >= previous) index++;
+    }
+    lastDrawn.set(deck, index);
+    return index;
+  }
+
+  const selection = {
+    key: draw(keyDeck),
+    pattern: draw(patternDeck),
+    technique: draw(techniqueDeck),
+  };
+
+  function renderDeal() {
+    const key = keyDeck.cards[selection.key];
+    const pattern = patternDeck.cards[selection.pattern];
+    const technique = techniqueDeck.cards[selection.technique];
+    const notes = pattern.rows.find(([label]) => label === 'Open notes')[1];
+
+    root.innerHTML = '';
+    const table = document.createElement('div');
+    table.className = 'deal three';
+    [
+      { card: key, index: selection.key, deck: keyDeck, label: 'New key', pick: 'key' },
+      { card: pattern, index: selection.pattern, deck: patternDeck, label: 'New pattern', pick: 'pattern' },
+      { card: technique, index: selection.technique, deck: techniqueDeck, label: 'New technique', pick: 'technique' },
+    ].forEach(({ card, index, deck, label, pick }, slotIndex) => {
+      const slot = document.createElement('div');
+      slot.className = 'slot';
+      slot.style.setProperty('--h', deck.hue);
+      slot.style.animationDelay = (slotIndex * 0.15) + 's';
+      const labelEl = document.createElement('button');
+      labelEl.className = 'slotbtn';
+      labelEl.type = 'button';
+      labelEl.textContent = label;
+      labelEl.onclick = () => { selection[pick] = draw(deck); renderDeal(); };
+      slot.append(labelEl, cardEl(card, index, deck, motif));
+      table.appendChild(slot);
+    });
+
+    const brief = document.createElement('div');
+    brief.className = 'brief';
+    brief.innerHTML =
+      '<div class="line"><span>Key</span><b>' + esc(key.title) + ' major</b></div>' +
+      '<div class="line"><span>Right hand pattern</span><b>' + esc(pattern.title) + '</b></div>' +
+      '<pre class="picking-tab">' + esc(rightHandTab(pattern.title, stringCount)) + '</pre>' +
+      '<div class="line"><span>Open notes</span><b>' + esc(notes) + '</b></div>' +
+      '<div class="line"><span>Technique</span><b>' + esc(technique.title) + '</b></div>' +
+      '<button class="dealbtn">Deal again</button>';
+    brief.querySelector('button').onclick = () => {
+      selection.key = draw(keyDeck);
+      selection.pattern = draw(patternDeck);
+      selection.technique = draw(techniqueDeck);
+      renderDeal();
+    };
+    root.append(table, brief);
+  }
+
+  renderDeal();
+}
+
+return { renderDeckDealGame, renderPatternDealGame, renderScaleCombinationGame, renderLeftHandPracticeGame, renderRightHandPracticeGame };
+},
+"games.js": function() {
+'use strict';
+const { renderDeckDealGame, renderPatternDealGame, renderScaleCombinationGame, renderLeftHandPracticeGame, renderRightHandPracticeGame } = __req("game.js");
+
+const TECHNIQUE_GAMES = [
+  ['intervals', 'Deal: Key · Interval · Technique', 32],
+  ['triads', 'Deal: Key · Triad · Technique', 52],
+  ['tetrads', 'Deal: Key · Chord · 4 Tone · Technique', 140],
+  ['scales5', 'Deal: Key · Scale · 5 Tone · Technique', 180],
+  ['scales6', 'Deal: Key · Scale · 6 Tone · Technique', 210],
+  ['scales7', 'Deal: Key · Scale · 7 Tone · Technique', 250],
+  ['modes', 'Deal: Key · Ionian & Modes · Technique', 285],
+  ['melodicpatterns', 'Deal: Key · Melodic Pattern · Technique', 315],
+  ['andalusian', 'Deal: Key · Andalusian · Technique', 15],
+  ['deceptive', 'Deal: Key · Deceptive · Technique', 300],
+  ['majorminor', 'Deal: Key · Major / Minor · Technique', 75],
+  ['blues', 'Deal: Key · Blues · Technique', 225],
+].map(([deckId, name, hue]) => ({
+  id: 'technique-' + deckId,
+  name,
+  hue,
+  game: (root, options) => renderDeckDealGame(root, options, deckId),
+}));
+
+const PATTERN_GAMES = [
+  ['triads', 'Deal: Key · Triad · Melodic Pattern', 52],
+  ['tetrads', 'Deal: Key · Chord · 4 Tone · Melodic Pattern', 140],
+  ['scales5', 'Deal: Key · Scale · 5 Tone · Melodic Pattern', 180],
+  ['scales6', 'Deal: Key · Scale · 6 Tone · Melodic Pattern', 210],
+  ['scales7', 'Deal: Key · Scale · 7 Tone · Melodic Pattern', 250],
+  ['modes', 'Deal: Key · Ionian & Modes · Melodic Pattern', 285],
+].map(([deckId, name, hue]) => ({
+  id: 'pattern-' + deckId,
+  name,
+  hue,
+  game: (root, options) => renderPatternDealGame(root, options, deckId),
+}));
+
+const EXTRA_PATTERN_GAMES = [
+  ['intervals', null, false, 'Deal: Key · Interval · Melodic Pattern', 32],
+  ['andalusian', null, false, 'Deal: Key · Andalusian · Melodic Pattern', 15],
+  ['deceptive', null, false, 'Deal: Key · Deceptive · Melodic Pattern', 300],
+  ['majorminor', null, false, 'Deal: Key · Major / Minor · Melodic Pattern', 75],
+  ['blues', null, false, 'Deal: Key · Blues · Melodic Pattern', 225],
+  ['triads', 'Arpeggios', true, 'Deal: Key · Triad Arpeggios · Technique', 52],
+  ['tetrads', 'Arpeggios', true, 'Deal: Key · 4-Tone Arpeggios · Technique', 140],
+  ['scales5', 'Pentatonic Lines', true, 'Deal: Key · 5-Tone Pentatonics · Technique', 180],
+  ['scales7', 'Linear', true, 'Deal: Key · 7-Tone Linear Patterns · Technique', 250],
+  ['modes', 'Sequences', true, 'Deal: Key · Modes & Sequences · Technique', 285],
+  ['scales6', 'Interval Leaps', true, 'Deal: Key · 6-Tone Interval Leaps · Technique', 210],
+  ['triads', 'Motifs', true, 'Deal: Key · Triad Motifs · Technique', 52],
+  ['tetrads', 'Chromatic Color', true, 'Deal: Key · 4-Tone Chromatic Patterns · Technique', 140],
+  ['modes', 'Contour Studies', true, 'Deal: Key · Modal Contours · Technique', 285],
+  ['scales7', 'Longer Lines', true, 'Deal: Key · 7-Tone Longer Lines · Technique', 250],
+  ['scales5', 'Sequence Variations', true, 'Deal: Key · 5-Tone Sequence Variations · Technique', 180],
+  ['andalusian', 'Pentatonic Lines', true, 'Deal: Key · Andalusian Pentatonics · Technique', 15],
+  ['blues', 'Pentatonic Lines', true, 'Deal: Key · Blues Pentatonics · Technique', 225],
+  ['deceptive', 'Motifs', true, 'Deal: Key · Deceptive Motifs · Technique', 300],
+  ['majorminor', 'Contour Studies', true, 'Deal: Key · Major / Minor Contours · Technique', 75],
+].map(([subjectId, patternGroup, withTechnique, name, hue], index) => ({
+  id: 'extra-pattern-' + (index + 1),
+  name,
+  hue,
+  game: (root, options) => renderPatternDealGame(root, options, subjectId, { patternGroup, withTechnique }),
+}));
+
+const GAMES = [...TECHNIQUE_GAMES, ...PATTERN_GAMES, ...EXTRA_PATTERN_GAMES, {
+  id: 'pattern-mode-combinations',
+  name: 'Deal: Key · Major Scale & Modes · 7-Tone Base 0 Pattern',
+  hue: 285,
+  game: (root, options) => renderScaleCombinationGame(root, options),
+}, {
+  id: 'left-hand-practice',
+  name: 'Left Hand Practice Game',
+  hue: 115,
+  game: (root, options) => renderLeftHandPracticeGame(root, options),
+}, {
+  id: 'right-hand-practice',
+  name: 'Right Hand Practice Game',
+  hue: 205,
+  game: (root, options) => renderRightHandPracticeGame(root, options),
+}];
+
+return { GAMES };
+},
+"app.js": function() {
+'use strict';
+const { DECKS, stringCards } = __req("decks.js");
+const { rightHandTab } = __req("data/righthand.js");
+const { ROOTS, noteToTonic, pcOf } = __req("theory.js");
+const { THEMES, applyTheme } = __req("themes.js");
+const { STYLES, motifSvg } = __req("cardstyles.js");
+const { GAMES } = __req("games.js");
+
+const themeSel = document.getElementById('theme');
+const styleSel = document.getElementById('cardstyle');
+THEMES.forEach(([n], i) => themeSel.add(new Option(n, i)));
+STYLES.forEach(([n], i) => styleSel.add(new Option('Style: ' + n, i)));
+themeSel.value = LS.getItem('td-theme') || 2;
+styleSel.value = LS.getItem('td-style') || 1;
+applyTheme(+themeSel.value);
+themeSel.onchange = () => { applyTheme(+themeSel.value); LS.setItem('td-theme', themeSel.value); };
+styleSel.onchange = () => { LS.setItem('td-style', styleSel.value); render(); };
+
+const cardDeckSel = document.getElementById('card-deck');
+const gameDeckSel = document.getElementById('game-deck');
+const grid = document.getElementById('grid');
+const count = document.getElementById('count');
+const strSel = document.getElementById('strings');
+let current = DECKS[0];
+let cardObserver = null;
+
+DECKS.forEach(deck => cardDeckSel.add(new Option(deck.name, deck.id)));
+
+const BASE0_BY_SOURCE = new Map(DECKS.find(deck => deck.id === 'base0').cards
+  .filter(card => card.sourceDeckId)
+  .map(card => [card.sourceDeckId + ':' + card.sourceCardIndex, card.sub]));
+
+GAMES.forEach(game => gameDeckSel.add(new Option(game.name, game.id)));
+cardDeckSel.onchange = () => {
+  const deck = DECKS.find(item => item.id === cardDeckSel.value);
+  if (deck) select(deck);
+};
+gameDeckSel.onchange = () => {
+  const game = GAMES.find(item => item.id === gameDeckSel.value);
+  if (game) select(game);
+};
+
+strSel.onchange = () => {
+  const deck = DECKS.find(d => d.strings);
+  if (current.strings) deck.cards = stringCards(+strSel.value);
+  render();
+};
+
+function select(d) {
+  current = d;
+  cardDeckSel.value = d.game ? '' : d.id;
+  gameDeckSel.value = d.game ? d.id : '';
+  strSel.hidden = !(d.strings || d.id === 'righthand' || d.id === 'right-hand-practice');
+  render();
+  grid.scrollTop = 0;
+}
+
+const esc = (s) => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+
+function base0FrontValue(card, index, deck) {
+  if (deck.id === 'base0' || deck.id === 'melodic7base0') return card.sub;
+  const linked = BASE0_BY_SOURCE.get(deck.id + ':' + index);
+  if (linked !== undefined) return linked;
+  if (deck.id === 'keys') return '0-2-4-5-7-9-11';
+  if (deck.id === 'strings') {
+    const tonic = noteToTonic(card.rows[0][1]);
+    return String(pcOf(tonic.l, tonic.acc));
+  }
+  if (deck.id === 'righthand') {
+    const sequence = Array.from(card.title, Number);
+    const first = sequence[0];
+    return sequence.map(string => {
+      const offset = string - first;
+      return offset > 0 ? '+' + offset : String(offset);
+    }).join(' ');
+  }
+  return 'N/A';
+}
+
+function cardEl(c, i, d, motif) {
+  const el = document.createElement('div');
+  el.className = 'card';
+  el.innerHTML =
+    '<div class="inner">' +
+      '<div class="face front">' +
+        '<div class="pip tl">' + motif + '<b>' + (i + 1) + '</b></div>' +
+        '<div class="pip br">' + motif + '<b>' + (i + 1) + '</b></div>' +
+        '<div class="deckname">' + esc(d.name) + '</div>' +
+        '<h3' + (c.title.length <= 9 ? ' class="big"' : '') + '>' + esc(c.title) + '</h3>' +
+        '<div class="sub">' + esc(c.sub) + '</div>' +
+        '<div class="base0front"><b>' + esc(base0FrontValue(c, i, d)) + '</b></div>' +
+      '</div>' +
+      '<div class="face back">' +
+        '<div class="details">' +
+          '<h4>' + esc(c.title) + '</h4>' +
+          '<dl>' + c.rows.map(([k, v]) => '<dt>' + esc(k) + '</dt><dd>' + esc(v) + '</dd>').join('') + '</dl>' +
+          (c.stringSet ? '<pre class="picking-tab">' + esc(rightHandTab(c.title, c.stringSet)) + '</pre>' : '') +
+          '<p>' + esc(c.desc) + '</p>' +
+        '</div>' +
+        (c.transpose ? '<div class="allkeys"></div>' : '') +
+      '</div>' +
+    '</div>';
+  let state = 0;
+  el.onclick = () => {
+    const max = c.transpose ? 3 : 2;
+    state = (state + 1) % max;
+    if (state === 2) {
+      const box = el.querySelector('.allkeys');
+      if (!box.innerHTML) box.innerHTML = keysHtml(c);
+    }
+    el.classList.toggle('flip', state > 0);
+    el.classList.toggle('keys', state === 2);
+  };
+  return el;
+}
+
+function keysHtml(c) {
+  return '<h4>' + esc(c.allKeysLabel) + '</h4><dl>' + ROOTS.map(r => {
+    const t = c.transpose(r);
+    const k = typeof t === 'object' ? t.k : r.name;
+    const v = typeof t === 'object' ? t.v : t;
+    return '<dt>' + esc(k) + '</dt><dd>' + esc(v) + '</dd>';
+  }).join('') + '</dl>';
+}
+
+function render() {
+  const d = current;
+  if (cardObserver) cardObserver.disconnect();
+  cardObserver = null;
+  document.body.style.setProperty('--h', d.hue);
+  grid.innerHTML = '';
+  const si = +styleSel.value;
+  const motif = motifSvg(si);
+  grid.dataset.frame = STYLES[si][1];
+  if (d.game) {
+    count.textContent = '';
+    d.game(grid, { decks: DECKS, cardEl, motif, stringCount: +strSel.value });
+    return;
+  }
+  const cards = d.id === 'righthand'
+    ? d.cards.filter(card => card.stringSet === +strSel.value)
+    : d.cards;
+  if (cards.length > 300) {
+    let cursor = 0;
+    let group = null, wrap = null;
+    const sentinel = document.createElement('div');
+    sentinel.setAttribute('aria-hidden', 'true');
+    const appendBatch = () => {
+      const end = Math.min(cursor + 100, cards.length);
+      for (; cursor < end; cursor++) {
+        const c = cards[cursor];
+        if (!wrap || c.group !== group) {
+          group = c.group;
+          if (group) {
+            const heading = document.createElement('h2');
+            heading.textContent = group;
+            grid.appendChild(heading);
+          }
+          wrap = document.createElement('div');
+          wrap.className = 'cards';
+          grid.appendChild(wrap);
+        }
+        wrap.appendChild(cardEl(c, cursor, d, motif));
+      }
+      grid.appendChild(sentinel);
+      if (cursor >= cards.length) cardObserver.disconnect();
+    };
+    cardObserver = new IntersectionObserver(entries => {
+      if (entries.some(entry => entry.isIntersecting)) appendBatch();
+    }, { root: grid, rootMargin: '400px' });
+    appendBatch();
+    cardObserver.observe(sentinel);
+    count.textContent = cards.length + ' cards';
+    return;
+  }
+  let group = null, wrap = null;
+  cards.forEach((c, i) => {
+    if (!wrap || c.group !== group) {
+      group = c.group;
+      if (group) {
+        const h = document.createElement('h2');
+        h.textContent = group;
+        grid.appendChild(h);
+      }
+      wrap = document.createElement('div');
+      wrap.className = 'cards';
+      grid.appendChild(wrap);
+    }
+    wrap.appendChild(cardEl(c, i, d, motif));
+  });
+  count.textContent = cards.length + ' cards';
+}
+
+select(DECKS[0]);
+
+return {  };
+},
+"reference.js": function() {
+'use strict';
+const { GAMES } = __req("games.js");
+
+const DECKS = [
+  ['Key', 'Twelve major keys with notes, relative minors, key signatures, and circle-of-fifths positions.'],
+  ['Interval', 'Thirty interval cards with degree, semitone distance, sound description, and transposition.'],
+  ['Roman Numeral ID', 'Identifies interval roots by their diatonic Roman numeral in a major key.'],
+  ['Chord · Triad', 'Three-note chord qualities and color voicings, with formulas and all-key spellings.'],
+  ['Chord · 4 Tone', 'Four-note chords including seventh, sixth, add-tone, and altered dominant shapes.'],
+  ['Scale · 5 Tone', 'Five-note scales and pentatonic families with notes, steps, and fretboard shape.'],
+  ['Scale · 6 Tone', 'Six-note scale collections and their interval structures.'],
+  ['Scale · 7 Tone', 'Seven-note scales with pitch spellings, step patterns, and shapes.'],
+  ['Ionian & Modes', 'Ionian and modal scale families, including rotations and related formula variants.'],
+  ['Melodic Patterns', 'Short and long note sequences grouped into linear runs, arpeggios, motifs, leaps, and contours.'],
+  ['7-Tone Base 0 Patterns', 'Sorted scale-step combinations of lengths 2–6, normalized to position 0.'],
+  ['String', 'Standard-tuning open-string cards. Select a 2- through 8-string setup to change the deck.'],
+  ['Technique', 'Picking, muting, legato, slides, vibrato, bends, harmonics, and other guitar techniques.'],
+  ['Andalusian', 'Minor-key Andalusian cadences and related chord progressions.'],
+  ['Deceptive', 'Deceptive and unexpected harmonic resolutions in multiple progressions.'],
+  ['Major / Minor', 'Progressions that explore major-to-minor color and changes in tonal center.'],
+  ['Blues', 'Blues progressions and variations for harmonic practice.'],
+  ['1-2-3-4', 'Ordered left-hand finger sequences of lengths 1–8, with each finger used no more than twice.'],
+  ['Right Hand', 'Ordered, no-repeat picking paths for string sets 2–8 and every supported length. Standard tuning: 1=E4, 2=B3, 3=G3, 4=D3, 5=A2, 6=E2, 7=B1, 8=F-sharp1. Defaults to six strings.'],
+  ['Base 0', 'Root-independent semitone formulas and normalized left-hand sequence references.'],
+];
+
+const GAME_GROUPS = [
+  ['Technique Deals', game => game.id.startsWith('technique-')],
+  ['Melodic Pattern Deals', game => game.id.startsWith('pattern-')],
+  ['Focused Pattern Deals', game => game.id.startsWith('extra-pattern-')],
+  ['Hand Practice', game => game.id === 'left-hand-practice' || game.id === 'right-hand-practice'],
+];
+
+function gameDetails(game) {
+  if (game.id === 'pattern-mode-combinations') return 'Deals a key, one of the seven major-scale modes, a 7-tone melodic combination, and its Base 0 formula.';
+  if (game.id.startsWith('technique-')) return 'Deals a key, the named subject deck, a picking technique, and matching Base 0 reference.';
+  if (game.id.startsWith('pattern-')) return 'Deals a key, the named subject deck, a melodic pattern, and matching Base 0 reference.';
+  if (game.id.startsWith('extra-pattern-')) {
+    return game.name.includes('Technique')
+      ? 'Deals a key, a focused subject and melodic-pattern family, a technique, and matching Base 0 reference.'
+      : 'Deals a key, the named subject deck, a melodic pattern, and matching Base 0 reference.';
+  }
+  if (game.id === 'left-hand-practice') return 'Deals a left-hand finger sequence, a standard guitar string, and the matching normalized Base 0 pattern.';
+  return 'Deals a key, a right-hand picking pattern for the selected string count, and a picking technique.';
+}
+
+function entry(title, detail) {
+  const article = document.createElement('article');
+  article.className = 'reference-entry';
+  const heading = document.createElement('h3');
+  heading.textContent = title;
+  const copy = document.createElement('p');
+  copy.textContent = detail;
+  article.append(heading, copy);
+  return article;
+}
+
+const deckList = document.getElementById('deck-list');
+DECKS.forEach(([name, detail]) => deckList.appendChild(entry(name, detail)));
+
+const gameList = document.getElementById('game-list');
+const gameGroups = document.createElement('div');
+gameGroups.className = 'game-groups';
+GAME_GROUPS.forEach(([label, matches]) => {
+  const games = GAMES.filter(matches);
+  if (!games.length) return;
+  const section = document.createElement('section');
+  section.className = 'game-group';
+  const heading = document.createElement('h3');
+  heading.textContent = label + ' · ' + games.length;
+  section.appendChild(heading);
+  games.forEach(game => section.appendChild(entry(game.name, gameDetails(game))));
+  gameGroups.appendChild(section);
+});
+gameList.appendChild(gameGroups);
+
+return {  };
+}
+};
+const __cache = Object.create(null);
+function __req(p) {
+  if (__cache[p]) return __cache[p];
+  const f = __factories[p];
+  if (!f) throw new Error('Unknown module: ' + p);
+  return (__cache[p] = f());
+}
+
+const inited = {};
+const loaders = { play: () => __req('app.js'), reference: () => __req('reference.js') };
+const titles = { home: 'Theory Decks', play: 'Play · Theory Decks', reference: 'Reference · Theory Decks' };
+function route() {
+  const name = (location.hash || '#home').slice(1);
+  const view = ['home', 'play', 'reference'].includes(name) ? name : 'home';
+  document.querySelectorAll('.view').forEach(el => { el.hidden = el.id !== 'view-' + view; });
+  document.title = titles[view];
+  if (loaders[view] && !inited[view]) { inited[view] = true; loaders[view](); }
+  const scroller = document.getElementById('view-' + view);
+  if (view !== 'play') scroller.scrollTop = 0;
+}
+window.addEventListener('hashchange', route);
+route();
+})();
+</script>
+</body>
+</html>
